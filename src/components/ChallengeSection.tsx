@@ -1,3 +1,5 @@
+import PhoneMockup from './PhoneMockup'
+
 const steps = [
   {
     num: 1,
@@ -46,22 +48,7 @@ export default function ChallengeSection() {
             </div>
           </div>
 
-          <div className="phone-mockup">
-            <div className="phone-frame">
-              <div className="phone-app-label">2-Min Challenge</div>
-              <div className="phone-timer">1:47</div>
-              <div className="phone-waveform">
-                <div className="bar" />
-                <div className="bar" />
-                <div className="bar" />
-                <div className="bar" />
-                <div className="bar" />
-                <div className="bar" />
-                <div className="bar" />
-              </div>
-              <div className="phone-start-btn">Recording…</div>
-            </div>
-          </div>
+          <PhoneMockup variant="timer" />
         </div>
       </div>
     </section>
