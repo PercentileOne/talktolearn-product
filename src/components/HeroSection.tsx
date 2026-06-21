@@ -24,9 +24,14 @@ export default function HeroSection() {
             </p>
 
             {/* Body — tight and punchy */}
-            <p className="text-[clamp(0.95rem,2vw,1.1rem)] text-white/78 max-w-[460px] mx-auto md:mx-0 mb-8 leading-[1.7]">
+            <p className="text-[clamp(0.95rem,2vw,1.1rem)] text-white/78 max-w-[460px] mx-auto md:mx-0 mb-5 leading-[1.7]">
               Speak any subject out loud. The AI scores your Accuracy, Depth, Clarity,
               Structure, and Confidence — then tells you exactly what to improve.
+            </p>
+
+            {/* Explanatory sub-headline */}
+            <p className="text-[clamp(1rem,2.2vw,1.2rem)] text-white/92 max-w-[480px] mx-auto md:mx-0 mb-8 leading-[1.6]" style={{ fontWeight: 500 }}>
+              Explain any topic out loud — we'll score your clarity, depth, accuracy, structure, and confidence.
             </p>
 
             {/* CTAs */}
