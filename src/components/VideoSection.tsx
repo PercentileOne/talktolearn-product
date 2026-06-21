@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────────────────
-   VideoSection — "See the Difference in 10 Minutes"
+   VideoSection — "Feel the Difference in Confidence in 10 Minutes"
    Option D: 3-Frame Cinematic Sequence  +  3 premium story cards
    ───────────────────────────────────────────────────────────────────────────── */
 
@@ -172,7 +172,7 @@ export default function VideoSection() {
             fontWeight: 900, letterSpacing: '-.03em', lineHeight: 1.07,
             color: '#0A0F1C', margin: '0 0 14px',
           }}>
-            See the Difference in 10 Minutes
+            Feel the Difference in Confidence in 10 Minutes
           </h2>
 
           <p style={{ fontSize: 'clamp(1rem,2vw,1.15rem)', color: '#6B7280', lineHeight: 1.65, maxWidth: '480px', margin: '0 auto' }}>
