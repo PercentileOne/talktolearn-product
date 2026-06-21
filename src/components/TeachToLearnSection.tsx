@@ -30,22 +30,26 @@ const PHOTO_TILES = [
   {
     label: 'Student',
     sub: 'Explaining out loud',
-    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&h=600&q=80',
+    /* Student speaking/presenting at front of class */
+    src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&h=600&q=80',
   },
   {
     label: 'Professional',
     sub: 'Presenting with confidence',
-    src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&h=600&q=80',
+    /* Woman presenting confidently, face visible, speaking */
+    src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&h=600&q=80',
   },
   {
     label: 'Creator',
     sub: 'Talking to camera',
-    src: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&h=600&q=80',
+    /* Person recording video / vlogging — face to camera */
+    src: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=600&h=600&q=80',
   },
   {
     label: 'Parent & Learner',
     sub: 'Explaining together',
-    src: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&h=600&q=80',
+    /* Parent talking to child, warm and engaged */
+    src: 'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=600&h=600&q=80',
   },
 ]
 
