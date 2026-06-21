@@ -82,7 +82,7 @@ function QuizIcon({ color = 'currentColor' }: { color?: string }) {
 
 function BookIcon() {
   return (
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={T.brandBlue} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
       <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
     </svg>
@@ -92,17 +92,17 @@ function BookIcon() {
 /* ── FlashCard ───────────────────────────────────────────────────────────── */
 
 const cardShadow = [
-  '0 1px 0 rgba(255,255,255,0.9) inset',
-  '0 2px 4px rgba(10,15,28,0.04)',
-  '0 8px 24px rgba(10,15,28,0.07)',
-  '0 24px 64px rgba(10,15,28,0.09)',
+  '0 1px 0 rgba(255,255,255,0.6) inset',
+  '0 2px 4px rgba(0,0,0,0.04)',
+  '0 8px 24px rgba(0,0,0,0.08)',
+  '0 24px 64px rgba(0,0,0,0.07)',
 ].join(', ')
 
 const cardShadowHover = [
-  '0 1px 0 rgba(255,255,255,0.9) inset',
-  '0 4px 8px rgba(10,15,28,0.06)',
-  '0 16px 40px rgba(10,15,28,0.11)',
-  '0 40px 80px rgba(10,15,28,0.13)',
+  '0 1px 0 rgba(255,255,255,0.6) inset',
+  '0 4px 8px rgba(0,0,0,0.06)',
+  '0 16px 40px rgba(0,0,0,0.11)',
+  '0 40px 80px rgba(0,0,0,0.10)',
 ].join(', ')
 
 function FlashCard() {
@@ -110,9 +110,9 @@ function FlashCard() {
     <div
       className="text-left max-w-2xl mx-auto transition-all duration-300"
       style={{
-        borderRadius: '20px',
-        border: `1px solid ${T.borderSoft}`,
-        background: `linear-gradient(180deg, ${T.bgPanel} 0%, #F8FAFD 100%)`,
+        borderRadius: '24px',
+        border: '1px solid rgba(0,0,0,0.08)',
+        background: '#FAFAFA',
         boxShadow: cardShadow,
         overflow: 'hidden',
       }}
@@ -134,29 +134,28 @@ function FlashCard() {
         background: `linear-gradient(90deg, ${T.brandBlue} 0%, ${T.brandBlueSoft} 55%, #60A5FA 100%)`,
       }} />
 
-      {/* ── Header zone ─────────────────────────────────── */}
+      {/* ── Header zone — dark charcoal ─────────────────── */}
       <div style={{
-        padding: '28px 40px',
-        background: '#F2F4F7',
-        boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
-        borderBottom: `1px solid ${T.borderSoft}`,
+        padding: '32px 40px',
+        background: '#1E1E1E',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>
         {/* AI generation badge + timer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '7px',
             padding: '5px 12px', borderRadius: '50px',
-            background: '#EEF2FF', border: '1px solid #C7D2FE',
+            background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.16)',
           }}>
             <span className="ai-pulse" style={{
               width: '6px', height: '6px', borderRadius: '50%',
               background: '#10B981', boxShadow: '0 0 6px #34D399', flexShrink: 0 as const,
             }} />
-            <span style={{ fontSize: '0.63rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: T.brandBlue }}>
+            <span style={{ fontSize: '0.63rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.75)' }}>
               AI-Generated Flashcard
             </span>
           </div>
-          <span style={{ fontSize: '0.63rem', fontWeight: 600, color: '#10B981', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '0.63rem', fontWeight: 600, color: '#34D399', letterSpacing: '0.04em' }}>
             Generated in 1.2s
           </span>
         </div>
@@ -165,44 +164,46 @@ function FlashCard() {
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '16px',
           padding: '5px 14px', borderRadius: '50px',
-          background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)',
-          border: '1px solid #C7D2FE',
+          background: 'rgba(96,165,250,0.15)',
+          border: '1px solid rgba(96,165,250,0.30)',
         }}>
           <BookIcon />
-          <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: T.brandBlue }}>
-            Science · Year 9
+          <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#93C5FD' }}>
+            Business &amp; Management · Year 12
           </span>
         </div>
 
         {/* Title */}
         <h3 style={{
-          fontSize: '1.9rem', fontWeight: 600, letterSpacing: '-0.3px',
-          lineHeight: 1.12, color: T.textPrimary, margin: '0 0 10px',
+          fontSize: '1.9rem', fontWeight: 700, letterSpacing: '-0.3px',
+          lineHeight: 1.12, color: '#FFFFFF', margin: '0 0 10px',
         }}>
-          Photosynthesis
+          Break-even Analysis
         </h3>
-        <SBody>How plants convert light into energy</SBody>
+        <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', margin: 0 }}>
+          How businesses calculate their minimum sales target
+        </p>
       </div>
 
       {/* ── Body ────────────────────────────────────────── */}
-      <div style={{ padding: '32px 40px', background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 100%)' }}>
+      <div style={{ padding: '36px 40px', background: 'linear-gradient(180deg, #FAFAFA 0%, #F3F3F3 100%)' }}>
 
         <div>
           <SLabel>Explanation</SLabel>
           <SBody>
-            Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to produce glucose and oxygen — taking place in the chloroplasts of plant cells.
+            Break-even analysis identifies the level of output at which total revenue exactly equals total costs — the point at which a business makes neither a profit nor a loss.
           </SBody>
         </div>
 
         <SDivider />
 
-        <div style={{ background: 'rgba(30,77,216,0.04)', borderRadius: '12px', padding: '16px 18px', margin: '0 -18px' }}>
+        <div style={{ background: 'rgba(59,130,246,0.06)', borderRadius: '12px', padding: '16px 18px', margin: '0 -18px', border: '1px solid rgba(59,130,246,0.10)' }}>
           <SLabel>Key Points</SLabel>
           <SBullets items={[
-            'Requires sunlight, water (H₂O), and CO₂',
-            'Produces glucose (energy) and oxygen',
-            'Occurs in chloroplasts — contains chlorophyll',
-            'Formula: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂',
+            'Break-even point = Fixed Costs ÷ Contribution per unit',
+            'Contribution per unit = Selling Price − Variable Cost per unit',
+            'Fixed costs do not change with output (e.g. rent, salaries)',
+            'Variable costs change directly with output (e.g. raw materials)',
           ]} />
         </div>
 
@@ -211,30 +212,30 @@ function FlashCard() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px' }}>
           <div>
             <SLabel>Example</SLabel>
-            <SBody>A leaf absorbs sunlight and pulls water from roots — converting both into sugar it uses to grow.</SBody>
+            <SBody>Fixed costs £20,000 · Price £50 · Variable cost £30 → Contribution £20 → Break-even = 1,000 units.</SBody>
           </div>
-          <div>
+          <div style={{ background: 'rgba(139,92,246,0.05)', borderRadius: '10px', padding: '14px 16px', margin: '0 -16px', border: '1px solid rgba(139,92,246,0.10)' }}>
             <SLabel>Structure</SLabel>
-            <SBody>Two stages: light-dependent reactions (thylakoid) → Calvin cycle (stroma) → glucose output.</SBody>
+            <SBody>Revenue line vs Total Cost line. Their intersection = break-even point. Above: profit zone. Below: loss zone.</SBody>
           </div>
         </div>
 
         <SDivider />
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px' }}>
-          <div style={{ background: 'rgba(255,170,0,0.06)', borderRadius: '10px', padding: '14px 16px', margin: '0 -16px' }}>
+          <div style={{ background: 'rgba(245,158,11,0.06)', borderRadius: '10px', padding: '14px 16px', margin: '0 -16px', border: '1px solid rgba(245,158,11,0.12)' }}>
             <SLabel>Misconceptions</SLabel>
             <SBullets items={[
-              'Plants do not only absorb CO₂ — they also respire',
-              'Photosynthesis stops at night — it needs light',
+              'Break-even ≠ success — it only means costs are covered',
+              'A lower break-even point is generally better, not worse',
             ]} />
           </div>
-          <div>
+          <div style={{ background: 'rgba(16,185,129,0.05)', borderRadius: '10px', padding: '14px 16px', margin: '0 -16px', border: '1px solid rgba(16,185,129,0.10)' }}>
             <SLabel>Breakdown</SLabel>
             <SBullets items={[
-              'Chlorophyll absorbs red + blue light',
-              'Water is split to release electrons',
-              'CO₂ is fixed into 3-carbon sugars',
+              'Step 1: Calculate contribution per unit',
+              'Step 2: Divide fixed costs by contribution',
+              'Step 3: Plot on a break-even chart',
             ]} />
           </div>
         </div>
@@ -249,7 +250,7 @@ function FlashCard() {
         }}>
           <SLabel>Summary</SLabel>
           <SBody>
-            Plants are solar-powered sugar factories. Light + water + CO₂ → glucose + oxygen. The equation balances perfectly — and so does nature.
+            Break-even = Fixed Costs ÷ (Price − Variable Cost). Every unit sold above this point generates profit. Every unit below it represents a loss. It is the foundation of pricing and production decisions.
           </SBody>
         </div>
 
@@ -259,8 +260,8 @@ function FlashCard() {
       <div style={{
         display: 'flex', gap: '12px',
         padding: '24px 40px',
-        background: '#F7F9FC',
-        borderTop: `1px solid ${T.borderSoft}`,
+        background: '#EDEDED',
+        borderTop: '1px solid rgba(0,0,0,0.07)',
       }}>
         <button
           style={{
@@ -365,9 +366,18 @@ export default function CardFlowSection() {
 
         {/* The Flashcard */}
         <div className="mb-16">
-          <p className="text-center text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-text-muted mb-8">
-            A real Flashcard — generated in seconds
-          </p>
+          <div className="text-center mb-8">
+            <span style={{
+              display: 'inline-block',
+              fontSize: '0.65rem', fontWeight: 800,
+              letterSpacing: '0.18em', textTransform: 'uppercase' as const,
+              color: T.brandBlue,
+              borderBottom: `2px solid ${T.brandBlue}`,
+              paddingBottom: '4px',
+            }}>
+              Flashcard Example
+            </span>
+          </div>
           <FlashCard />
         </div>
 
