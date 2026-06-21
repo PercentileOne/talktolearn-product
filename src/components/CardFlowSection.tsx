@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 const FLOW_STEPS = [
   { num: '01', icon: '✏️', title: 'Enter a Subject',       desc: 'Type any topic — maths, science, history, a language, a skill, anything.' },
   { num: '02', icon: '⚡', title: 'Generate a Flashcard',  desc: 'The AI instantly builds a comprehensive Flashcard covering all relevant subject matter.' },
@@ -5,96 +7,176 @@ const FLOW_STEPS = [
   { num: '04', icon: '🔀', title: 'Choose: Talk or Test',  desc: 'Prove your understanding — explain it out loud for up to 6 minutes, or answer AI-generated questions.' },
 ]
 
+function SectionHeader({ children }: { children: ReactNode }) {
+  return (
+    <div className="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-brand-blue mb-2">
+      {children}
+    </div>
+  )
+}
+
+function Divider() {
+  return <div className="border-t border-fc-border mt-6 pt-6" />
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map(item => (
+        <li key={item} className="flex items-start gap-2.5 text-[15px] text-fc-sub leading-[1.6]">
+          <span className="mt-[5px] w-1 h-1 rounded-full bg-brand-blue flex-shrink-0" />
+          {item}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 function FlashCard() {
   return (
-    <div className="bg-bg-white rounded-xl2 shadow-[0_8px_48px_rgba(0,0,0,0.1)] border border-primary/[0.12] overflow-hidden text-left max-w-2xl mx-auto">
-
-      {/* AI bar */}
-      <div className="flex items-center gap-2 px-5 py-2 bg-[#0D1117] border-b border-white/[0.06]">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34D399] ai-pulse flex-shrink-0" />
-        <span className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-white/50 flex-1">AI-Generated Flashcard</span>
-        <span className="text-[0.65rem] text-emerald-400 font-semibold">Generated in 1.2s</span>
+    <div
+      className="
+        relative rounded-[20px] text-left max-w-2xl mx-auto overflow-hidden
+        border border-fc-border
+        transition-all duration-300
+        hover:-translate-y-[2px] hover:shadow-fc-hover
+      "
+      style={{
+        background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 100%)',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.04)',
+      }}
+    >
+      {/* AI generation badge — top of card, minimal */}
+      <div className="flex items-center justify-between px-8 pt-6 pb-0">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34D399] ai-pulse flex-shrink-0" />
+          <span className="text-[0.68rem] font-semibold tracking-[0.06em] uppercase text-fc-sub/60">AI-Generated</span>
+        </div>
+        <span className="text-[0.65rem] text-emerald-500 font-semibold tracking-[0.04em]">Generated in 1.2s</span>
       </div>
 
-      {/* Header */}
-      <div className="bg-blue-gradient px-7 py-6">
-        <span className="inline-block bg-white/[0.18] text-white/90 text-[0.68rem] font-bold tracking-[0.1em] uppercase px-3 py-1 rounded-btn border border-white/[0.28] mb-2.5">Science · Year 9</span>
-        <h3 className="text-[1.6rem] font-black text-white tracking-[-0.02em] mb-1">Photosynthesis</h3>
-        <p className="text-sm text-white/70">How plants convert light into energy</p>
+      {/* Title block */}
+      <div className="px-8 pt-5 pb-6">
+        <div className="inline-block text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-brand-blue bg-brand-blue/[0.07] px-3 py-1 rounded-full mb-3">
+          Science · Year 9
+        </div>
+        <h3
+          className="text-[1.75rem] text-fc-text leading-[1.15] mb-1.5"
+          style={{ fontWeight: 600, letterSpacing: '-0.3px' }}
+        >
+          Photosynthesis
+        </h3>
+        <p className="text-[15px] text-fc-sub leading-[1.6]">How plants convert light into energy</p>
       </div>
 
       {/* Body */}
-      <div className="px-7 divide-y divide-slate-100">
-        <div className="py-4">
-          <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">📖 Explanation</div>
-          <p className="text-sm text-text-dark leading-relaxed">Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to produce glucose and oxygen — taking place in the chloroplasts of plant cells.</p>
+      <div className="px-8 pb-8">
+
+        {/* Explanation */}
+        <div>
+          <SectionHeader>Explanation</SectionHeader>
+          <p className="text-[15px] text-fc-sub leading-[1.6]">
+            Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to produce glucose and oxygen — taking place in the chloroplasts of plant cells.
+          </p>
         </div>
-        <div className="py-4">
-          <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">🔑 Key Points</div>
-          <ul className="space-y-1.5">
-            {['Requires sunlight, water (H₂O), and CO₂','Produces glucose (energy) and oxygen','Occurs in chloroplasts — contains chlorophyll','Formula: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂'].map(p => (
-              <li key={p} className="text-sm text-text-dark pl-4 relative leading-snug">
-                <span className="absolute left-0 text-primary text-xs top-0.5">→</span>
-                {p}
-              </li>
-            ))}
-          </ul>
+
+        <Divider />
+
+        {/* Key Points */}
+        <div>
+          <SectionHeader>Key Points</SectionHeader>
+          <BulletList items={[
+            'Requires sunlight, water (H₂O), and CO₂',
+            'Produces glucose (energy) and oxygen',
+            'Occurs in chloroplasts — contains chlorophyll',
+            'Formula: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂',
+          ]} />
         </div>
-        <div className="py-4 grid grid-cols-2 gap-5">
+
+        <Divider />
+
+        {/* Example + Structure — two column */}
+        <div className="grid grid-cols-2 gap-6">
           <div>
-            <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">💡 Example</div>
-            <p className="text-sm text-text-dark leading-relaxed">A leaf absorbs sunlight and pulls water from roots — converting both into sugar it uses to grow.</p>
+            <SectionHeader>Example</SectionHeader>
+            <p className="text-[15px] text-fc-sub leading-[1.6]">
+              A leaf absorbs sunlight and pulls water from roots — converting both into sugar it uses to grow.
+            </p>
           </div>
           <div>
-            <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">🏗️ Structure</div>
-            <p className="text-sm text-text-dark leading-relaxed">Two stages: light-dependent reactions (thylakoid) → Calvin cycle (stroma) → glucose output.</p>
+            <SectionHeader>Structure</SectionHeader>
+            <p className="text-[15px] text-fc-sub leading-[1.6]">
+              Two stages: light-dependent reactions (thylakoid) → Calvin cycle (stroma) → glucose output.
+            </p>
           </div>
         </div>
-        <div className="py-4 grid grid-cols-2 gap-5">
+
+        <Divider />
+
+        {/* Misconceptions + Breakdown — two column */}
+        <div className="grid grid-cols-2 gap-6">
           <div>
-            <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">⚠️ Misconceptions</div>
-            <ul className="space-y-1">
-              {['Plants do not only absorb CO₂ — they also respire','Photosynthesis stops at night — it needs light'].map(p => (
-                <li key={p} className="text-sm text-text-dark pl-4 relative leading-snug">
-                  <span className="absolute left-0 text-primary text-xs top-0.5">→</span>
-                  {p}
-                </li>
-              ))}
-            </ul>
+            <SectionHeader>Misconceptions</SectionHeader>
+            <BulletList items={[
+              'Plants do not only absorb CO₂ — they also respire',
+              'Photosynthesis stops at night — it needs light',
+            ]} />
           </div>
           <div>
-            <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">🔬 Breakdown</div>
-            <ul className="space-y-1">
-              {['Chlorophyll absorbs red + blue light','Water is split to release electrons','CO₂ is fixed into 3-carbon sugars'].map(p => (
-                <li key={p} className="text-sm text-text-dark pl-4 relative leading-snug">
-                  <span className="absolute left-0 text-primary text-xs top-0.5">→</span>
-                  {p}
-                </li>
-              ))}
-            </ul>
+            <SectionHeader>Breakdown</SectionHeader>
+            <BulletList items={[
+              'Chlorophyll absorbs red + blue light',
+              'Water is split to release electrons',
+              'CO₂ is fixed into 3-carbon sugars',
+            ]} />
           </div>
         </div>
-        <div className="py-4 bg-bg-blue -mx-7 px-7">
-          <div className="text-[0.68rem] font-extrabold tracking-[0.1em] uppercase text-primary mb-1.5">✅ Summary</div>
-          <p className="text-sm text-text-dark leading-relaxed">Plants are solar-powered sugar factories. Light + water + CO₂ → glucose + oxygen. The equation balances perfectly — and so does nature.</p>
+
+        <Divider />
+
+        {/* Summary */}
+        <div
+          className="rounded-2xl px-6 py-5"
+          style={{ background: 'linear-gradient(135deg, #EEF2FF 0%, #F0F7FF 100%)', border: '1px solid #D4DCF7' }}
+        >
+          <SectionHeader>Summary</SectionHeader>
+          <p className="text-[15px] text-fc-sub leading-[1.6]">
+            Plants are solar-powered sugar factories. Light + water + CO₂ → glucose + oxygen. The equation balances perfectly — and so does nature.
+          </p>
         </div>
+
       </div>
 
-      {/* Actions */}
-      <div className="grid grid-cols-2 border-t border-slate-100">
-        <button className="flex items-center gap-3.5 px-5 py-4 bg-blue-gradient hover:brightness-110 transition-all rounded-bl-xl2 text-left">
-          <span className="text-2xl">🎙</span>
-          <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-black text-white tracking-[0.06em]">TALK</span>
-            <span className="text-[0.68rem] text-white/75">2–6 min · 5 AI scores</span>
-          </div>
+      {/* Talk / Test footer */}
+      <div
+        className="px-8 py-6 flex flex-col sm:flex-row gap-3"
+        style={{ borderTop: '1px solid #E5E9F0', background: '#FFFFFF' }}
+      >
+        <button
+          className="
+            flex-1 flex items-center justify-center gap-3 py-3.5 px-6
+            bg-brand-blue text-white text-[0.9rem] font-semibold rounded-full
+            transition-all duration-200
+            hover:-translate-y-[1px]
+          "
+          style={{ boxShadow: '0 2px 8px rgba(30,77,216,0.3)' }}
+          onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,77,216,0.4)')}
+          onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 8px rgba(30,77,216,0.3)')}
+        >
+          <span className="text-lg">🎙</span>
+          <span>Talk · 2–6 min</span>
         </button>
-        <button className="flex items-center gap-3.5 px-5 py-4 bg-gold-gradient hover:brightness-110 transition-all rounded-br-xl2 text-left">
-          <span className="text-2xl">🧠</span>
-          <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-black text-white tracking-[0.06em]">TEST</span>
-            <span className="text-[0.68rem] text-white/75">Questions · instant results</span>
-          </div>
+        <button
+          className="
+            flex-1 flex items-center justify-center gap-3 py-3.5 px-6
+            text-[0.9rem] font-semibold rounded-full
+            border-2 border-fc-border text-fc-sub
+            transition-all duration-200
+            hover:border-brand-blue hover:text-brand-blue hover:-translate-y-[1px]
+          "
+        >
+          <span className="text-lg">🧠</span>
+          <span>Test · Instant Results</span>
         </button>
       </div>
     </div>
