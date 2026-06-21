@@ -664,11 +664,16 @@ export default function IpadWalkthrough() {
 
       {/* Label beneath iPad */}
       <div style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.32)', letterSpacing: '.08em', marginBottom: '4px' }}>
-          See the full learning flow in 30 seconds
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginBottom: '6px' }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          <span style={{ fontSize: '11px', color: 'rgba(255,255,255,.35)', letterSpacing: '.10em' }}>
+            See how it works in 30 seconds
+          </span>
         </div>
         <div style={{
-          fontSize: '11px', fontWeight: 700, letterSpacing: '.12em',
+          fontSize: '10px', fontWeight: 800, letterSpacing: '.16em',
           textTransform: 'uppercase',
           color: color,
           transition: 'color .4s ease',
