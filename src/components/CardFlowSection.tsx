@@ -380,55 +380,65 @@ export default function CardFlowSection() {
         <div className="flex flex-col md:flex-row gap-5 items-stretch">
 
           {/* TALK card */}
-          <div className="flex-1 rounded-card p-7 shadow-card" style={{ background: `linear-gradient(180deg, ${T.bgPanel} 0%, #F8FAFD 100%)`, border: `1px solid ${T.borderSoft}` }}>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#EEF2FF', border: '1px solid #C7D2FE' }}>
-                <MicIcon color={T.brandBlue} />
-              </div>
-              <div>
-                <div style={{ fontSize: '9px', fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase' as const, color: T.brandBlue, marginBottom: '3px' }}>TALK</div>
-                <h3 style={{ fontSize: '14px', fontWeight: 800, color: T.textPrimary, lineHeight: 1.25, margin: 0 }}>Give a Quick Talk — Build Real Understanding</h3>
+          <div className="flex-1 shadow-card" style={{ background: T.bgPanel, border: `1px solid ${T.borderSoft}`, borderRadius: '16px', overflow: 'hidden' }}>
+            {/* Coloured header */}
+            <div style={{ background: 'linear-gradient(135deg,#3BAF7A,#2E9E6A)', padding: '18px 24px', boxShadow: '0 2px 8px rgba(43,158,106,0.22)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <MicIcon color="#fff" />
+                </div>
+                <div>
+                  <div style={{ fontSize: '8.5px', fontWeight: 800, letterSpacing: '.16em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.72)', marginBottom: '2px' }}>TALK</div>
+                  <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.25, margin: 0 }}>Give a Quick Talk — Build Real Understanding</h3>
+                </div>
               </div>
             </div>
-            <p className="text-sm text-text-muted leading-relaxed mb-5">
-              Explain the Flashcard out loud — choose your own duration from{' '}
-              <strong className="text-text-dark font-semibold">2 to 6 minutes</strong>.
-              The AI listens and scores you across five skills, then delivers your Verbal Mastery Score.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['2–6 Minutes', 'Accuracy', 'Depth', 'Clarity', 'Structure', 'Confidence'].map(t => (
-                <span key={t} className="text-[0.67rem] font-semibold px-3 py-1 rounded-full"
-                  style={{ background: t === '2–6 Minutes' ? '#EEF2FF' : '#F5F7FF', border: t === '2–6 Minutes' ? '1px solid #C7D2FE' : `1px solid ${T.borderSoft}`, color: t === '2–6 Minutes' ? T.brandBlue : T.textSec }}>
-                  {t}
-                </span>
-              ))}
+            <div className="p-7">
+              <p className="text-sm text-text-muted leading-relaxed mb-5">
+                Explain the Flashcard out loud — choose your own duration from{' '}
+                <strong className="text-text-dark font-semibold">2 to 6 minutes</strong>.
+                The AI listens and scores you across five skills, then delivers your Verbal Mastery Score.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['2–6 Minutes', 'Accuracy', 'Depth', 'Clarity', 'Structure', 'Confidence'].map(t => (
+                  <span key={t} className="text-[0.67rem] font-semibold px-3 py-1 rounded-full"
+                    style={{ background: t === '2–6 Minutes' ? '#EDFAF4' : '#F5F7FF', border: t === '2–6 Minutes' ? '1px solid #A7DFC4' : `1px solid ${T.borderSoft}`, color: t === '2–6 Minutes' ? '#2E9E6A' : T.textSec }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="flex items-center justify-center py-2 md:py-0 text-xs font-semibold tracking-[0.1em] uppercase text-text-muted">or</div>
 
           {/* TEST card */}
-          <div className="flex-1 rounded-card p-7 shadow-card" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFCF5 100%)', border: '1px solid #EDE5C8' }}>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#FEF3C7', border: '1px solid #FDE68A' }}>
-                <QuizIcon color="#D97706" />
-              </div>
-              <div>
-                <div style={{ fontSize: '9px', fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase' as const, color: '#D97706', marginBottom: '3px' }}>TEST</div>
-                <h3 style={{ fontSize: '14px', fontWeight: 800, color: T.textPrimary, lineHeight: 1.25, margin: 0 }}>Take a Multiple Choice Test — Check Your Recall</h3>
+          <div className="flex-1 shadow-card" style={{ background: T.bgPanel, border: `1px solid ${T.borderSoft}`, borderRadius: '16px', overflow: 'hidden' }}>
+            {/* Coloured header */}
+            <div style={{ background: 'linear-gradient(135deg,#3A7BFF,#2563EB)', padding: '18px 24px', boxShadow: '0 2px 8px rgba(37,99,235,0.28)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <QuizIcon color="#fff" />
+                </div>
+                <div>
+                  <div style={{ fontSize: '8.5px', fontWeight: 800, letterSpacing: '.16em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.72)', marginBottom: '2px' }}>TEST</div>
+                  <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.25, margin: 0 }}>Take a Multiple Choice Test — Check Your Recall</h3>
+                </div>
               </div>
             </div>
-            <p className="text-sm text-text-muted leading-relaxed mb-5">
-              The AI generates targeted questions based on your Flashcard — testing recall, application, and real depth.
-              Instant feedback on every answer, not just right or wrong.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['Multiple Choice', 'Understanding', 'Application', 'Instant Feedback'].map(t => (
-                <span key={t} className="text-[0.67rem] font-semibold px-3 py-1 rounded-full"
-                  style={{ background: '#FEF9EC', border: '1px solid #FDE68A', color: '#92400E' }}>
-                  {t}
-                </span>
-              ))}
+            <div className="p-7">
+              <p className="text-sm text-text-muted leading-relaxed mb-5">
+                The AI generates targeted questions based on your Flashcard — testing recall, application, and real depth.
+                Instant feedback on every answer, not just right or wrong.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Multiple Choice', 'Understanding', 'Application', 'Instant Feedback'].map(t => (
+                  <span key={t} className="text-[0.67rem] font-semibold px-3 py-1 rounded-full"
+                    style={{ background: '#EEF2FF', border: '1px solid #C7D2FE', color: '#1E4DD8' }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
