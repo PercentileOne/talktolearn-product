@@ -1,148 +1,119 @@
 import PhoneMockup from './PhoneMockup'
 
-/* ── Skin palette ─────────────────────────────────────────────────────────── */
 const SK = {
-  highlight: '#DFBF9E',
-  base:      '#C8986E',
-  shadow:    '#A07250',
-  deep:      '#7A5030',
-  nail:      '#DFC0AF',
+  light:   '#E2BC96',
+  base:    '#C8946A',
+  shadow:  '#9E6E46',
+  deep:    '#7A5030',
+  nail:    '#DEC0AE',
 }
 
-/* ── ThumbSVG ─────────────────────────────────────────────────────────────── */
-function ThumbSVG() {
+/* A single finger peeking around the back-left of the phone */
+function Finger({ top, height = 58, highlight = false }: { top: number; height?: number; highlight?: boolean }) {
   return (
-    <svg
-      viewBox="0 0 36 195"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '36px', height: '195px', display: 'block' }}
-    >
-      <defs>
-        <linearGradient id="t-lr" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor={SK.shadow} />
-          <stop offset="30%"  stopColor={SK.base} />
-          <stop offset="60%"  stopColor={SK.highlight} />
-          <stop offset="85%"  stopColor={SK.base} />
-          <stop offset="100%" stopColor={SK.shadow} />
-        </linearGradient>
-        <linearGradient id="t-tb" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%"   stopColor="rgba(255,255,255,0.10)" />
-          <stop offset="100%" stopColor="rgba(0,0,0,0.10)" />
-        </linearGradient>
-      </defs>
-
-      {/* Thumb body */}
-      <path
-        d="M 5,195 C 1,162 -2,124 1,88 C 4,55 11,22 19,7 C 22,-1 30,-1 34,7 C 38,17 37,55 35,90 C 33,133 32,162 32,195 Z"
-        fill="url(#t-lr)"
-      />
-      <path
-        d="M 5,195 C 1,162 -2,124 1,88 C 4,55 11,22 19,7 C 22,-1 30,-1 34,7 C 38,17 37,55 35,90 C 33,133 32,162 32,195 Z"
-        fill="url(#t-tb)"
-      />
-
-      {/* Nail */}
-      <path d="M 13,7 C 15,-1 30,-1 33,7 C 35,16 33,30 24,31 C 16,31 12,19 13,7 Z" fill={SK.nail} opacity="0.92" />
-      <path d="M 16,7 C 18,2 28,2 30,7 C 32,13 30,22 24,23 C 18,23 15,14 16,7 Z" fill="rgba(255,255,255,0.28)" />
-
-      {/* Knuckle creases */}
-      <path d="M 3,93 C 14,87 30,87 37,93" stroke={SK.deep} strokeWidth="1.1" fill="none" opacity="0.36" strokeLinecap="round" />
-      <path d="M 4,124 C 14,118 30,118 37,124" stroke={SK.deep} strokeWidth="0.7" fill="none" opacity="0.22" strokeLinecap="round" />
-
-      {/* Left edge shadow */}
-      <path d="M 5,195 C 1,162 -2,124 1,88 C 4,55 11,22 19,7 L 22,7 C 15,22 7,55 4,88 C 1,124 5,162 9,195 Z" fill="rgba(0,0,0,0.08)" />
-    </svg>
+    <div style={{
+      position: 'absolute',
+      /* left:4px → only ~16px of the 24px finger width is visible past the phone frame left edge (pm-wrap left pad = 20px) */
+      left: '4px',
+      top: `${top}px`,
+      width: '24px',
+      height: `${height}px`,
+      borderRadius: '12px',
+      background: highlight
+        ? `linear-gradient(100deg, ${SK.shadow} 0%, ${SK.base} 30%, ${SK.light} 62%, ${SK.base} 100%)`
+        : `linear-gradient(100deg, ${SK.deep} 0%, ${SK.shadow} 28%, ${SK.base} 55%, ${SK.light} 80%)`,
+      zIndex: 1,
+      /* Right-side shadow gives the curved-finger 3-D effect */
+      boxShadow: `inset -4px 0 10px rgba(0,0,0,0.22), inset 1px 0 4px rgba(255,255,255,0.10)`,
+      pointerEvents: 'none',
+    }} />
   )
 }
 
-/* ── HandHeldPhone ────────────────────────────────────────────────────────────
-   Uses flex-column so the palm div sits naturally below the phone.
-   margin-top: -24px pulls the palm up into the phone frame bottom,
-   creating the "hand holding the phone" illusion (palm z:1, phone z:2).
+/* The thumb overlapping the right side of the phone screen */
+function Thumb({ bottom }: { bottom: number }) {
+  return (
+    <div style={{
+      position: 'absolute',
+      right: '18px',        /* aligns near phone frame right edge (pm-wrap right pad = 20px) */
+      bottom: `${bottom}px`,
+      width: '30px',
+      height: '170px',
+      borderRadius: '15px 15px 8px 8px',
+      background: `linear-gradient(100deg, ${SK.shadow} 0%, ${SK.base} 32%, ${SK.light} 60%, ${SK.base} 85%, ${SK.shadow} 100%)`,
+      zIndex: 3,
+      boxShadow: `-3px 0 12px rgba(0,0,0,0.24), inset 3px 0 8px rgba(255,255,255,0.13)`,
+      pointerEvents: 'none',
+    }}>
+      {/* Thumbnail */}
+      <div style={{
+        position: 'absolute',
+        top: '5px', left: '5px', right: '5px',
+        height: '24px',
+        background: SK.nail,
+        borderRadius: '9px 9px 7px 7px',
+        opacity: 0.90,
+        boxShadow: 'inset 0 2px 5px rgba(255,255,255,0.28)',
+      }} />
+      {/* Knuckle crease 1 */}
+      <div style={{
+        position: 'absolute', top: '88px',
+        left: '3px', right: '3px', height: '1.5px',
+        background: `rgba(80,44,16,0.32)`, borderRadius: '1px',
+      }} />
+      {/* Knuckle crease 2 */}
+      <div style={{
+        position: 'absolute', top: '116px',
+        left: '4px', right: '4px', height: '1px',
+        background: `rgba(80,44,16,0.19)`, borderRadius: '1px',
+      }} />
+    </div>
+  )
+}
 
-   Palm shape:
-   - 230px wide at top = exact phone frame width (seamless junction)
-   - border-radius creates a dramatic half-ellipse at bottom = natural wrist taper
-   - Multiple CSS gradients + inset shadows for 3D depth without SVG complexity
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────────────────────
+   HandHeldPhone
+   Layer order:
+     z:1  Four fingers — behind the phone, left side peeking out
+     z:2  PhoneMockup  — the phone itself (animated screen)
+     z:3  Thumb        — in front of the phone, right side
+
+   The wrapper is display:inline-block (no extra paddingBottom) so there is NO
+   gap below the phone. The hand is on the SIDES, not below.
+   ───────────────────────────────────────────────────────────────────────────── */
 export default function HandHeldPhone() {
   return (
-    <div
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        flexShrink: 0,
-        transform: 'rotate(-2deg)',
-        filter: [
-          'drop-shadow(0 8px 20px rgba(0,0,0,0.14))',
-          'drop-shadow(0 24px 48px rgba(0,0,0,0.10))',
-        ].join(' '),
-      }}
-    >
-      {/* ── z:2 Phone ──────────────────────────────────────────── */}
+    <div style={{
+      position: 'relative',
+      display: 'inline-block',
+      flexShrink: 0,
+      transform: 'rotate(-3deg)',
+      filter: [
+        'drop-shadow(0 8px 20px rgba(0,0,0,0.16))',
+        'drop-shadow(0 28px 52px rgba(0,0,0,0.12))',
+      ].join(' '),
+    }}>
+
+      {/* ── Fingers behind the phone (left edge) ─────────────────────
+          pm-wrap left padding = 20px → phone frame left edge at x=20.
+          With left:4px and finger width=24px, the finger occupies x=4–28.
+          The phone (z:2) covers x=20–28, leaving x=4–20 = 16px visible.
+          ────────────────────────────────────────────────────────────── */}
+      <Finger top={218} height={60} highlight />   {/* index   */}
+      <Finger top={290} height={63} />              {/* middle  */}
+      <Finger top={362} height={59} />              {/* ring    */}
+      <Finger top={428} height={44} />              {/* pinky   */}
+
+      {/* ── Phone ─────────────────────────────────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2 }}>
         <PhoneMockup variant="timer" animated />
       </div>
 
-      {/* ── z:1 Palm / wrist ──────────────────────────────────────
-          230px wide = phone frame width (exact match at junction).
-          margin-top: -24px overlaps into the phone frame bottom,
-          hiding the palm's top edge behind the phone (natural grip).
-          border-radius creates the organic wrist taper at bottom.
-          ────────────────────────────────────────────────────────── */}
-      <div
-        style={{
-          width: '230px',
-          height: '128px',
-          marginTop: '-24px',
-          position: 'relative',
-          zIndex: 1,
-          borderRadius: '0 0 115px 115px',
-          background: [
-            'radial-gradient(ellipse 70% 60% at 38% 25%, rgba(255,255,255,0.22) 0%, transparent 60%)',
-            `linear-gradient(170deg, ${SK.highlight} 0%, ${SK.base} 38%, ${SK.shadow} 100%)`,
-          ].join(', '),
-          boxShadow: [
-            /* top edge shadow — where hand meets phone frame */
-            'inset 0 12px 20px rgba(0,0,0,0.14)',
-            /* left/right edge shadow — curvature depth */
-            'inset 8px 0 18px rgba(0,0,0,0.08)',
-            'inset -8px 0 18px rgba(0,0,0,0.08)',
-            /* outer drop shadow */
-            '0 14px 36px rgba(0,0,0,0.16)',
-          ].join(', '),
-        }}
-      >
-        {/* Thenar eminence — subtle thumb-muscle highlight on right */}
-        <div style={{
-          position: 'absolute',
-          right: '18px',
-          top: '16px',
-          width: '52px',
-          height: '32px',
-          background: 'radial-gradient(ellipse at 40% 40%, rgba(255,255,255,0.16) 0%, transparent 70%)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-        }} />
-      </div>
-
-      {/* ── z:3 Thumb — in front of phone ─────────────────────────
-          right: 20px = phone frame right edge (pm-wrap right pad is 20px).
-          Positioned to cover the lower-right portion of the phone screen.
-          ────────────────────────────────────────────────────────── */}
-      <div
-        style={{
-          position: 'absolute',
-          right: '20px',
-          bottom: '106px',   /* sits above the palm, in the phone screen area */
-          zIndex: 3,
-          pointerEvents: 'none',
-        }}
-      >
-        <ThumbSVG />
-      </div>
+      {/* ── Thumb in front of phone (right edge) ─────────────────────
+          bottom:120px puts the thumb in the lower-centre of the phone,
+          which is the natural resting position for a one-handed grip.
+          ────────────────────────────────────────────────────────────── */}
+      <Thumb bottom={120} />
 
     </div>
   )
