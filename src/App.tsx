@@ -1,4 +1,5 @@
 import HeroSection from './components/HeroSection'
+import TeachToLearnSection from './components/TeachToLearnSection'
 import CardFlowSection from './components/CardFlowSection'
 import IpadWalkthroughSection from './components/IpadWalkthroughSection'
 import VideoSection from './components/VideoSection'
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <>
       <HeroSection />
+      <TeachToLearnSection />
       <CardFlowSection />
       <IpadWalkthroughSection />
       <VideoSection />
