@@ -8,7 +8,7 @@ const steps = [
 
 export default function ChallengeSection() {
   return (
-    <section className="bg-bg-blue py-16 md:py-24">
+    <section className="bg-bg-blue py-20 md:py-28">
       <div className="max-w-[1160px] mx-auto px-5">
         <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
           <div className="flex-1 text-center md:text-left">

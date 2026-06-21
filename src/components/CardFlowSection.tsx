@@ -5,9 +5,11 @@ import type { ReactNode } from 'react'
 const KF = `
 @keyframes cf-cursor  { 0%,49%{opacity:1}50%,100%{opacity:0} }
 @keyframes cf-bubble  { from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)} }
-.fc-body::-webkit-scrollbar { width: 4px; }
-.fc-body::-webkit-scrollbar-track { background: transparent; }
-.fc-body::-webkit-scrollbar-thumb { background: rgba(30,77,216,.18); border-radius: 2px; }
+.fc-body::-webkit-scrollbar { width: 8px; }
+.fc-body::-webkit-scrollbar-track { background: rgba(59,175,122,.10); border-radius: 6px; margin: 6px 0; }
+.fc-body::-webkit-scrollbar-thumb { background: rgba(59,175,122,.42); border-radius: 6px; border: 2px solid transparent; background-clip: content-box; }
+.fc-body::-webkit-scrollbar-thumb:hover { background: rgba(59,175,122,.68); border-radius: 6px; border: 2px solid transparent; background-clip: content-box; }
+.fc-body::-webkit-scrollbar-thumb:active { background: rgba(59,175,122,.88); border-radius: 6px; border: 2px solid transparent; background-clip: content-box; }
 `
 
 /* ─── flow steps ─────────────────────────────────────────────────────────── */
@@ -64,32 +66,33 @@ function TypingBubble({ text, delay }: { text: string; delay: number }) {
       pointerEvents: 'none',
     }}>
       {/* AI label */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '5px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
         <div style={{
-          width: '18px', height: '18px', borderRadius: '50%',
+          width: '22px', height: '22px', borderRadius: '50%',
           background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+          boxShadow: '0 2px 6px rgba(30,77,216,.30)',
         }}>
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
           </svg>
         </div>
-        <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '.08em', color: T.brandBlue, textTransform: 'uppercase' }}>AI</span>
+        <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.08em', color: T.brandBlue, textTransform: 'uppercase' as const }}>AI Guide</span>
       </div>
 
       {/* Bubble */}
       <div style={{
-        padding: '11px 14px', borderRadius: '4px 14px 14px 14px',
-        background: '#FFFFFF', border: '1px solid #E8EDF5',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)',
-        fontSize: '13px', lineHeight: 1.55, color: T.textPrimary,
+        padding: '14px 18px', borderRadius: '4px 16px 16px 16px',
+        background: '#FFFFFF', border: '1px solid #DDE4EF',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.10),0 1px 3px rgba(0,0,0,0.06)',
+        fontSize: '14.5px', fontWeight: 580, lineHeight: 1.55, color: '#1A2332',
       }}>
         {typed}
         {!done && (
           <span style={{
-            display: 'inline-block', width: '2px', height: '13px',
+            display: 'inline-block', width: '2px', height: '15px',
             background: T.brandBlue, verticalAlign: 'text-bottom',
-            marginLeft: '1px', borderRadius: '1px',
+            marginLeft: '2px', borderRadius: '1px',
             animation: 'cf-cursor 1s step-end infinite',
           }} />
         )}
@@ -107,7 +110,7 @@ function SLabel({ children }: { children: ReactNode }) {
   )
 }
 function SBody({ children }: { children: ReactNode }) {
-  return <p style={{ fontSize: '15px', lineHeight: 1.65, color: T.textSec }}>{children}</p>
+  return <p style={{ fontSize: '15.5px', fontWeight: 500, lineHeight: 1.58, color: '#374151' }}>{children}</p>
 }
 function SDivider() {
   return <div style={{ borderTop: `1px solid ${T.borderSoft}`, marginTop: '24px', paddingTop: '24px' }} />
@@ -116,7 +119,7 @@ function SBullets({ items }: { items: string[] }) {
   return (
     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
       {items.map(item => (
-        <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '15px', lineHeight: 1.65, color: T.textSec }}>
+        <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '15.5px', fontWeight: 500, lineHeight: 1.58, color: '#374151' }}>
           <span style={{ marginTop: '9px', width: '5px', height: '5px', borderRadius: '50%', background: T.brandBlue, opacity: 0.4, flexShrink: 0 }} />
           {item}
         </li>
@@ -208,7 +211,7 @@ function FlashCard() {
       <div style={{ position: 'relative' }}>
         <div
           className="fc-body"
-          style={{ padding: '36px 40px', background: 'linear-gradient(180deg, #FAFAFA 0%, #F3F3F3 100%)', maxHeight: '420px', overflowY: 'auto' }}
+          style={{ padding: '36px 40px', background: 'linear-gradient(180deg, #F3FAF5 0%, #E8F5EE 100%)', maxHeight: '420px', overflowY: 'auto' }}
         >
           <div>
             <SLabel>Explanation</SLabel>
@@ -275,7 +278,7 @@ function FlashCard() {
         {/* Bottom fade — signals scrollable depth */}
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: '64px',
-          background: 'linear-gradient(to bottom, transparent, #F0F0F0)',
+          background: 'linear-gradient(to bottom, transparent, #E2F0E6)',
           pointerEvents: 'none',
         }} />
         {/* Bottom shadow line */}

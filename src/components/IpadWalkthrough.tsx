@@ -534,8 +534,8 @@ function Phase5() {
 /* ════════════════════════════════════════════════════════════════════════════
    IPAD FRAME
    ════════════════════════════════════════════════════════════════════════════ */
-const FW = 348; const FH = 504
-const BT = 22;  const BS = 15; const BB = 20
+const FW = 394; const FH = 570
+const BT = 25;  const BS = 17; const BB = 23
 
 function IpadFrame({ children }: { children: React.ReactNode }) {
   return (

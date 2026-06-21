@@ -51,7 +51,7 @@ const SKILLS = [
 
 export default function ScoringSection() {
   return (
-    <section className="bg-bg-white py-16 md:py-24">
+    <section className="bg-bg-white py-20 md:py-28">
       <div className="max-w-[1160px] mx-auto px-5">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
 
@@ -98,8 +98,8 @@ export default function ScoringSection() {
             <p className="mt-7 text-sm text-text-muted font-semibold italic">We don't guess. We measure.</p>
           </div>
 
-          {/* Right — phone */}
-          <div style={{ flexShrink: 0, filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.10)) drop-shadow(0 24px 48px rgba(0,0,0,0.08))' }}>
+          {/* Right — phone with generous breathing room */}
+          <div style={{ flexShrink: 0, padding: '24px 32px', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.10)) drop-shadow(0 24px 48px rgba(0,0,0,0.08))' }}>
             <PhoneMockup variant="scores" />
           </div>
 
