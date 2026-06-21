@@ -21,41 +21,150 @@ function ChevronIcon() {
   )
 }
 
-/* Editorial image cards — warm graduated tints in lieu of photography */
-function ImageCard({ gradient, label, aspectRatio = '1/1' }: {
-  gradient: string
-  label: string
-  aspectRatio?: string
-}) {
+const TTLKF = `
+@keyframes ttl-fadein { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+`
+
+/* 2×2 photographic grid — cinematic illustrated tiles per user type */
+const PHOTO_TILES = [
+  {
+    label: 'Student',
+    sub: 'Learning out loud',
+    gradient: 'linear-gradient(145deg, #F5EAC8 0%, #E8D080 55%, #CEB855 100%)',
+    highlight: 'rgba(255,255,255,.32)',
+    /* Seated figure leaning over desk */
+    figure: (
+      <svg viewBox="0 0 160 200" fill="none" style={{ width: '75%', height: '75%' }}>
+        {/* head */}
+        <ellipse cx="80" cy="48" rx="22" ry="24" fill="rgba(0,0,0,.22)"/>
+        {/* body leaning forward */}
+        <path d="M52 78 Q52 102 80 108 Q108 102 108 78 L106 148 Q106 158 80 160 Q54 158 54 148 Z" fill="rgba(0,0,0,.18)"/>
+        {/* arms over desk */}
+        <path d="M52 86 L20 116" stroke="rgba(0,0,0,.20)" strokeWidth="16" strokeLinecap="round"/>
+        <path d="M108 86 L140 116" stroke="rgba(0,0,0,.20)" strokeWidth="16" strokeLinecap="round"/>
+        {/* desk surface */}
+        <rect x="12" y="118" width="136" height="8" rx="4" fill="rgba(0,0,0,.14)"/>
+        {/* book on desk */}
+        <rect x="34" y="108" width="48" height="10" rx="3" fill="rgba(0,0,0,.16)"/>
+        <line x1="58" y1="108" x2="58" y2="118" stroke="rgba(0,0,0,.10)" strokeWidth="1.5"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Professional',
+    sub: 'Presenting with confidence',
+    gradient: 'linear-gradient(145deg, #C8D8EE 0%, #96B4D8 55%, #6890C0 100%)',
+    highlight: 'rgba(255,255,255,.28)',
+    /* Standing figure, slight forward stance */
+    figure: (
+      <svg viewBox="0 0 160 200" fill="none" style={{ width: '70%', height: '70%' }}>
+        {/* head */}
+        <ellipse cx="80" cy="40" rx="20" ry="22" fill="rgba(0,0,0,.22)"/>
+        {/* shoulders/jacket */}
+        <path d="M50 68 Q50 88 80 94 Q110 88 110 68 L108 158 Q108 168 80 170 Q52 168 52 158 Z" fill="rgba(0,0,0,.20)"/>
+        {/* arms — one raised slightly */}
+        <path d="M50 74 L24 114" stroke="rgba(0,0,0,.20)" strokeWidth="15" strokeLinecap="round"/>
+        <path d="M110 74 L128 100" stroke="rgba(0,0,0,.20)" strokeWidth="15" strokeLinecap="round"/>
+        {/* speech wave lines */}
+        <path d="M128 86 Q136 80 128 74" stroke="rgba(0,0,0,.18)" strokeWidth="2" strokeLinecap="round" fill="none"/>
+        <path d="M133 91 Q145 80 133 69" stroke="rgba(0,0,0,.14)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Creator',
+    sub: 'Talking to camera',
+    gradient: 'linear-gradient(145deg, #F0D0B8 0%, #D8A888 55%, #C08860 100%)',
+    highlight: 'rgba(255,255,255,.30)',
+    /* Forward-facing casual figure + camera suggestion */
+    figure: (
+      <svg viewBox="0 0 160 200" fill="none" style={{ width: '75%', height: '75%' }}>
+        {/* head */}
+        <ellipse cx="80" cy="44" rx="22" ry="24" fill="rgba(0,0,0,.22)"/>
+        {/* body casual */}
+        <path d="M52 74 Q52 96 80 102 Q108 96 108 74 L106 155 Q106 165 80 167 Q54 165 54 155 Z" fill="rgba(0,0,0,.18)"/>
+        {/* arms relaxed */}
+        <path d="M52 80 L28 118" stroke="rgba(0,0,0,.20)" strokeWidth="15" strokeLinecap="round"/>
+        <path d="M108 80 L132 118" stroke="rgba(0,0,0,.20)" strokeWidth="15" strokeLinecap="round"/>
+        {/* camera icon top-right */}
+        <rect x="114" y="22" width="28" height="20" rx="4" fill="rgba(0,0,0,.18)"/>
+        <circle cx="128" cy="32" r="6" fill="rgba(0,0,0,.22)"/>
+        <circle cx="128" cy="32" r="3" fill="rgba(0,0,0,.14)"/>
+        {/* record dot */}
+        <circle cx="137" cy="24" r="3" fill="rgba(0,0,0,.28)"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Parent & Learner',
+    sub: 'Learning together',
+    gradient: 'linear-gradient(145deg, #C8E4D4 0%, #98C8AE 55%, #70A888 100%)',
+    highlight: 'rgba(255,255,255,.30)',
+    /* Two figures side by side — adult + child */
+    figure: (
+      <svg viewBox="0 0 160 200" fill="none" style={{ width: '78%', height: '78%' }}>
+        {/* adult — left, taller */}
+        <ellipse cx="58" cy="42" rx="18" ry="20" fill="rgba(0,0,0,.22)"/>
+        <path d="M36 68 Q36 86 58 92 Q80 86 80 68 L78 148 Q78 158 58 160 Q38 158 38 148 Z" fill="rgba(0,0,0,.18)"/>
+        <path d="M36 74 L16 108" stroke="rgba(0,0,0,.18)" strokeWidth="13" strokeLinecap="round"/>
+        <path d="M80 74 L88 102" stroke="rgba(0,0,0,.18)" strokeWidth="13" strokeLinecap="round"/>
+        {/* child — right, shorter */}
+        <ellipse cx="112" cy="62" rx="14" ry="15" fill="rgba(0,0,0,.20)"/>
+        <path d="M94 82 Q94 96 112 100 Q130 96 130 82 L128 148 Q128 155 112 157 Q96 155 96 148 Z" fill="rgba(0,0,0,.16)"/>
+        <path d="M94 88 L80 112" stroke="rgba(0,0,0,.16)" strokeWidth="11" strokeLinecap="round"/>
+        <path d="M130 88 L144 112" stroke="rgba(0,0,0,.16)" strokeWidth="11" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+]
+
+function PhotoTile({ tile, delay }: { tile: typeof PHOTO_TILES[0]; delay: number }) {
   return (
-    <div style={{
-      borderRadius: '18px', overflow: 'hidden',
-      background: gradient, aspectRatio,
-      position: 'relative', width: '100%',
-      boxShadow: '0 4px 12px rgba(0,0,0,.06), 0 20px 48px rgba(0,0,0,.10)',
-    }}>
+    <div
+      style={{
+        borderRadius: '16px', overflow: 'hidden',
+        background: tile.gradient,
+        aspectRatio: '1 / 1', position: 'relative',
+        boxShadow: '0 2px 8px rgba(0,0,0,.06), 0 12px 32px rgba(0,0,0,.10)',
+        animation: `ttl-fadein .6s ${delay}ms both`,
+        transition: 'transform .22s ease, box-shadow .22s ease',
+        cursor: 'default',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
+        ;(e.currentTarget as HTMLElement).style.boxShadow = '0 4px 14px rgba(0,0,0,.09), 0 20px 48px rgba(0,0,0,.14)'
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+        ;(e.currentTarget as HTMLElement).style.boxShadow = '0 2px 8px rgba(0,0,0,.06), 0 12px 32px rgba(0,0,0,.10)'
+      }}
+    >
+      {/* Highlight */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.30) 0%, transparent 60%)',
+        background: `radial-gradient(ellipse at 28% 18%, ${tile.highlight} 0%, transparent 58%)`,
         pointerEvents: 'none',
       }}/>
-      <svg viewBox="0 0 200 260" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: .18 }} preserveAspectRatio="xMidYMid meet">
-        <ellipse cx="100" cy="76" rx="34" ry="38" fill="rgba(0,0,0,1)"/>
-        <path d="M58 118 Q58 148 100 156 Q142 148 142 118 L140 208 Q140 224 100 228 Q60 224 60 208 Z" fill="rgba(0,0,0,1)"/>
-        <path d="M58 126 L32 188" stroke="rgba(0,0,0,1)" strokeWidth="26" strokeLinecap="round"/>
-        <path d="M142 126 L168 188" stroke="rgba(0,0,0,1)" strokeWidth="26" strokeLinecap="round"/>
-      </svg>
+      {/* Figure */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        paddingTop: '8px',
+      }}>
+        {tile.figure}
+      </div>
+      {/* Caption */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        background: 'linear-gradient(to top, rgba(0,0,0,.36) 0%, transparent 100%)',
-        padding: '40px 16px 14px',
+        background: 'linear-gradient(to top, rgba(0,0,0,.38) 0%, transparent 100%)',
+        padding: '36px 14px 14px',
       }}>
-        <span style={{
-          fontSize: '10px', fontWeight: 700, letterSpacing: '.10em',
-          color: 'rgba(255,255,255,.92)', textTransform: 'uppercase' as const,
-        }}>
-          {label}
-        </span>
+        <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '.09em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.95)', marginBottom: '2px' }}>
+          {tile.label}
+        </div>
+        <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.62)', letterSpacing: '.04em' }}>
+          {tile.sub}
+        </div>
       </div>
     </div>
   )
@@ -103,6 +212,7 @@ const STEP_CARDS = [
 export default function TeachToLearnSection() {
   return (
     <section style={{ background: '#FAFBFC', padding: '108px 20px 120px' }}>
+      <style>{TTLKF}</style>
       <div className="max-w-[1120px] mx-auto">
 
         {/* ── Part 1: Two columns ──────────────────────────────────────── */}
@@ -166,24 +276,12 @@ export default function TeachToLearnSection() {
             </p>
           </div>
 
-          {/* RIGHT: editorial image cards */}
-          <div style={{ flex: '1 1 420px', maxWidth: '480px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <ImageCard
-              gradient="linear-gradient(145deg, #F5EDD0 0%, #E8D496 50%, #D4B870 100%)"
-              label="Explaining out loud"
-              aspectRatio="4/3"
-            />
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <ImageCard
-                gradient="linear-gradient(145deg, #D4EAE2 0%, #A8D4BE 100%)"
-                label="Deep focus"
-                aspectRatio="1/1"
-              />
-              <ImageCard
-                gradient="linear-gradient(145deg, #D8D4F0 0%, #B4ACDC 100%)"
-                label="Real confidence"
-                aspectRatio="1/1"
-              />
+          {/* RIGHT: 2×2 photographic grid */}
+          <div style={{ flex: '1 1 420px', maxWidth: '480px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              {PHOTO_TILES.map((tile, i) => (
+                <PhotoTile key={tile.label} tile={tile} delay={i * 80} />
+              ))}
             </div>
           </div>
 
