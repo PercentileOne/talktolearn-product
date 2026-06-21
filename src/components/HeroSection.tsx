@@ -31,7 +31,12 @@ export default function HeroSection() {
 
             {/* Explanatory sub-headline */}
             <p className="text-[clamp(1rem,2.2vw,1.2rem)] text-white/92 max-w-[480px] mx-auto md:mx-0 mb-8 leading-[1.6]" style={{ fontWeight: 500 }}>
-              Explain any topic out loud — we'll score your clarity, depth, accuracy, structure, and confidence.
+              Explain any topic out loud — we'll score your{' '}
+              <span style={{ color: '#34D399', fontWeight: 650 }}>clarity</span>,{' '}
+              <span style={{ color: '#34D399', fontWeight: 650 }}>depth</span>,{' '}
+              <span style={{ color: '#34D399', fontWeight: 650 }}>accuracy</span>,{' '}
+              <span style={{ color: '#34D399', fontWeight: 650 }}>structure</span>, and{' '}
+              <span style={{ color: '#34D399', fontWeight: 650 }}>confidence</span>.
             </p>
 
             {/* CTAs */}
