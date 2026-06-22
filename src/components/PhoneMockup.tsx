@@ -253,7 +253,7 @@ function ResultsScreen() {
       flexDirection: 'column', alignItems: 'center', padding: '14px 12px 10px',
       fontFamily: 'system-ui, sans-serif',
     }}>
-      <div style={{ fontSize: '8px', fontWeight: 800, letterSpacing: '1.5px', color: 'rgba(255,255,255,0.30)', marginBottom: '8px' }}>YOUR RESULTS</div>
+      <div style={{ fontSize: '8px', fontWeight: 800, letterSpacing: '1.5px', color: 'rgba(255,255,255,0.30)', marginBottom: '8px', marginTop: '10px' }}>YOUR RESULTS</div>
 
       {/* Score ring */}
       <div style={{
