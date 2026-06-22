@@ -22,21 +22,40 @@ const PLANS = [
     badge: null,
   },
   {
-    name: 'Parent Plan',
-    desc: 'Help your child build real confidence',
-    monthly: 7.99,
-    annual: 5.99,
+    name: 'Student',
+    desc: 'For learners in full-time education',
+    monthly: 3.99,
+    annual: 2.99,
     priceSub: '/ month',
-    annualNote: 'billed £71.88 / year — save £24',
+    annualNote: 'billed £35.88 / year — save £12',
     features: [
       'Everything in Free',
-      'For ages 3–18',
-      'Child dashboard',
-      'Weekly progress reports',
+      'Unlimited daily talks',
+      'Full AI scoring & feedback',
+      'Exam & presentation prep',
       'Confidence tracking',
-      'School presentation prep',
       'Multi-language support',
-      'Share talks with teachers',
+    ],
+    cta: 'Start Free Trial',
+    featured: false,
+    badge: '🎓 For Students',
+  },
+  {
+    name: 'Personal',
+    desc: 'For everyday learners who want to grow',
+    monthly: 9.99,
+    annual: 7.49,
+    priceSub: '/ month',
+    annualNote: 'billed £89.88 / year — save £30',
+    features: [
+      'Everything in Free',
+      'Unlimited daily talks',
+      'Full AI scoring & feedback',
+      'Confidence tracking',
+      'Progress history',
+      'Multi-language support',
+      'Share talks & scores',
+      'Weekly improvement report',
     ],
     cta: 'Start Free Trial',
     featured: true,
@@ -50,12 +69,12 @@ const PLANS = [
     priceSub: '/ month',
     annualNote: 'billed £179.88 / year — save £60',
     features: [
-      'Everything in Parent Plan',
+      'Everything in Personal',
       'Advanced analytics & deep scoring',
       'Script rehearsal mode',
       'Coaching mode',
       'Exportable reports',
-      'Unlimited talks',
+      'Video talk mode (coming soon)',
     ],
     cta: 'Go Pro',
     featured: false,
@@ -173,7 +192,7 @@ export default function PricingSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14 items-start">
           {PLANS.map((plan, pi) => {
             const dark = plan.featured
             const price = annual && plan.monthly > 0 ? plan.annual : plan.monthly
