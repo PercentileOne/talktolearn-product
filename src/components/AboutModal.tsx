@@ -94,7 +94,11 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             </div>
 
             <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '20px' }}>
-              A few years ago, I started adding a simple habit to my routine: after reading something, I'd record myself on a voice note or camera, explaining what I'd just learned — in my own words, out loud.
+              For years, I would read technical books — architecture patterns, software design, finance, business strategy. I have hundreds of them. But I kept noticing the same problem: I'd finish a chapter feeling like I understood it, then struggle to explain it to someone else a week later.
+            </p>
+
+            <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '20px' }}>
+              So I started doing something unusual. I'd stand at a whiteboard — or sit in front of my camera — and explain what I'd just read, out loud, as if I was teaching it to someone else. Sometimes I filmed myself. I watched it back. I noticed the gaps, the stumbles, the moments I went silent.
             </p>
 
             <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '20px' }}>
@@ -160,6 +164,42 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
               }}>
                 Not just in what you know — but in how you feel about yourself. Your confidence. Your clarity. The way you walk into a room knowing you can explain anything you've learned. That feeling is real, and it happens faster than you think.
               </p>
+            </div>
+
+            {/* Timeline */}
+            <div style={{ marginBottom: '32px' }}>
+              <h3 style={{ fontSize: '13px', fontWeight: 800, color: 'rgba(0,0,0,0.35)', letterSpacing: '1.5px', textTransform: 'uppercase' as const, marginBottom: '20px' }}>
+                The Journey
+              </h3>
+              {[
+                { year: '2018', event: 'Started recording explanations on a whiteboard and filming myself to understand concepts more deeply.' },
+                { year: '2024', event: 'Realised talking out loud is the single fastest way to learn — and that nobody had built an app around it.' },
+                { year: '2026', event: 'Built Talk to Learn. The whiteboard became a mic. The camera became AI feedback.' },
+              ].map((item, i, arr) => (
+                <div key={item.year} style={{ display: 'flex', gap: '16px', position: 'relative' }}>
+                  {/* Line */}
+                  {i < arr.length - 1 && (
+                    <div style={{
+                      position: 'absolute', left: '19px', top: '36px',
+                      width: '2px', height: 'calc(100% - 12px)',
+                      background: 'linear-gradient(to bottom,#1E4DD8,rgba(30,77,216,0.1))',
+                    }} />
+                  )}
+                  <div style={{
+                    width: '38px', height: '38px', borderRadius: '50%', flexShrink: 0,
+                    background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '10px', fontWeight: 900, color: '#FFFFFF', letterSpacing: '.02em',
+                    boxShadow: '0 4px 12px rgba(30,77,216,0.30)',
+                  }}>
+                    {item.year.slice(2)}
+                  </div>
+                  <div style={{ paddingBottom: i < arr.length - 1 ? '24px' : 0 }}>
+                    <div style={{ fontSize: '13px', fontWeight: 800, color: '#1E4DD8', marginBottom: '4px' }}>{item.year}</div>
+                    <p style={{ fontSize: '14px', color: '#4B5563', lineHeight: 1.65, margin: 0 }}>{item.event}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Stat pills */}

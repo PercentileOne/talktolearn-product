@@ -21,6 +21,9 @@ function ChevronIcon() {
   )
 }
 
+import { useState } from 'react'
+import ResearchModal from './ResearchModal'
+
 const TTLKF = `
 @keyframes ttl-fadein { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 `
@@ -143,7 +146,11 @@ const STEP_CARDS = [
 ]
 
 export default function TeachToLearnSection() {
+  const [researchOpen, setResearchOpen] = useState(false)
+
   return (
+    <>
+    {researchOpen && <ResearchModal onClose={() => setResearchOpen(false)} />}
     <section style={{ background: '#FAFBFC', padding: '108px 20px 120px' }}>
       <style>{TTLKF}</style>
       <div className="max-w-[1120px] mx-auto">
@@ -204,9 +211,29 @@ export default function TeachToLearnSection() {
               </p>
             </div>
 
-            <p style={{ fontSize: '15px', color: '#6B7280', lineHeight: 1.72 }}>
+            <p style={{ fontSize: '15px', color: '#6B7280', lineHeight: 1.72, marginBottom: '20px' }}>
               <strong style={{ color: '#0A0F1C', fontWeight: 700 }}>Talk to Learn</strong> brings this method to life with AI that listens, scores, and helps you improve every time you speak.
             </p>
+
+            {/* Backed by research link */}
+            <button
+              onClick={() => setResearchOpen(true)}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '7px',
+                fontSize: '13px', fontWeight: 700, color: ACCENT,
+                background: `${ACCENT}0C`, border: `1px solid ${ACCENT}28`,
+                borderRadius: '20px', padding: '6px 14px', cursor: 'pointer',
+                transition: 'background .18s',
+              }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = `${ACCENT}18`}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = `${ACCENT}0C`}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+              Backed by research — see the science
+            </button>
+
           </div>
 
           {/* RIGHT: 2×2 photographic grid */}
@@ -265,5 +292,6 @@ export default function TeachToLearnSection() {
 
       </div>
     </section>
+    </>
   )
 }

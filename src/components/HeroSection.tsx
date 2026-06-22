@@ -1,12 +1,18 @@
 import PhoneMockup from './PhoneMockup'
 
+const HKF = `
+@keyframes hero-fade { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes hero-phone { from { opacity:0; transform:rotate(-4deg) translateY(8px) scale(.96); } to { opacity:1; transform:rotate(-4deg) translateY(-8px) scale(1); } }
+`
+
 export default function HeroSection() {
   return (
     <section className="bg-hero-gradient py-20 md:py-28 overflow-hidden">
+      <style>{HKF}</style>
       <div className="max-w-[1160px] mx-auto px-5">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
 
-          <div className="flex-1 text-center md:text-left">
+          <div className="flex-1 text-center md:text-left" style={{ animation: 'hero-fade .7s ease both' }}>
             {/* Badge with live green dot */}
             <div className="inline-flex items-center gap-2.5 bg-white/12 text-white text-[0.72rem] font-bold tracking-[0.12em] uppercase px-4 py-1.5 rounded-btn border border-white/25 backdrop-blur-sm mb-7">
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#BAE6FD', boxShadow: '0 0 7px #BAE6FD', display: 'inline-block', flexShrink: 0 }} />
@@ -19,8 +25,13 @@ export default function HeroSection() {
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-[clamp(1.1rem,3vw,1.45rem)] text-white/90 font-semibold mb-5" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.12)' }}>
+            <p className="text-[clamp(1.1rem,3vw,1.45rem)] text-white/90 font-semibold mb-3" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.12)' }}>
               Practice Privately. Thrive Publicly.
+            </p>
+
+            {/* Premium sub-headline */}
+            <p className="text-[clamp(1rem,2.2vw,1.2rem)] text-white/70 max-w-[480px] mx-auto md:mx-0 mb-5 leading-[1.6]" style={{ fontStyle: 'italic', animation: 'hero-fade .7s 150ms ease both' }}>
+              "The fastest way to understand anything is to explain it out loud."
             </p>
 
             {/* Body — tight and punchy */}
@@ -52,7 +63,7 @@ export default function HeroSection() {
           {/* Floating phone mockup */}
           <div className="w-[260px] md:w-auto" style={{
             flexShrink: 0,
-            transform: 'rotate(-4deg) translateY(-8px)',
+            animation: 'hero-phone .9s .2s cubic-bezier(.4,0,.2,1) both',
             filter: [
               'drop-shadow(0 8px 24px rgba(0,0,0,0.18))',
               'drop-shadow(0 32px 64px rgba(0,0,0,0.14))',

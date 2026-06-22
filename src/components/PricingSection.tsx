@@ -8,6 +8,7 @@ const PLANS = [
   {
     name: 'Free',
     desc: 'Perfect for getting started',
+    forWho: 'Curious learners trying the method',
     monthly: 0,
     annual: 0,
     priceSub: 'forever',
@@ -18,12 +19,14 @@ const PLANS = [
       'Share your scores',
     ],
     cta: 'Get Started Free',
+    trialNote: null,
     featured: false,
     badge: null,
   },
   {
     name: 'Student',
     desc: 'For learners in full-time education',
+    forWho: 'School & university students',
     monthly: 3.99,
     annual: 2.99,
     priceSub: '/ month',
@@ -36,13 +39,15 @@ const PLANS = [
       'Confidence tracking',
       'Multi-language support',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Try Free for 3 Days',
+    trialNote: 'No card needed · Cancel anytime',
     featured: false,
-    badge: '🎓 For Students',
+    badge: '🎓 Student',
   },
   {
     name: 'Personal',
     desc: 'For everyday learners who want to grow',
+    forWho: 'Professionals, parents & lifelong learners',
     monthly: 9.99,
     annual: 7.49,
     priceSub: '/ month',
@@ -57,13 +62,15 @@ const PLANS = [
       'Share talks & scores',
       'Weekly improvement report',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Try Free for 3 Days',
+    trialNote: 'No card needed · Cancel anytime',
     featured: true,
     badge: 'Most Popular',
   },
   {
     name: 'Pro',
     desc: 'For creators, coaches & professionals',
+    forWho: 'Power users, coaches & content creators',
     monthly: 19.99,
     annual: 14.99,
     priceSub: '/ month',
@@ -76,7 +83,8 @@ const PLANS = [
       'Exportable reports',
       'Video talk mode (coming soon)',
     ],
-    cta: 'Go Pro',
+    cta: 'Try Free for 3 Days',
+    trialNote: 'No card needed · Cancel anytime',
     featured: false,
     badge: null,
   },
@@ -243,9 +251,14 @@ export default function PricingSection() {
                 <div style={{ fontSize: '10px', fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase' as const, marginBottom: '4px', color: dark ? '#93C5FD' : '#1E4DD8' }}>
                   {plan.name}
                 </div>
-                <div style={{ fontSize: '13px', color: dark ? 'rgba(255,255,255,.50)' : '#6B7280', marginBottom: '24px', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '13px', color: dark ? 'rgba(255,255,255,.50)' : '#6B7280', marginBottom: '6px', lineHeight: 1.4 }}>
                   {plan.desc}
                 </div>
+                {'forWho' in plan && plan.forWho && (
+                  <div style={{ fontSize: '11px', color: dark ? 'rgba(255,255,255,.32)' : '#9CA3AF', marginBottom: '18px', fontStyle: 'italic' }}>
+                    For: {plan.forWho}
+                  </div>
+                )}
 
                 {/* Price */}
                 <div style={{ marginBottom: '6px' }}>
@@ -290,6 +303,11 @@ export default function PricingSection() {
                 >
                   {plan.cta}
                 </button>
+                {'trialNote' in plan && plan.trialNote && (
+                  <p style={{ fontSize: '11px', textAlign: 'center', marginTop: '10px', color: dark ? 'rgba(255,255,255,.35)' : '#9CA3AF' }}>
+                    {plan.trialNote}
+                  </p>
+                )}
               </div>
             )
           })}
