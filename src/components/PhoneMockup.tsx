@@ -8,7 +8,7 @@ function HomeScreen() {
   return (
     <div style={{
       background: '#080E1C', height: '100%', display: 'flex',
-      flexDirection: 'column', padding: '14px 12px 10px', fontFamily: 'system-ui, sans-serif',
+      flexDirection: 'column', padding: '52px 12px 10px', fontFamily: 'system-ui, sans-serif',
     }}>
       {/* Nav */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
@@ -88,7 +88,7 @@ function CertScreen() {
   return (
     <div style={{
       background: '#080E1C', height: '100%', display: 'flex',
-      flexDirection: 'column', padding: '14px 12px 10px', fontFamily: 'system-ui, sans-serif',
+      flexDirection: 'column', padding: '52px 12px 10px', fontFamily: 'system-ui, sans-serif',
     }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '12px' }}>
@@ -147,7 +147,7 @@ function LessonScreen() {
   return (
     <div style={{
       background: '#080E1C', height: '100%', display: 'flex',
-      flexDirection: 'column', padding: '14px 12px 10px', fontFamily: 'system-ui, sans-serif',
+      flexDirection: 'column', padding: '52px 12px 10px', fontFamily: 'system-ui, sans-serif',
     }}>
       <div style={{ fontSize: '8px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px', fontWeight: 700 }}>AWS SOLUTIONS ARCHITECT · LESSON</div>
       <div style={{ fontSize: '12px', fontWeight: 900, color: '#FFFFFF', marginBottom: '12px', letterSpacing: '-0.3px' }}>Shared Responsibility Model</div>
