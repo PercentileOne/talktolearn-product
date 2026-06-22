@@ -131,9 +131,36 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
               Learn by Talking gives you a topic, a timer, and a microphone. You explain it out loud — just like you would to a friend, a colleague, or a camera. Then our AI scores your <strong>Clarity</strong>, <strong>Depth</strong>, <strong>Accuracy</strong>, <strong>Structure</strong>, and <strong>Confidence</strong> — and tells you exactly what to work on.
             </p>
 
-            <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '28px' }}>
+            <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '20px' }}>
               It's private practice for public performance. No judgement. No pressure. Just you, your voice, and a smarter way to learn.
             </p>
+
+            {/* Emotional truth block */}
+            <div style={{
+              background: 'linear-gradient(135deg,#0E2040,#1A3A6E)',
+              borderRadius: '16px',
+              padding: '28px',
+              marginBottom: '28px',
+              textAlign: 'center',
+            }}>
+              <p style={{
+                fontSize: 'clamp(1.05rem,2.5vw,1.2rem)',
+                fontWeight: 700,
+                color: '#FFFFFF',
+                lineHeight: 1.65,
+                margin: '0 0 10px',
+              }}>
+                You will feel the difference — immediately.
+              </p>
+              <p style={{
+                fontSize: '14px',
+                color: 'rgba(255,255,255,0.62)',
+                lineHeight: 1.65,
+                margin: 0,
+              }}>
+                Not just in what you know — but in how you feel about yourself. Your confidence. Your clarity. The way you walk into a room knowing you can explain anything you've learned. That feeling is real, and it happens faster than you think.
+              </p>
+            </div>
 
             {/* Stat pills */}
             <div style={{
