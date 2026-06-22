@@ -69,8 +69,21 @@ export default function NavBar() {
             </a>
           </div>
 
+          {/* About — mobile only */}
+          <button
+            className="flex md:hidden"
+            onClick={() => setAboutOpen(true)}
+            style={{
+              fontSize: '13px', fontWeight: 700, color: '#1E4DD8',
+              background: 'rgba(30,77,216,.08)', border: '1px solid rgba(30,77,216,.18)',
+              borderRadius: '20px', padding: '6px 14px', cursor: 'pointer',
+            }}
+          >
+            About
+          </button>
+
           {/* CTA */}
-          <button style={{
+          <button className="hidden md:block" style={{
             padding: '9px 22px', borderRadius: '50px',
             background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)',
             color: '#FFFFFF', fontSize: '13.5px', fontWeight: 800,
@@ -89,6 +102,16 @@ export default function NavBar() {
           }}
           >
             Start for Free
+          </button>
+
+          {/* Mobile CTA — smaller */}
+          <button className="flex md:hidden" style={{
+            padding: '8px 16px', borderRadius: '50px',
+            background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)',
+            color: '#FFFFFF', fontSize: '12px', fontWeight: 800,
+            border: 'none', cursor: 'pointer',
+          }}>
+            Start Free
           </button>
 
         </div>
