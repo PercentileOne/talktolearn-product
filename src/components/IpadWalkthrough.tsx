@@ -485,7 +485,6 @@ function IpadFrame({ children }: { children: React.ReactNode }) {
 export default function IpadWalkthrough() {
   const [phase, setPhase] = useState<1|2|3|4|5|6>(1)
 
-  const reset = () => setPhase(1)
   const next = () => setPhase(p => (p >= 6 ? 1 : (p + 1) as any))
 
   useEffect(() => {
