@@ -36,11 +36,12 @@ export default function HeroSection() {
 
             {/* Feature pills */}
             <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
-              {['📖 Study Cards', '🎙 Talk Test', '🎯 Multiple Choice', '🏅 Cert Prep', '🏆 Leaderboards', '📤 Share Scores'].map(f => (
+              {['📖 Study Cards', '🎙 Talk Test', '🎯 Multiple Choice', '🏅 Certification Prep', '🏆 Leaderboards', '📤 Share Scores'].map(f => (
                 <span key={f} style={{
-                  fontSize: '12px', fontWeight: 700, color: 'rgba(255,255,255,0.80)',
-                  background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.18)',
+                  fontSize: '12px', fontWeight: 700, color: 'rgba(255,255,255,0.90)',
+                  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.22)',
                   borderRadius: '20px', padding: '5px 12px',
+                  backdropFilter: 'blur(8px)',
                 }}>
                   {f}
                 </span>
@@ -49,15 +50,15 @@ export default function HeroSection() {
 
             {/* Body */}
             <p className="text-[clamp(0.95rem,2vw,1.1rem)] text-white/70 max-w-[460px] mx-auto md:mx-0 mb-8 leading-[1.7]">
-              Speak, study, and test yourself on any subject — from AWS certifications and GCSEs
+              Enter a subject, study it, then speak about it — from AWS certifications and GCSEs
               to A-Levels and Masters-level topics. The AI scores every answer and tells you
               exactly what to improve.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3.5 justify-center md:justify-start mb-6">
-              <button className="btn-primary">Start for Free</button>
-              <button className="btn-secondary border-white/70 text-white hover:bg-white/20 hover:text-white">▶ Watch the Demo</button>
+              <button className="btn-primary" style={{ background: 'rgba(30,77,216,0.95)', boxShadow: '0 4px 18px rgba(30,77,216,0.55)' }}>Start for Free</button>
+              <button className="btn-secondary" style={{ background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.30)', color: '#fff', backdropFilter: 'blur(8px)' }}>▶ Watch the Demo</button>
             </div>
 
             {/* Trust line */}
