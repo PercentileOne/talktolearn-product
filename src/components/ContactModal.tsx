@@ -12,10 +12,14 @@ export default function ContactModal({ onClose }: { onClose: () => void }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
-    // Opens default mail client as fallback — replace with backend/Resend/Formspree later
-    const mailto = `mailto:hello@talktolearn.app?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
-    window.location.href = mailto
-    setStatus('sent')
+    try {
+      const res = await fetch('https://formspree.io/f/mzdldjzz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message }),
+      })
+      if (res.ok) { setStatus('sent') } else { setStatus('error') }
+    } catch { setStatus('error') }
   }
 
   const inputStyle: React.CSSProperties = {
@@ -57,8 +61,15 @@ export default function ContactModal({ onClose }: { onClose: () => void }) {
           <div style={{ textAlign: 'center', padding: '24px 0' }}>
             <div style={{ fontSize: '48px', marginBottom: '12px' }}>📬</div>
             <p style={{ fontSize: '16px', fontWeight: 800, color: '#0A0F1C', marginBottom: '6px' }}>Message sent!</p>
-            <p style={{ fontSize: '13px', color: '#6B7280', marginBottom: '20px' }}>Your email client should have opened. We'll get back to you soon.</p>
+            <p style={{ fontSize: '13px', color: '#6B7280', marginBottom: '20px' }}>Thanks for reaching out — we'll get back to you soon.</p>
             <button onClick={onClose} style={{ padding: '10px 28px', borderRadius: '50px', background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)', color: '#fff', fontWeight: 800, border: 'none', cursor: 'pointer', fontSize: '14px' }}>Close</button>
+          </div>
+        ) : status === 'error' ? (
+          <div style={{ textAlign: 'center', padding: '24px 0' }}>
+            <div style={{ fontSize: '48px', marginBottom: '12px' }}>😔</div>
+            <p style={{ fontSize: '16px', fontWeight: 800, color: '#0A0F1C', marginBottom: '6px' }}>Something went wrong</p>
+            <p style={{ fontSize: '13px', color: '#6B7280', marginBottom: '20px' }}>Please try again or email us directly at francis@talktolearn.app</p>
+            <button onClick={() => setStatus('idle')} style={{ padding: '10px 28px', borderRadius: '50px', background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)', color: '#fff', fontWeight: 800, border: 'none', cursor: 'pointer', fontSize: '14px' }}>Try Again</button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -94,7 +105,7 @@ export default function ContactModal({ onClose }: { onClose: () => void }) {
                 Cancel
               </button>
               <button type="submit" disabled={status === 'sending'} style={{ flex: 2, padding: '12px', borderRadius: '50px', background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)', color: '#fff', fontSize: '14px', fontWeight: 800, border: 'none', cursor: 'pointer', boxShadow: '0 4px 14px rgba(30,77,216,.35)' }}>
-                {status === 'sending' ? 'Opening...' : 'Send Message →'}
+                {status === 'sending' ? 'Sending...' : 'Send Message →'}
               </button>
             </div>
           </form>
