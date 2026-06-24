@@ -21,6 +21,7 @@ export default function App() {
       <NavBar />
       <HeroSection />
       <TeachToLearnSection />
+      <LiveStageSection />
       <CardFlowSection />
       <IpadWalkthroughSection />
       <VideoSection />
@@ -30,7 +31,6 @@ export default function App() {
       <WhoItsForSection />
       <ParentSection />
       <GlobalLanguageSection />
-      <LiveStageSection />
       <SocialSharingSection />
       <PricingSection />
       <Footer />
