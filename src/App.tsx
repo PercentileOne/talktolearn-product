@@ -10,6 +10,7 @@ import CertificationSection from './components/CertificationSection'
 import WhoItsForSection from './components/WhoItsForSection'
 import ParentSection from './components/ParentSection'
 import GlobalLanguageSection from './components/GlobalLanguageSection'
+import LiveStageSection from './components/LiveStageSection'
 import SocialSharingSection from './components/SocialSharingSection'
 import PricingSection from './components/PricingSection'
 import Footer from './components/Footer'
@@ -29,6 +30,7 @@ export default function App() {
       <WhoItsForSection />
       <ParentSection />
       <GlobalLanguageSection />
+      <LiveStageSection />
       <SocialSharingSection />
       <PricingSection />
       <Footer />
