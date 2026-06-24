@@ -316,7 +316,8 @@ function WaveBar({i,active}:{i:number;active:boolean}){
 
 // ─── Main section ─────────────────────────────────────────────────────────────
 export default function LiveStageSection(){
-  const [sizeIdx,  setSizeIdx]    = useState(1) // Interview panel by default
+  const [sizeIdx,     setSizeIdx]     = useState(1) // Interview panel by default
+  const [panelCount,  setPanelCount]  = useState(3) // 1-5 interviewers
   const [mood,     setMood]       = useState<Mood>('professional')
   const [interruptions,setInt]    = useState(false)
   const [speaking, setSpeaking]   = useState(false)
@@ -410,7 +411,7 @@ export default function LiveStageSection(){
             {/* Interview panel OR canvas crowd */}
             <div style={{position:'relative',zIndex:3,padding:'0 8px'}}>
               {selected.mode==='interview'
-                ? <InterviewPanel mood={mood} speaking={speaking} interruptions={interruptions}/>
+                ? <InterviewPanel mood={mood} speaking={speaking} interruptions={interruptions} count={panelCount}/>
                 : <AudienceCanvas size={selected.value} mood={mood} applauding={applauding}/>
               }
             </div>
@@ -474,6 +475,25 @@ export default function LiveStageSection(){
                   </button>
                 ))}
               </div>
+              {/* Panel size — only in interview mode */}
+              {selected.mode==='interview' && (
+                <div style={{marginTop:12}}>
+                  <div style={{fontSize:10,fontWeight:800,letterSpacing:'.16em',color:'rgba(255,255,255,.28)',marginBottom:10}}>PANEL SIZE</div>
+                  <div style={{display:'flex',gap:6}}>
+                    {[1,2,3,4,5].map(n=>(
+                      <button key={n} onClick={()=>setPanelCount(n)} style={{
+                        flex:1,padding:'8px 4px',borderRadius:10,border:'none',cursor:'pointer',
+                        background:panelCount===n?'rgba(30,77,216,.22)':'rgba(255,255,255,.04)',
+                        outline:panelCount===n?'1px solid rgba(30,77,216,.60)':'1px solid transparent',
+                        transition:'all .2s',
+                      }}>
+                        <div style={{fontSize:14,marginBottom:2}}>{'🧑'.repeat(Math.min(n,3))}{n>3?'+':''}</div>
+                        <div style={{fontSize:11,fontWeight:800,color:panelCount===n?'#FFF':'rgba(255,255,255,.40)'}}>{n}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Mood + interruptions */}
