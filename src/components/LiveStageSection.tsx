@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import InterviewPanel from './InterviewPanel'
 
 // ─── Keyframes for UI chrome only ────────────────────────────────────────────
 const KF = `
@@ -21,11 +22,11 @@ const KF = `
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 const SIZES = [
-  { label:'Just Me',  value:0,    emoji:'🧘', desc:'Solo — pure focus'    },
-  { label:'Small',    value:5,    emoji:'👥', desc:'5 people'             },
-  { label:'Room',     value:25,   emoji:'🏫', desc:'25 people'            },
-  { label:'Hall',     value:100,  emoji:'🎤', desc:'100 people'           },
-  { label:'Arena',    value:1000, emoji:'🏟', desc:'1,000 people'         },
+  { label:'Just Me',  value:0,    emoji:'🧘', desc:'Solo — pure focus',      mode:'solo'      },
+  { label:'Interview',value:3,    emoji:'🎯', desc:'3-person panel',          mode:'interview' },
+  { label:'Room',     value:25,   emoji:'🏫', desc:'25 people',               mode:'crowd'     },
+  { label:'Hall',     value:100,  emoji:'🎤', desc:'100 people',              mode:'crowd'     },
+  { label:'Arena',    value:1000, emoji:'🏟', desc:'1,000 people',            mode:'crowd'     },
 ]
 
 const MOODS = [
@@ -315,7 +316,7 @@ function WaveBar({i,active}:{i:number;active:boolean}){
 
 // ─── Main section ─────────────────────────────────────────────────────────────
 export default function LiveStageSection(){
-  const [sizeIdx,  setSizeIdx]    = useState(3)
+  const [sizeIdx,  setSizeIdx]    = useState(1) // Interview panel by default
   const [mood,     setMood]       = useState<Mood>('professional')
   const [interruptions,setInt]    = useState(false)
   const [speaking, setSpeaking]   = useState(false)
@@ -406,9 +407,12 @@ export default function LiveStageSection(){
               }
             </div>
 
-            {/* Canvas audience */}
-            <div style={{position:'relative',zIndex:3}}>
-              <AudienceCanvas size={selected.value} mood={mood} applauding={applauding}/>
+            {/* Interview panel OR canvas crowd */}
+            <div style={{position:'relative',zIndex:3,padding:'0 8px'}}>
+              {selected.mode==='interview'
+                ? <InterviewPanel mood={mood} speaking={speaking} interruptions={interruptions}/>
+                : <AudienceCanvas size={selected.value} mood={mood} applauding={applauding}/>
+              }
             </div>
 
             {/* Applause banner */}
