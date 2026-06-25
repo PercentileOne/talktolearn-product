@@ -1,7 +1,7 @@
-{
+﻿{
   "meta": {
-    "title": "Talk to Learn — Speak It. To Understand It.",
-    "description": "TalkToLearn — Speak It. To Understand It. A new way of learning by talking out loud. Pick any subject, speak under pressure, and AI scores your Clarity, Confidence, Relevance and Depth."
+    "title": "Talk to Learn — Talk About It, To Understand It.",
+    "description": "TalkToLearn — Talk About It, To Understand It. A new way of learning by talking out loud. Pick any subject, speak under pressure, and AI scores your Clarity, Confidence, Relevance and Depth."
   },
   "lang": {
     "selector": "Language",
@@ -32,7 +32,7 @@
     "badge1": "The Speak-to-Learn Method",
     "badge2": "#1 Learn-by-Talking App",
     "title": "Talk to Learn",
-    "tagline": "Speak It. To Understand It.",
+    "tagline": "Talk About It, To Understand It.",
     "subheadline1": "You learn faster when you speak out loud.",
     "subheadline2": "Pick any subject. Talk about it. AI scores your",
     "scoringDimensions": "Clarity · Confidence · Relevance · Depth.",
@@ -71,7 +71,7 @@
     "step3Body": "Research shows learners who teach retain up to 90% more than those who only read or listen. Talking is the shortcut.",
     "feynmanQuote": "\"The best way to learn something is to teach it.\"",
     "feynmanAuthor": "— Richard Feynman",
-    "tagline": "Speak It. To Understand It.",
+    "tagline": "Talk About It, To Understand It.",
     "taglineSub": "A simple truth about how humans learn."
   },
   "panel": {
@@ -164,7 +164,7 @@
     "t7Quote": "TalkToLearn has been incredible for my child. Their confidence has grown so much — they're speaking more clearly, explaining their ideas, and actually enjoying learning. Hearing them talk through topics out loud has been amazing. It's like their voice finally unlocked their understanding.",
     "t7Name": "Sarah B.",
     "t7Role": "Parent",
-    "tagline": "Speak It. To Understand It."
+    "tagline": "Talk About It, To Understand It."
   },
   "pricing": {
     "badge": "Launching Soon — Pricing Preview",
@@ -218,7 +218,7 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "copyright": "© 2026 TalkToLearn.app —",
-    "copyrightTagline": "Speak It. To Understand It.",
+    "copyrightTagline": "Talk About It, To Understand It.",
     "phone": "0800 XXX XXXX",
     "comingSoon": "· coming soon"
   }

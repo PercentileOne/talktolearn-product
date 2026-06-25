@@ -1,7 +1,7 @@
-{
+﻿{
   "meta": {
-    "title": "Aprender Hablando — Dilo. Para Entenderlo.",
-    "description": "TalkToLearn — Dilo. Para Entenderlo. Una nueva forma de aprender hablando en voz alta. Elige cualquier tema, habla bajo presión y la IA puntúa tu Claridad, Confianza, Relevancia y Profundidad."
+    "title": "Aprender Hablando — Háblalo, Para Entenderlo.",
+    "description": "TalkToLearn — Háblalo, Para Entenderlo. Una nueva forma de aprender hablando en voz alta. Elige cualquier tema, habla bajo presión y la IA puntúa tu Claridad, Confianza, Relevancia y Profundidad."
   },
   "lang": { "selector": "Idioma", "detected": "Tu región" },
   "common": {
@@ -29,7 +29,7 @@
     "badge1": "El método Habla-para-Aprender",
     "badge2": "#1 App de aprendizaje oral",
     "title": "Aprender Hablando",
-    "tagline": "Dilo. Para Entenderlo.",
+    "tagline": "Háblalo, Para Entenderlo.",
     "subheadline1": "Aprendes más rápido cuando hablas en voz alta.",
     "subheadline2": "Elige cualquier tema. Habla sobre él. La IA puntúa tu",
     "scoringDimensions": "Claridad · Confianza · Relevancia · Profundidad.",
@@ -65,7 +65,7 @@
     "step3Body": "Las investigaciones muestran que los estudiantes que enseñan retienen hasta un 90% más que los que solo leen o escuchan. Hablar es el atajo.",
     "feynmanQuote": "\"La mejor manera de aprender algo es enseñarlo.\"",
     "feynmanAuthor": "— Richard Feynman",
-    "tagline": "Dilo. Para Entenderlo.",
+    "tagline": "Háblalo, Para Entenderlo.",
     "taglineSub": "Una verdad simple sobre cómo aprenden los humanos."
   },
   "panel": {
@@ -147,7 +147,7 @@
     "t6Name": "Amara J.", "t6Role": "Creadora de Contenido",
     "t7Quote": "TalkToLearn ha sido increíble para mi hijo. Su confianza ha crecido tanto — habla más claramente, explica sus ideas y realmente disfruta aprendiendo. Es como si su voz finalmente desbloqueara su comprensión.",
     "t7Name": "Sarah B.", "t7Role": "Madre",
-    "tagline": "Dilo. Para Entenderlo."
+    "tagline": "Háblalo, Para Entenderlo."
   },
   "pricing": {
     "badge": "Próximamente — Vista previa de precios",
@@ -185,7 +185,7 @@
     "earlyAccess": "Acceso anticipado", "contact": "Contacto", "linkedin": "LinkedIn",
     "cockpit": "Cockpit", "privacy": "Privacidad", "terms": "Términos",
     "copyright": "© 2026 TalkToLearn.app —",
-    "copyrightTagline": "Dilo. Para Entenderlo.",
+    "copyrightTagline": "Háblalo, Para Entenderlo.",
     "phone": "0800 XXX XXXX", "comingSoon": "· próximamente"
   }
 }

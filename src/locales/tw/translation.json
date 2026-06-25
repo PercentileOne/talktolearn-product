@@ -1,7 +1,7 @@
-{
+﻿{
   "meta": {
-    "title": "Talk to Learn — Kasa Na Ate Ase.",
-    "description": "TalkToLearn — Kasa Na Ate Ase. Suahu foforo a wokasa so. Yi subject biara, kasa wɔ tumi ase, na AI hwɛ wo Clarity, Confidence, Relevance ne Depth ho."
+    "title": "Talk to Learn — Kasa Ho, Na Ate Ase.",
+    "description": "TalkToLearn — Kasa Ho, Na Ate Ase. Suahu foforo a wokasa so. Yi subject biara, kasa wɔ tumi ase, na AI hwɛ wo Clarity, Confidence, Relevance ne Depth ho."
   },
   "lang": {
     "selector": "Kasa",
@@ -32,7 +32,7 @@
     "badge1": "Kasa-Na-Suahu Akwan",
     "badge2": "#1 Kasa-Na-Sua App",
     "title": "Kasa Na Sua",
-    "tagline": "Kasa Na Ate Ase.",
+    "tagline": "Kasa Ho, Na Ate Ase.",
     "subheadline1": "Wosua ntɛm sene wokasa w'anim.",
     "subheadline2": "Yi subject biara. Kasa ho. AI hwɛ wo",
     "scoringDimensions": "Clarity · Confidence · Relevance · Depth.",
@@ -71,7 +71,7 @@
     "step3Body": "Nhwɛso kyerɛ sɛ nnipa a wɔkyerɛkyerɛ fa anim fa yɛ 90% soronko sene wɔn a wɔkenkan anaa wɔtie nkoaa. Kasa na ɛwɔ ho kwan no.",
     "feynmanQuote": "\"Akwan a ɛtia pa ara sɛ wosua biribi ne sɛ wokyerɛ no.\"",
     "feynmanAuthor": "— Richard Feynman",
-    "tagline": "Kasa Na Ate Ase.",
+    "tagline": "Kasa Ho, Na Ate Ase.",
     "taglineSub": "Nokorɛ a ɛwɔ mu fa sɛdeɛ nnipa sua no ho."
   },
   "panel": {
@@ -164,7 +164,7 @@
     "t7Quote": "TalkToLearn ayɛ adwuma a ɛno ara ne no ma me ba. Wɔn ahooden asu yie — wɔka yie, wɔkyerɛkyerɛ wɔn adwene, na wɔpɛ suahu. Ɛyɛ anigye sɛ metie wɔn tete topics w'anim. Ɛte sɛ wɔn ŋne hyɛɛ wɔn nte ase mu.",
     "t7Name": "Sarah B.",
     "t7Role": "Maame",
-    "tagline": "Kasa Na Ate Ase."
+    "tagline": "Kasa Ho, Na Ate Ase."
   },
   "pricing": {
     "badge": "Ɛreba Ntɛm — Ɛbo Ho Nkurɔfo",
@@ -218,7 +218,7 @@
     "privacy": "Tuntum Ho",
     "terms": "Mmara",
     "copyright": "© 2026 TalkToLearn.app —",
-    "copyrightTagline": "Kasa Na Ate Ase.",
+    "copyrightTagline": "Kasa Ho, Na Ate Ase.",
     "phone": "0800 XXX XXXX",
     "comingSoon": "· ɛreba"
   }

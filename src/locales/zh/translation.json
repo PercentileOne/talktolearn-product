@@ -1,6 +1,6 @@
-{
+﻿{
   "meta": {
-    "title": "说来学习 — 说出来。理解它。",
+    "title": "说来学习 — 谈论它，理解它。",
     "description": "TalkToLearn — 说出来，理解它。通过大声说话来学习的全新方式。选择任何话题，在压力下开口，AI为您的清晰度、自信度、相关性和深度评分。"
   },
   "lang": { "selector": "语言", "detected": "您的地区" },
@@ -29,7 +29,7 @@
     "badge1": "说学法",
     "badge2": "#1 说话学习应用",
     "title": "说来学习",
-    "tagline": "说出来。理解它。",
+    "tagline": "谈论它，理解它。",
     "subheadline1": "大声说出来，你学得更快。",
     "subheadline2": "选择任何话题。谈论它。AI为您评分",
     "scoringDimensions": "清晰度 · 自信度 · 相关性 · 深度。",
@@ -68,7 +68,7 @@
     "step3Body": "研究表明，教授他人的学习者比只阅读或听讲的人多保留90%的知识。说话是捷径。",
     "feynmanQuote": "\"学习某事最好的方式就是教授它。\"",
     "feynmanAuthor": "— 理查德·费曼",
-    "tagline": "说出来。理解它。",
+    "tagline": "谈论它，理解它。",
     "taglineSub": "关于人类如何学习的简单真理。"
   },
   "panel": {
@@ -150,7 +150,7 @@
     "t6Name": "Amara J.", "t6Role": "内容创作者",
     "t7Quote": "TalkToLearn对我的孩子来说非常了不起。他们的自信心增长了很多——他们说话更清晰，解释想法，真正享受学习。听到他们大声谈论话题真是太棒了。就好像他们的声音终于打开了理解的大门。",
     "t7Name": "Sarah B.", "t7Role": "家长",
-    "tagline": "说出来。理解它。"
+    "tagline": "谈论它，理解它。"
   },
   "pricing": {
     "badge": "即将推出——定价预览",
@@ -188,7 +188,7 @@
     "earlyAccess": "早期访问", "contact": "联系", "linkedin": "领英",
     "cockpit": "驾驶舱", "privacy": "隐私", "terms": "条款",
     "copyright": "© 2026 TalkToLearn.app —",
-    "copyrightTagline": "说出来。理解它。",
+    "copyrightTagline": "谈论它，理解它。",
     "phone": "0800 XXX XXXX", "comingSoon": "· 即将推出"
   }
 }
