@@ -146,8 +146,14 @@ Rules:
       const t = Array.from(e.results).map((res: any) => res[0].transcript).join(' ')
       setTranscript(t)
     }
-    r.onerror = () => setListening(false)
-    r.onend   = () => setListening(false)
+    r.onerror = (e: any) => {
+      setListening(false)
+      if (e.error === 'not-allowed') setError('Microphone access denied. Please allow mic access in your browser and try again.')
+      else if (e.error === 'no-speech') setError('No speech detected. Make sure your mic is working and try again.')
+      else setError(`Mic error: ${e.error}. Please try again.`)
+      setPhase('asking')
+    }
+    r.onend = () => setListening(false)
     recogRef.current = r
     r.start()
     setListening(true)
@@ -323,12 +329,22 @@ No other text.`,
           </p>
         </div>
 
+        {/* Error */}
+        {error && (
+          <div style={{ background: 'rgba(239,68,68,0.10)', border: '1px solid rgba(239,68,68,0.35)', borderRadius: 10, padding: '10px 14px', marginBottom: 12 }}>
+            <p style={{ margin: 0, fontSize: 12, color: '#FCA5A5' }}>⚠️ {error}</p>
+          </div>
+        )}
+
         {/* Transcript */}
         {(phase === 'answering' || phase === 'scoring') && (
           <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 10, padding: '12px 14px', marginBottom: 14, minHeight: 60, border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)', marginBottom: 6 }}>YOUR ANSWER</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444', animation: 'live-pulse 1s infinite', flexShrink: 0 }} />
+              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)' }}>YOUR ANSWER</div>
+            </div>
             <p style={{ margin: 0, fontSize: 13, color: transcript ? '#FFF' : 'rgba(255,255,255,0.25)', fontStyle: transcript ? 'normal' : 'italic', lineHeight: 1.6 }}>
-              {transcript || 'Listening...'}
+              {transcript || 'Listening — speak now...'}
             </p>
           </div>
         )}
