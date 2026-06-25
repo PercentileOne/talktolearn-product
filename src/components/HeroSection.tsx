@@ -1,6 +1,7 @@
 import PhoneMockup from './PhoneMockup'
 import { openContact } from './NavBar'
 import { track } from '../analytics'
+import { BookOpen, Mic, Trophy, Zap } from 'lucide-react'
 
 const HKF = `
 @keyframes hero-fade { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
@@ -39,7 +40,7 @@ export default function HeroSection() {
 
             {/* Comprehension claim */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'rgba(0,0,0,0.25)', border: '1px solid rgba(52,211,153,0.50)', borderRadius: 12, padding: '10px 16px', marginBottom: 24 }}>
-              <span style={{ fontSize: 20 }}>🧠</span>
+              <Zap size={18} color="#6EE7B7" strokeWidth={2.5} />
               <span style={{ fontSize: 13, fontWeight: 700, color: '#6EE7B7', lineHeight: 1.4 }}>
                 The proven method that <strong style={{ color: '#FFF', fontWeight: 900 }}>doubles comprehension</strong> —<br/>
                 <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.65)' }}>now powered by AI and available for any subject or certification.</span>
@@ -51,41 +52,47 @@ export default function HeroSection() {
               {[
                 {
                   step: '01',
-                  icon: '📚',
+                  Icon: BookOpen,
                   title: 'Study your subject',
                   desc: 'AI generates flashcards, deep-dive lessons and multiple choice — tailored to your topic.',
                   color: '#60A5FA',
+                  bg: 'linear-gradient(135deg,rgba(30,58,138,0.6),rgba(37,99,235,0.3))',
+                  border: 'rgba(96,165,250,0.30)',
                 },
                 {
                   step: '02',
-                  icon: '🎯',
+                  Icon: Mic,
                   title: 'Get tested — out loud',
                   desc: 'A live panel of AI interviewers asks real questions. You answer by speaking.',
-                  color: '#A78BFA',
+                  color: '#C4B5FD',
+                  bg: 'linear-gradient(135deg,rgba(76,29,149,0.6),rgba(109,40,217,0.3))',
+                  border: 'rgba(167,139,250,0.30)',
                 },
                 {
                   step: '03',
-                  icon: '🏆',
+                  Icon: Trophy,
                   title: 'Receive your score',
                   desc: 'Scored instantly on Clarity · Confidence · Relevance · Depth. Know exactly what to fix.',
-                  color: '#34D399',
+                  color: '#6EE7B7',
+                  bg: 'linear-gradient(135deg,rgba(6,78,59,0.6),rgba(16,185,129,0.3))',
+                  border: 'rgba(52,211,153,0.30)',
                 },
-              ].map(({ step, icon, title, desc, color }) => (
+              ].map(({ step, Icon, title, desc, color, bg, border }) => (
                 <div key={step} style={{
-                  display: 'flex', alignItems: 'flex-start', gap: 14,
-                  background: 'rgba(0,0,0,0.25)', borderRadius: 14,
-                  padding: '14px 16px', border: '1px solid rgba(255,255,255,0.18)',
+                  display: 'flex', alignItems: 'center', gap: 16,
+                  background: bg, borderRadius: 14,
+                  padding: '16px 18px', border: `1px solid ${border}`,
                   backdropFilter: 'blur(12px)',
                 }}>
-                  <div style={{ width: 36, height: 36, borderRadius: 10, background: `${color}33`, border: `1px solid ${color}66`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
-                    {icon}
+                  <div style={{ width: 40, height: 40, borderRadius: 12, background: `${color}22`, border: `1px solid ${color}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Icon size={18} color={color} strokeWidth={2} />
                   </div>
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
                       <span style={{ fontSize: 10, fontWeight: 800, color, letterSpacing: '0.1em' }}>STEP {step}</span>
                       <span style={{ fontSize: 13, fontWeight: 800, color: '#FFF' }}>{title}</span>
                     </div>
-                    <p style={{ margin: 0, fontSize: 12, color: 'rgba(255,255,255,0.80)', lineHeight: 1.5 }}>{desc}</p>
+                    <p style={{ margin: 0, fontSize: 12, color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>{desc}</p>
                   </div>
                 </div>
               ))}
