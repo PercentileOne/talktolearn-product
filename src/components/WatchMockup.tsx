@@ -55,7 +55,7 @@ function TalkScreen() {
 
 // ── Screen: Results ───────────────────────────────────────────────────────────
 function ResultsScreen() {
-  const CIRCUMFERENCE = 2 * Math.PI * 24
+  const CIRC = 2 * Math.PI * 13
   const score = 82
   const fraction = score / 100
 
@@ -67,26 +67,24 @@ function ResultsScreen() {
   ]
 
   return (
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:3, padding:'4px 6px' }}>
-      {/* Score ring */}
-      <div style={{ position:'relative', width:40, height:40 }}>
-        <svg viewBox="0 0 52 52" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
-          <circle cx="26" cy="26" r="24" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
-          <circle cx="26" cy="26" r="24" fill="none" stroke="#D97706" strokeWidth="4"
-            strokeDasharray={CIRCUMFERENCE}
-            strokeDashoffset={(1 - fraction) * CIRCUMFERENCE}
-            strokeLinecap="round"
-            style={{ filter:'drop-shadow(0 0 4px #D97706)' }}
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:4, padding:'2px 6px' }}>
+      {/* Score ring — same size as TalkScreen ring */}
+      <div style={{ position:'relative', width:28, height:28 }}>
+        <svg viewBox="0 0 30 30" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
+          <circle cx="15" cy="15" r="13" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
+          <circle cx="15" cy="15" r="13" fill="none" stroke="#D97706" strokeWidth="3"
+            strokeDasharray={CIRC} strokeDashoffset={(1 - fraction) * CIRC}
+            strokeLinecap="round" style={{ filter:'drop-shadow(0 0 3px #D97706)' }}
           />
         </svg>
         <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
-          <span style={{ fontSize:14, fontWeight:900, color:'#FFF', letterSpacing:'-0.5px', lineHeight:1 }}>{score}</span>
-          <span style={{ fontSize:7, color:'rgba(255,255,255,0.4)', lineHeight:1 }}>/ 100</span>
+          <span style={{ fontSize:8, fontWeight:900, color:'#FFF', lineHeight:1 }}>{score}</span>
+          <span style={{ fontSize:4.5, color:'rgba(255,255,255,0.4)', lineHeight:1 }}>/100</span>
         </div>
       </div>
 
       {/* Grade badge */}
-      <div style={{ background:'rgba(217,119,6,0.18)', border:'1px solid rgba(217,119,6,0.40)', borderRadius:20, padding:'2px 8px', fontSize:8, fontWeight:800, color:'#F59E0B' }}>
+      <div style={{ background:'rgba(217,119,6,0.18)', border:'1px solid rgba(217,119,6,0.40)', borderRadius:10, padding:'2px 7px', fontSize:6.5, fontWeight:800, color:'#F59E0B', whiteSpace:'nowrap' }}>
         ⚡ Excellent
       </div>
 
@@ -99,7 +97,7 @@ function ResultsScreen() {
         ))}
       </div>
 
-      <div style={{ fontSize:7, color:'rgba(255,255,255,0.30)', textAlign:'center' }}>📤 Share results</div>
+      <div style={{ fontSize:6, color:'rgba(255,255,255,0.30)' }}>📤 Share results</div>
     </div>
   )
 }
