@@ -32,35 +32,55 @@ export default function HeroSection() {
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-[clamp(1.1rem,3vw,1.45rem)] text-white/90 font-semibold mb-3" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.12)' }}>
-              Watch. Read. Talk. Get scored. Own any subject.
+            <p className="text-[clamp(1.1rem,3vw,1.45rem)] text-white/90 font-semibold mb-6" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.12)' }}>
+              Pick any subject. We build your study path.<br/>
+              <span style={{ color: '#FDE68A' }}>Then you speak — and AI scores you.</span>
             </p>
 
-            {/* Italic pull-quote */}
-            <p className="text-[clamp(1rem,2.2vw,1.2rem)] text-white/70 max-w-[480px] mx-auto md:mx-0 mb-5 leading-[1.6]" style={{ fontStyle: 'italic', animation: 'hero-fade .7s 150ms ease both' }}>
-              "The fastest way to understand anything is to explain it out loud."
-            </p>
-
-            {/* Feature pills */}
-            <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
-              {['📖 Study Cards', '🎙 Talk Test', '🎯 Multiple Choice', '🏅 Certification Prep', '🏆 Leaderboards', '📤 Share Scores'].map(f => (
-                <span key={f} style={{
-                  fontSize: '12px', fontWeight: 700, color: 'rgba(255,255,255,0.90)',
-                  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.22)',
-                  borderRadius: '20px', padding: '5px 12px',
+            {/* 3-step flow */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28, maxWidth: 460, marginLeft: 'auto', marginRight: 'auto' }} className="md:mx-0">
+              {[
+                {
+                  step: '01',
+                  icon: '📚',
+                  title: 'Study your subject',
+                  desc: 'AI generates flashcards, deep-dive lessons and multiple choice — tailored to your topic.',
+                  color: '#60A5FA',
+                },
+                {
+                  step: '02',
+                  icon: '🎯',
+                  title: 'Get tested — out loud',
+                  desc: 'A live panel of AI interviewers asks real questions. You answer by speaking.',
+                  color: '#A78BFA',
+                },
+                {
+                  step: '03',
+                  icon: '🏆',
+                  title: 'Receive your score',
+                  desc: 'Scored instantly on Clarity · Confidence · Relevance · Depth. Know exactly what to fix.',
+                  color: '#34D399',
+                },
+              ].map(({ step, icon, title, desc, color }) => (
+                <div key={step} style={{
+                  display: 'flex', alignItems: 'flex-start', gap: 14,
+                  background: 'rgba(255,255,255,0.06)', borderRadius: 14,
+                  padding: '14px 16px', border: '1px solid rgba(255,255,255,0.10)',
                   backdropFilter: 'blur(8px)',
                 }}>
-                  {f}
-                </span>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, background: `${color}22`, border: `1px solid ${color}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
+                    {icon}
+                  </div>
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                      <span style={{ fontSize: 10, fontWeight: 800, color, letterSpacing: '0.1em' }}>STEP {step}</span>
+                      <span style={{ fontSize: 13, fontWeight: 800, color: '#FFF' }}>{title}</span>
+                    </div>
+                    <p style={{ margin: 0, fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>{desc}</p>
+                  </div>
+                </div>
               ))}
             </div>
-
-            {/* Body */}
-            <p className="text-[clamp(0.95rem,2vw,1.1rem)] text-white/70 max-w-[460px] mx-auto md:mx-0 mb-8 leading-[1.7]">
-              Enter a subject, study it, then speak about it — from AWS certifications and GCSEs
-              to A-Levels and Masters-level topics. The AI scores every answer and tells you
-              exactly what to improve.
-            </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3.5 justify-center md:justify-start mb-6">
