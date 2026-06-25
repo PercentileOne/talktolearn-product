@@ -3,6 +3,7 @@ import InterviewPanel from './InterviewPanel'
 import PanelQA from './PanelQA'
 import { openContact } from './NavBar'
 import { track } from '../analytics'
+import { HelpCircle, BarChart2, Volume2, TrendingUp, Rocket } from 'lucide-react'
 
 const KF = `
 @keyframes stage-in { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
@@ -55,7 +56,7 @@ export default function LiveStageSection() {
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,.38)' }}>Join the waitlist and be first when we launch.</div>
             </div>
             <button onClick={() => { track('cta_join_waitlist'); openContact() }} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', borderRadius: 50, border: 'none', cursor: 'pointer', background: '#1E4DD8', color: '#FFF', fontWeight: 800, fontSize: 14, animation: 'cta-glow 2.5s ease-in-out infinite' }}>
-              🚀 Join the Waitlist
+              <Rocket size={16} strokeWidth={2} /> Join the Waitlist
             </button>
           </div>
         </div>
@@ -63,13 +64,15 @@ export default function LiveStageSection() {
         {/* Stats */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginTop: 48 }}>
           {[
-            { emoji: '🎯', stat: '5',     label: 'AI-generated questions' },
-            { emoji: '🧠', stat: '4',     label: 'Scoring dimensions' },
-            { emoji: '🎙', stat: '4',     label: 'Distinct panel voices' },
-            { emoji: '💪', stat: '100%',  label: 'Real confidence gained' },
+            { Icon: HelpCircle, stat: '5',    label: 'AI-generated questions', color: '#60A5FA' },
+            { Icon: BarChart2,  stat: '4',    label: 'Scoring dimensions',      color: '#C4B5FD' },
+            { Icon: Volume2,    stat: '4',    label: 'Distinct panel voices',   color: '#34D399' },
+            { Icon: TrendingUp, stat: '100%', label: 'Real confidence gained',  color: '#FDE68A' },
           ].map(s => (
             <div key={s.label} style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 16, padding: '20px 28px', textAlign: 'center', minWidth: 130 }}>
-              <div style={{ fontSize: 22, marginBottom: 6 }}>{s.emoji}</div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+                <s.Icon size={22} color={s.color} strokeWidth={1.8} />
+              </div>
               <div style={{ fontSize: 22, fontWeight: 900, color: '#FFF', marginBottom: 4 }}>{s.stat}</div>
               <div style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', fontWeight: 600 }}>{s.label}</div>
             </div>

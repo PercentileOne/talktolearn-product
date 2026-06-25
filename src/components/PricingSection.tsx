@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { openContact } from './NavBar'
 import { track } from '../analytics'
+import { Rocket } from 'lucide-react'
 
 const KF = `
 @keyframes pr-fadein { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
@@ -15,9 +16,9 @@ const PLANS = [
     annual: 0,
     priceSub: 'forever',
     features: [
-      '🎙 Talk Test — speak any subject',
-      '🎯 Multiple Choice — 5 questions/day',
-      '📖 Study Cards — key concepts & glossary',
+      'Talk Test — speak any subject',
+      'Multiple Choice — 5 questions/day',
+      'Study Cards — key concepts & glossary',
       'Basic AI scoring & feedback',
       'Points & rank system',
       'Share scores to LinkedIn & WhatsApp',
@@ -37,10 +38,10 @@ const PLANS = [
     annualNote: 'billed £35.88 / year — save £12',
     features: [
       'Everything in Free',
-      '🎙 Unlimited Talk Tests',
-      '🎯 Unlimited Multiple Choice',
-      '❓ Spoken Questions — AI scored',
-      '🏅 Certification Prep (GCSE · A-Level · Degree)',
+      'Unlimited Talk Tests',
+      'Unlimited Multiple Choice',
+      'Spoken Questions — AI scored',
+      'Certification Prep (GCSE · A-Level · Degree)',
       'Deep Dive lessons — 3 layers of depth',
       'Full AI scoring across 5 dimensions',
       'Confidence & progress tracking',
@@ -48,7 +49,7 @@ const PLANS = [
     cta: 'Try Free for 3 Days',
     trialNote: 'No card needed · Cancel anytime',
     featured: false,
-    badge: '🎓 Student',
+    badge: 'Student',
   },
   {
     name: 'Personal',
@@ -60,11 +61,11 @@ const PLANS = [
     annualNote: 'billed £89.88 / year — save £30',
     features: [
       'Everything in Student',
-      '🎙 Talk Test — unlimited',
-      '🎯 Multiple Choice — unlimited',
-      '❓ Spoken Questions — AI scored',
-      '🎬 Video Talk Test — camera mode',
-      '🏅 Full Certification Prep (200+ certs)',
+      'Talk Test — unlimited',
+      'Multiple Choice — unlimited',
+      'Spoken Questions — AI scored',
+      'Video Talk Test — camera mode',
+      'Full Certification Prep (200+ certs)',
       'AWS · CompTIA · CFA · PMP · and more',
       'Weekly progress report',
       'Leaderboards & score sharing',
@@ -129,8 +130,9 @@ export default function PricingSection() {
             border: '1px solid rgba(30,77,216,.22)', background: 'rgba(30,77,216,.07)',
           }}>
             <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#1E4DD8', display: 'inline-block' }}/>
+            <Rocket size={11} color='#1E4DD8' strokeWidth={2.5} />
             <span style={{ fontSize: '0.67rem', fontWeight: 800, letterSpacing: '.15em', textTransform: 'uppercase' as const, color: '#1E4DD8' }}>
-              🚀 Launching Soon — Pricing Preview
+              Launching Soon — Pricing Preview
             </span>
           </div>
 
@@ -306,12 +308,13 @@ export default function PricingSection() {
                     fontSize: '14px', fontWeight: 800, letterSpacing: '.02em', cursor: 'pointer',
                     boxShadow: dark ? '0 4px 18px rgba(30,77,216,.44), inset 0 1px 0 rgba(255,255,255,.15)' : 'none',
                     transition: 'all .2s',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
                   }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '.88' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
                   onClick={() => { track('cta_notify_pricing', { plan: plan.name }); openContact() }}
                 >
-                  🚀 Notify Me at Launch
+                  <Rocket size={14} strokeWidth={2} /> Notify Me at Launch
                 </button>
                 <p style={{ fontSize: '11px', textAlign: 'center', marginTop: '10px', color: dark ? 'rgba(255,255,255,.35)' : '#9CA3AF' }}>
                   Launching soon · Be first to know

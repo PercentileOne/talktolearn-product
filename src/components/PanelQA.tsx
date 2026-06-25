@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { track } from '../analytics'
+import { Target, Loader2, Mic, ChevronRight, CheckCircle2, AlertTriangle, Globe, RotateCcw, User, MessageSquare, Settings, Trophy, ThumbsUp, ThumbsDown } from 'lucide-react'
 
 type Mood = 'friendly' | 'professional' | 'tough'
 type Phase = 'setup' | 'generating' | 'asking' | 'answering' | 'scoring' | 'results'
@@ -9,10 +10,10 @@ interface Scores { clarity: number; confidence: number; relevance: number; depth
 
 // ElevenLabs voice IDs — each panelist has a distinct character
 const PANELISTS = [
-  { name: 'Lord Warren',  title: 'Chairman',      emoji: '👔', voiceId: 'VR6AewLTigWG4xSOukaG' }, // Arnold — deep, crisp
-  { name: 'Diana Stone',  title: 'Senior Partner', emoji: '🧠', voiceId: '21m00Tcm4TlvDq8ikWAM' }, // Rachel — calm, precise
-  { name: 'R. Blake',     title: 'Chief Examiner', emoji: '🤨', voiceId: 'yoZ06aMxZJJ28mfd3POQ' }, // Sam — raspy, cold
-  { name: 'Lady Warren',  title: 'Vice Chairman',  emoji: '👁', voiceId: 'AZnzlk1XvdvUeBnXmlld' }, // Domi — strong, commanding
+  { name: 'Lord Warren',  title: 'Chairman',      voiceId: 'VR6AewLTigWG4xSOukaG' },
+  { name: 'Diana Stone',  title: 'Senior Partner', voiceId: '21m00Tcm4TlvDq8ikWAM' },
+  { name: 'R. Blake',     title: 'Chief Examiner', voiceId: 'yoZ06aMxZJJ28mfd3POQ' },
+  { name: 'Lady Warren',  title: 'Vice Chairman',  voiceId: 'AZnzlk1XvdvUeBnXmlld' },
 ]
 
 const MOOD_COLOR: Record<Mood, string> = {
@@ -244,11 +245,15 @@ No other text.`,
   if (phase === 'setup') return (
     <div style={cardStyle}>
       <div style={{ textAlign: 'center', marginBottom: 20 }}>
-        <div style={{ fontSize: 28, marginBottom: 8 }}>🎯</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+          <div style={{ width: 48, height: 48, borderRadius: 14, background: `${accent}22`, border: `1px solid ${accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Target size={22} color={accent} strokeWidth={2} />
+          </div>
+        </div>
         <div style={{ fontSize: 16, fontWeight: 800, color: '#FFF', marginBottom: 4 }}>Panel Call Q&A</div>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>The panel will ask you 5 real questions. Answer out loud.</div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 8, padding: '4px 10px', borderRadius: 20, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.10)' }}>
-          <span style={{ fontSize: 11 }}>🌐</span>
+          <Globe size={11} color='rgba(255,255,255,0.30)' />
           <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', fontWeight: 600 }}>Best experienced in Chrome or Edge</span>
         </div>
       </div>
@@ -287,7 +292,9 @@ No other text.`,
   // Generating
   if (phase === 'generating') return (
     <div style={{ ...cardStyle, textAlign: 'center', padding: '40px 24px' }}>
-      <div style={{ fontSize: 32, marginBottom: 12, animation: 'spin 1s linear infinite', display: 'inline-block' }}>⚙️</div>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
+        <Loader2 size={32} color={accent} strokeWidth={2} style={{ animation: 'spin 1s linear infinite' }} />
+      </div>
       <div style={{ fontSize: 14, fontWeight: 700, color: '#FFF', marginBottom: 6 }}>The panel is preparing their questions...</div>
       <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>Topic: {topic}</div>
       <style>{`@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }`}</style>
@@ -311,8 +318,8 @@ No other text.`,
 
         {/* Asker */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: `${accent}22`, border: `1px solid ${accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>
-            {asker.emoji}
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: `${accent}22`, border: `1px solid ${accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <User size={16} color={accent} strokeWidth={2} />
           </div>
           <div>
             <div style={{ fontSize: 12, fontWeight: 800, color: '#FFF' }}>{asker.name}</div>
@@ -336,7 +343,10 @@ No other text.`,
         {/* Error */}
         {error && (
           <div style={{ background: 'rgba(239,68,68,0.10)', border: '1px solid rgba(239,68,68,0.35)', borderRadius: 10, padding: '10px 14px', marginBottom: 12 }}>
-            <p style={{ margin: 0, fontSize: 12, color: '#FCA5A5' }}>⚠️ {error}</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <AlertTriangle size={13} color='#FCA5A5' strokeWidth={2} />
+              <p style={{ margin: 0, fontSize: 12, color: '#FCA5A5' }}>{error}</p>
+            </div>
           </div>
         )}
 
@@ -360,9 +370,9 @@ No other text.`,
               flex: 1, padding: '16px', borderRadius: 50, border: 'none', cursor: 'pointer',
               background: accent, color: '#FFF', fontSize: 15, fontWeight: 800,
               boxShadow: `0 8px 28px ${accent}55`, userSelect: 'none',
-              letterSpacing: '0.01em',
+              letterSpacing: '0.01em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
-              🎙 Answer Now
+              <Mic size={18} strokeWidth={2} /> Answer Now
             </button>
           )}
           {phase === 'answering' && (
@@ -372,12 +382,16 @@ No other text.`,
               boxShadow: `0 8px 28px ${accent}55`, userSelect: 'none',
               letterSpacing: '0.01em',
             }}>
-              {qIndex + 1 >= questions.length ? '🏁 Finish & See Results' : '✓ Done — Next Question →'}
+              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                {qIndex + 1 >= questions.length
+                  ? <><Trophy size={17} strokeWidth={2} /> Finish &amp; See Results</>
+                  : <><CheckCircle2 size={17} strokeWidth={2} /> Done — Next Question <ChevronRight size={16} strokeWidth={2.5} /></>}
+              </span>
             </button>
           )}
           {phase === 'scoring' && (
-            <div style={{ flex: 1, textAlign: 'center', padding: '14px', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>
-              ⚙️ Scoring your answer...
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>
+              <Loader2 size={16} color={accent} style={{ animation: 'spin 1s linear infinite' }} /> Scoring your answer...
             </div>
           )}
         </div>
@@ -392,7 +406,11 @@ No other text.`,
       <div style={cardStyle}>
         {/* Verdict */}
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
-          <div style={{ fontSize: 48, marginBottom: 8 }}>{hired ? '🤝' : '🔥'}</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
+            <div style={{ width: 64, height: 64, borderRadius: 20, background: hired ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)', border: `1px solid ${hired ? 'rgba(16,185,129,0.35)' : 'rgba(239,68,68,0.35)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {hired ? <ThumbsUp size={28} color='#10B981' strokeWidth={2} /> : <ThumbsDown size={28} color='#EF4444' strokeWidth={2} />}
+            </div>
+          </div>
           <div style={{ fontSize: 28, fontWeight: 900, color: hired ? '#10B981' : '#EF4444', marginBottom: 4, letterSpacing: '-0.03em' }}>
             {hired ? "You're Hired!" : "You're Fired!"}
           </div>
@@ -422,7 +440,10 @@ No other text.`,
 
         {/* Q&A log */}
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)', marginBottom: 10 }}>SESSION TRANSCRIPT</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+            <MessageSquare size={12} color='rgba(255,255,255,0.25)' strokeWidth={2} />
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)' }}>SESSION TRANSCRIPT</div>
+          </div>
           {qaLog.map((qa, i) => (
             <div key={i} style={{ marginBottom: 10, padding: '10px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, borderLeft: `2px solid ${accent}44` }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: accent, marginBottom: 4 }}>Q{i + 1}: {qa.question}</div>
@@ -435,8 +456,9 @@ No other text.`,
           width: '100%', padding: '14px', borderRadius: 50, border: 'none', cursor: 'pointer',
           background: accent, color: '#FFF', fontSize: 14, fontWeight: 800,
           boxShadow: `0 8px 24px ${accent}44`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
         }}>
-          Try Again →
+          <RotateCcw size={16} strokeWidth={2.5} /> Try Again
         </button>
       </div>
     )

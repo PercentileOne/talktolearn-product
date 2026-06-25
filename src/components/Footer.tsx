@@ -1,4 +1,5 @@
 import { openContact } from './NavBar'
+import { Mail, Phone } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -21,15 +22,14 @@ export default function Footer() {
         </nav>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginBottom: 28 }}>
-          <a
-            href="mailto:hello@talktolearn.app"
-            style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', textDecoration: 'none' }}
-          >
+          <a href="mailto:hello@talktolearn.app" style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Mail size={13} color='rgba(255,255,255,0.40)' strokeWidth={2} />
             hello@talktolearn.app
           </a>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)' }}>
-            📞 <span style={{ letterSpacing: '0.05em' }}>0800 XXX XXXX</span>
-            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.22)', marginLeft: 8 }}>· coming soon</span>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Phone size={13} color='rgba(255,255,255,0.40)' strokeWidth={2} />
+            <span style={{ letterSpacing: '0.05em' }}>0800 XXX XXXX</span>
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.22)' }}>· coming soon</span>
           </div>
         </div>
 

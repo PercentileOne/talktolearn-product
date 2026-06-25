@@ -1,7 +1,7 @@
 import PhoneMockup from './PhoneMockup'
 import { openContact } from './NavBar'
 import { track } from '../analytics'
-import { BookOpen, Mic, Trophy, Zap } from 'lucide-react'
+import { BookOpen, Mic, Trophy, Zap, Play } from 'lucide-react'
 
 const HKF = `
 @keyframes hero-fade { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
@@ -23,7 +23,7 @@ export default function HeroSection() {
                 The Speak-to-Learn Method
               </div>
               <div className="inline-flex items-center gap-1.5 text-[0.72rem] font-bold tracking-[0.10em] uppercase px-4 py-1.5 rounded-btn backdrop-blur-sm" style={{ background: 'linear-gradient(135deg,rgba(251,191,36,0.25),rgba(251,191,36,0.12))', border: '1px solid rgba(251,191,36,0.45)', color: '#FDE68A' }}>
-                🏆 #1 Learn-by-Talking App
+                <Trophy size={11} color='#FDE68A' strokeWidth={2.5} /> #1 Learn-by-Talking App
               </div>
             </div>
 
@@ -102,7 +102,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-3.5 justify-center md:justify-start mb-6">
               <button className="btn-primary" onClick={() => { track('cta_start_free'); openContact() }} style={{ background: 'rgba(30,77,216,0.95)', boxShadow: '0 4px 18px rgba(30,77,216,0.55)' }}>Start for Free</button>
-              <button className="btn-secondary" onClick={() => { track('cta_watch_demo'); document.getElementById('live-stage')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.30)', color: '#fff', backdropFilter: 'blur(8px)' }}>▶ Watch the Demo</button>
+              <button className="btn-secondary" onClick={() => { track('cta_watch_demo'); document.getElementById('live-stage')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.30)', color: '#fff', backdropFilter: 'blur(8px)', display: 'inline-flex', alignItems: 'center', gap: 7 }}><Play size={13} strokeWidth={2.5} fill='white' /> Watch the Demo</button>
             </div>
 
             {/* Trust line */}
