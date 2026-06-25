@@ -6,12 +6,6 @@
 
 const ACCENT = '#2D9E6A'
 
-const YOU_BULLETS = [
-  'You organise your thoughts.',
-  'You connect ideas.',
-  'You spot gaps instantly.',
-  'You build clarity, confidence, and real understanding.',
-]
 
 function ChevronIcon() {
   return (
