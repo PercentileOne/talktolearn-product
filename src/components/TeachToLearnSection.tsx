@@ -285,6 +285,10 @@ export default function TeachToLearnSection() {
           <p style={{ fontSize: '14px', fontWeight: 600, color: '#9CA3AF', letterSpacing: '.06em' }}>
             — Richard Feynman
           </p>
+          <p style={{ fontSize: '13px', fontStyle: 'italic', color: '#C4C9D4', letterSpacing: '0.06em', marginTop: 28 }}>
+            Speak It. To Understand It.
+          </p>
+          <p style={{ fontSize: '12px', color: '#9CA3AF', marginTop: 6 }}>A simple truth about how humans learn.</p>
         </div>
 
       </div>

@@ -32,6 +32,11 @@ export default function HeroSection() {
               Talk to Learn
             </h1>
 
+            {/* Tagline */}
+            <p style={{ fontSize: '0.95rem', fontWeight: 500, color: 'rgba(255,255,255,0.50)', letterSpacing: '0.08em', marginBottom: 18, fontStyle: 'italic' }}>
+              Speak It. To Understand It.
+            </p>
+
             {/* Sub-headline */}
             <p className="text-[clamp(1.1rem,3vw,1.45rem)] text-white/90 font-semibold mb-4" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.12)' }}>
               You learn faster when you speak out loud.<br/>

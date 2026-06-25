@@ -104,7 +104,7 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', margin: 0 }}>© 2026 TalkToLearn.app — All rights reserved.</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', margin: 0 }}>© 2026 TalkToLearn.app — <span style={{ fontStyle: 'italic' }}>Speak It. To Understand It.</span></p>
           <div style={{ display: 'flex', gap: 20 }}>
             {['Privacy', 'Terms'].map(l => (
               <a key={l} href="#" style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', textDecoration: 'none' }}
