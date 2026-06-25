@@ -64,7 +64,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-3.5 justify-center md:justify-start mb-6">
               <button className="btn-primary" onClick={openContact} style={{ background: 'rgba(30,77,216,0.95)', boxShadow: '0 4px 18px rgba(30,77,216,0.55)' }}>Start for Free</button>
-              <button className="btn-secondary" style={{ background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.30)', color: '#fff', backdropFilter: 'blur(8px)' }}>▶ Watch the Demo</button>
+              <button className="btn-secondary" onClick={() => document.getElementById('live-stage')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.30)', color: '#fff', backdropFilter: 'blur(8px)' }}>▶ Watch the Demo</button>
             </div>
 
             {/* Trust line */}

@@ -13,7 +13,7 @@ export default function LiveStageSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
   return (
-    <section ref={sectionRef} style={{ background: 'linear-gradient(180deg,#060D1A 0%,#0A0F1C 100%)', padding: '100px 20px 120px', overflow: 'hidden' }}>
+    <section ref={sectionRef} id="live-stage" style={{ background: 'linear-gradient(180deg,#060D1A 0%,#0A0F1C 100%)', padding: '100px 20px 120px', overflow: 'hidden' }}>
       <style>{KF}</style>
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
 
