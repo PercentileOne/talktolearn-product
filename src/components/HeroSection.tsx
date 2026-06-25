@@ -35,7 +35,8 @@ export default function HeroSection() {
             {/* Sub-headline */}
             <p className="text-[clamp(1.1rem,3vw,1.45rem)] text-white/90 font-semibold mb-4" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.12)' }}>
               Pick any subject. We build your study path.<br/>
-              <span style={{ color: '#FDE68A' }}>Then you speak — and AI scores you.</span>
+              <span style={{ color: '#FDE68A' }}>Then you speak — and AI scores your</span>{' '}
+              <span style={{ color: '#FFF' }}>Clarity · Confidence · Relevance · Depth.</span>
             </p>
 
             {/* Comprehension claim */}
