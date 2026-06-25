@@ -15,39 +15,38 @@ const ANIM = `
 @keyframes watch-bar-7 { 0%,100% { transform:scaleY(.4);  } 50% { transform:scaleY(.8);  } }
 `
 
-// ── Screen 1: Speaking (mirrors phone TalkScreen) ─────────────────────────────
+// ── Screen 1: Speaking ────────────────────────────────────────────────────────
 function TalkScreen() {
-  const CIRC = 2 * Math.PI * 18
+  const CIRC = 2 * Math.PI * 13
   const delays = [0, 0.15, 0.07, 0.22, 0.1, 0.18, 0.05, 0.2]
   return (
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:3, padding:'6px 4px' }}>
-      {/* Countdown ring — small */}
-      <div style={{ position:'relative', width:36, height:36 }}>
-        <svg viewBox="0 0 40 40" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
-          <circle cx="20" cy="20" r="18" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="3" />
-          <circle cx="20" cy="20" r="18" fill="none" stroke="#1E4DD8" strokeWidth="3"
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:4, padding:'2px 4px' }}>
+      {/* Ring */}
+      <div style={{ position:'relative', width:28, height:28 }}>
+        <svg viewBox="0 0 30 30" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
+          <circle cx="15" cy="15" r="13" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="3" />
+          <circle cx="15" cy="15" r="13" fill="none" stroke="#1E4DD8" strokeWidth="3"
             strokeDasharray={CIRC} strokeDashoffset={CIRC * 0.35}
-            strokeLinecap="round"
-            style={{ filter:'drop-shadow(0 0 3px #1E4DD8)' }}
+            strokeLinecap="round" style={{ filter:'drop-shadow(0 0 3px #1E4DD8)' }}
           />
         </svg>
         <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
-          <span style={{ fontSize:10, fontWeight:900, color:'#FFF', lineHeight:1 }}>1:20</span>
-          <span style={{ fontSize:5, color:'rgba(255,255,255,0.40)' }}>left</span>
+          <span style={{ fontSize:8, fontWeight:900, color:'#FFF', lineHeight:1 }}>1:20</span>
+          <span style={{ fontSize:4.5, color:'rgba(255,255,255,0.40)' }}>left</span>
         </div>
       </div>
 
       {/* Waveform */}
-      <svg width="40" height="12" viewBox="0 0 40 12">
+      <svg width="44" height="12" viewBox="0 0 44 12">
         {delays.map((d, i) => (
-          <rect key={i} x={i * 5} y={0} width={2.5} height={12} rx={1.2} fill="#4F8EF7"
+          <rect key={i} x={i * 5.5} y={0} width={2.5} height={12} rx={1.2} fill="#4F8EF7"
             style={{ animation:`watch-bar-${i} .65s ${d}s ease-in-out infinite`, transformOrigin:'center bottom', transformBox:'fill-box' }}
           />
         ))}
       </svg>
 
       {/* Speaking pill */}
-      <div style={{ background:'#1E4DD8', borderRadius:12, padding:'3px 8px', fontSize:7, fontWeight:800, color:'#FFF', boxShadow:'0 2px 6px rgba(30,77,216,0.55)' }}>
+      <div style={{ background:'#1E4DD8', borderRadius:10, padding:'3px 7px', fontSize:6.5, fontWeight:800, color:'#FFF', boxShadow:'0 2px 5px rgba(30,77,216,0.55)', whiteSpace:'nowrap' }}>
         🎙 Speaking…
       </div>
     </div>
