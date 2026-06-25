@@ -128,7 +128,7 @@ export default function PricingSection() {
           }}>
             <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#1E4DD8', display: 'inline-block' }}/>
             <span style={{ fontSize: '0.67rem', fontWeight: 800, letterSpacing: '.15em', textTransform: 'uppercase' as const, color: '#1E4DD8' }}>
-              Pricing
+              🚀 Launching Soon — Pricing Preview
             </span>
           </div>
 
@@ -308,13 +308,11 @@ export default function PricingSection() {
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '.88' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
                 >
-                  {plan.cta}
+                  🚀 Notify Me at Launch
                 </button>
-                {'trialNote' in plan && plan.trialNote && (
-                  <p style={{ fontSize: '11px', textAlign: 'center', marginTop: '10px', color: dark ? 'rgba(255,255,255,.35)' : '#9CA3AF' }}>
-                    {plan.trialNote}
-                  </p>
-                )}
+                <p style={{ fontSize: '11px', textAlign: 'center', marginTop: '10px', color: dark ? 'rgba(255,255,255,.35)' : '#9CA3AF' }}>
+                  Launching soon · Be first to know
+                </p>
               </div>
             )
           })}

@@ -53,6 +53,9 @@ export default function ContactModal({ onClose }: { onClose: () => void }) {
           <div>
             <h2 style={{ fontSize: '22px', fontWeight: 900, color: '#0A0F1C', margin: 0, letterSpacing: '-.02em' }}>Get in Touch</h2>
             <p style={{ fontSize: '13px', color: '#6B7280', margin: '4px 0 0' }}>We'd love to hear from you 💙</p>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 8, padding: '3px 10px', borderRadius: 20, background: 'rgba(251,191,36,0.12)', border: '1px solid rgba(251,191,36,0.35)' }}>
+              <span style={{ fontSize: 11, fontWeight: 800, color: '#D97706', letterSpacing: '0.06em' }}>🚀 Launching Soon</span>
+            </div>
           </div>
           <button onClick={onClose} style={{ background: 'rgba(0,0,0,0.06)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</button>
         </div>

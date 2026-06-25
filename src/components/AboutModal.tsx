@@ -66,7 +66,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
               letterSpacing: '-.03em', margin: '0 0 8px',
               lineHeight: 1.1,
             }}>
-              Why Learn by Talking Exists
+              Why Talk to Learn Exists
             </h2>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.70)', margin: 0, lineHeight: 1.5 }}>
               The story behind the app
@@ -132,7 +132,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             </h3>
 
             <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '20px' }}>
-              Learn by Talking gives you a topic, a timer, and a microphone. You explain it out loud — just like you would to a friend, a colleague, or a camera. Then our AI scores your <strong>Clarity</strong>, <strong>Depth</strong>, <strong>Accuracy</strong>, <strong>Structure</strong>, and <strong>Confidence</strong> — and tells you exactly what to work on.
+              Talk to Learn gives you a topic, a timer, and a microphone. You explain it out loud — just like you would to a friend, a colleague, or a camera. Then our AI scores your <strong>Clarity</strong>, <strong>Depth</strong>, <strong>Accuracy</strong>, <strong>Structure</strong>, and <strong>Confidence</strong> — and tells you exactly what to work on.
             </p>
 
             <p style={{ fontSize: '15px', color: '#374151', lineHeight: 1.75, marginBottom: '20px' }}>

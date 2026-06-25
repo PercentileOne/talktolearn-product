@@ -87,7 +87,7 @@ function Phase1() {
               <line x1="8" y1="23" x2="16" y2="23"/>
             </svg>
           </div>
-        <div style={{ fontSize: '18px', fontWeight: 900, color: '#FFFFFF', letterSpacing: '-0.4px', marginBottom: '4px' }}>Learn by Talking</div>
+        <div style={{ fontSize: '18px', fontWeight: 900, color: '#FFFFFF', letterSpacing: '-0.4px', marginBottom: '4px' }}>Talk to Learn</div>
         <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.38)', letterSpacing: '2px', fontWeight: 700, textTransform: 'uppercase' as const }}>Talk · Learn · Grow</div>
       </div>
 
@@ -136,7 +136,7 @@ function Phase2() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', animation: 'iw-fade-up .4s ease both' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{ width: '28px', height: '28px', borderRadius: '9px', background: '#1E4DD8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', boxShadow: '0 3px 10px rgba(30,77,216,.45)' }}>🎙</div>
-          <span style={{ fontSize: '12px', fontWeight: 800, color: '#FFFFFF' }}>Learn by Talking</span>
+          <span style={{ fontSize: '12px', fontWeight: 800, color: '#FFFFFF' }}>Talk to Learn</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{ background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.30)', borderRadius: '12px', padding: '3px 9px', fontSize: '9px', fontWeight: 800, color: '#FBB024' }}>🔥 7</div>

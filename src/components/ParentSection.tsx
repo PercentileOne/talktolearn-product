@@ -76,7 +76,7 @@ export default function ParentSection() {
             color: '#1A2332', lineHeight: 1.75, margin: '0 0 18px',
           }}>
             My son used to freeze when speaking. He'd whisper. He'd avoid eye contact. He'd panic before presentations.
-            We tried Talk to Learn for just 10 minutes a day on Learn by Talking… and last week he stood in front of
+            We tried Talk to Learn for just 10 minutes a day… and last week he stood in front of
             400 students and delivered the best talk of his life. I cried. This changed everything.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

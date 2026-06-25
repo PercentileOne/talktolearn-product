@@ -1,0 +1,404 @@
+import { useState, useRef, useEffect } from 'react'
+
+type Mood = 'friendly' | 'professional' | 'tough'
+type Phase = 'setup' | 'generating' | 'asking' | 'answering' | 'scoring' | 'results'
+
+interface QA { question: string; answer: string; scores?: Scores }
+interface Scores { clarity: number; confidence: number; relevance: number; depth: number }
+
+const PANELISTS = [
+  { name: 'Lord Warren',  title: 'Chairman',       emoji: '👔' },
+  { name: 'Diana Stone',  title: 'Senior Partner',  emoji: '🧠' },
+  { name: 'R. Blake',     title: 'Chief Examiner',  emoji: '🤨' },
+  { name: 'Lady Warren',  title: 'Vice Chairman',   emoji: '👁' },
+]
+
+const VOICE_SETTINGS: Record<Mood, { pitch: number; rate: number }> = {
+  friendly:     { pitch: 1.1, rate: 0.95 },
+  professional: { pitch: 1.0, rate: 0.90 },
+  tough:        { pitch: 0.85, rate: 0.85 },
+}
+
+const MOOD_COLOR: Record<Mood, string> = {
+  friendly:     '#10B981',
+  professional: '#3B82F6',
+  tough:        '#EF4444',
+}
+
+const HIRED_THRESHOLD = 70
+
+function speak(text: string, mood: Mood) {
+  window.speechSynthesis.cancel()
+  const u = new SpeechSynthesisUtterance(text)
+  const vs = VOICE_SETTINGS[mood]
+  u.pitch = vs.pitch
+  u.rate  = vs.rate
+  u.volume = 1
+  // Try to pick a deeper/authoritative voice
+  const voices = window.speechSynthesis.getVoices()
+  const preferred = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('male'))
+    || voices.find(v => v.lang.startsWith('en'))
+  if (preferred) u.voice = preferred
+  window.speechSynthesis.speak(u)
+}
+
+export default function PanelQA({ mood }: { mood: Mood }) {
+  const [phase,    setPhase]    = useState<Phase>('setup')
+  const [topic,    setTopic]    = useState('')
+  const [questions, setQuestions] = useState<string[]>([])
+  const [qIndex,   setQIndex]   = useState(0)
+  const [qaLog,    setQaLog]    = useState<QA[]>([])
+  const [transcript, setTranscript] = useState('')
+  const [listening,  setListening]  = useState(false)
+  const [askerIdx,   setAskerIdx]   = useState(0)
+  const [error,      setError]      = useState('')
+  const [finalScore, setFinalScore] = useState<Scores | null>(null)
+
+  const recogRef = useRef<any>(null)
+  const accent   = MOOD_COLOR[mood]
+
+  // ── Generate questions via Claude ──────────────────────────────────────────
+  const generateQuestions = async () => {
+    if (!topic.trim()) return
+    setPhase('generating')
+    setError('')
+    try {
+      const moodDesc = mood === 'tough' ? 'challenging and probing' : mood === 'friendly' ? 'warm and encouraging' : 'professional and neutral'
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': import.meta.env.VITE_ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 512,
+          messages: [{
+            role: 'user',
+            content: `You are a ${moodDesc} interview panel. Generate exactly 5 interview questions about: "${topic}".
+Rules:
+- Questions should be ${moodDesc} in tone
+- Mix easy and hard questions
+- Make them specific to the topic
+- Each question on its own line, no numbering, no bullets
+- Questions only, nothing else`,
+          }],
+        }),
+      })
+      if (!res.ok) throw new Error('API error')
+      const data = await res.json()
+      const lines = data.content[0].text.trim().split('\n').filter((l: string) => l.trim()).slice(0, 5)
+      setQuestions(lines)
+      setQIndex(0)
+      setQaLog([])
+      setAskerIdx(0)
+      setPhase('asking')
+    } catch (e) {
+      setError('Could not generate questions. Please try again.')
+      setPhase('setup')
+    }
+  }
+
+  // ── Speak question when phase becomes 'asking' ─────────────────────────────
+  useEffect(() => {
+    if (phase !== 'asking' || questions.length === 0) return
+    const q = questions[qIndex]
+    const asker = PANELISTS[askerIdx % PANELISTS.length]
+    const prefix = mood === 'tough'
+      ? `${asker.name} here. `
+      : mood === 'friendly'
+      ? `Hi, I'm ${asker.name}. `
+      : `${asker.name}, ${asker.title}. `
+    setTimeout(() => speak(prefix + q, mood), 600)
+  }, [phase, qIndex])
+
+  // ── Speech recognition ─────────────────────────────────────────────────────
+  const startListening = () => {
+    const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    if (!SR) { setError('Speech recognition not supported in this browser. Try Chrome.'); return }
+    const r = new SR()
+    r.continuous = true
+    r.interimResults = true
+    r.lang = 'en-US'
+    r.onresult = (e: any) => {
+      const t = Array.from(e.results).map((res: any) => res[0].transcript).join(' ')
+      setTranscript(t)
+    }
+    r.onerror = () => setListening(false)
+    r.onend   = () => setListening(false)
+    recogRef.current = r
+    r.start()
+    setListening(true)
+    setTranscript('')
+    setPhase('answering')
+    window.speechSynthesis.cancel()
+  }
+
+  const stopListening = () => {
+    recogRef.current?.stop()
+    setListening(false)
+  }
+
+  // ── Score answer via Claude ────────────────────────────────────────────────
+  const scoreAnswer = async () => {
+    stopListening()
+    if (!transcript.trim()) { setTranscript('(no answer given)') }
+    setPhase('scoring')
+    const question = questions[qIndex]
+    const answer   = transcript.trim() || '(no answer given)'
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': import.meta.env.VITE_ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 256,
+          messages: [{
+            role: 'user',
+            content: `Score this interview answer. Question: "${question}" Answer: "${answer}"
+Return ONLY a JSON object with these exact keys and integer values 0-100:
+{"clarity":0,"confidence":0,"relevance":0,"depth":0}
+No other text.`,
+          }],
+        }),
+      })
+      const data = await res.json()
+      const scores: Scores = JSON.parse(data.content[0].text.trim())
+      const newQA: QA = { question, answer, scores }
+      const newLog = [...qaLog, newQA]
+      setQaLog(newLog)
+
+      if (qIndex + 1 >= questions.length) {
+        // Final results
+        const avg = (k: keyof Scores) => Math.round(newLog.reduce((s, q) => s + (q.scores?.[k] || 0), 0) / newLog.length)
+        setFinalScore({ clarity: avg('clarity'), confidence: avg('confidence'), relevance: avg('relevance'), depth: avg('depth') })
+        setPhase('results')
+      } else {
+        setQIndex(i => i + 1)
+        setAskerIdx(i => i + 1)
+        setTranscript('')
+        setPhase('asking')
+      }
+    } catch {
+      setError('Scoring failed. Moving to next question.')
+      const newLog = [...qaLog, { question, answer }]
+      setQaLog(newLog)
+      if (qIndex + 1 >= questions.length) { setPhase('results') }
+      else { setQIndex(i => i + 1); setAskerIdx(i => i + 1); setTranscript(''); setPhase('asking') }
+    }
+  }
+
+  const overallScore = finalScore
+    ? Math.round((finalScore.clarity + finalScore.confidence + finalScore.relevance + finalScore.depth) / 4)
+    : 0
+
+  const reset = () => {
+    window.speechSynthesis.cancel()
+    setPhase('setup'); setTopic(''); setQuestions([]); setQIndex(0)
+    setQaLog([]); setTranscript(''); setFinalScore(null); setError('')
+  }
+
+  // ── RENDER ─────────────────────────────────────────────────────────────────
+  const cardStyle: React.CSSProperties = {
+    background: 'rgba(255,255,255,0.03)', borderRadius: 16,
+    border: `1px solid rgba(255,255,255,0.08)`, padding: '24px',
+    marginTop: 16,
+  }
+
+  // Setup
+  if (phase === 'setup') return (
+    <div style={cardStyle}>
+      <div style={{ textAlign: 'center', marginBottom: 20 }}>
+        <div style={{ fontSize: 28, marginBottom: 8 }}>🎯</div>
+        <div style={{ fontSize: 16, fontWeight: 800, color: '#FFF', marginBottom: 4 }}>Panel Call Q&A</div>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>The panel will ask you 5 real questions. Answer out loud.</div>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 8 }}>
+          WHAT TOPIC SHOULD THEY GRILL YOU ON?
+        </label>
+        <input
+          value={topic}
+          onChange={e => setTopic(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && generateQuestions()}
+          placeholder='e.g. "My product idea" / "Climate change" / "My job application"'
+          style={{
+            width: '100%', padding: '12px 16px', borderRadius: 10, border: `1px solid ${accent}44`,
+            background: 'rgba(255,255,255,0.05)', color: '#FFF', fontSize: 14,
+            outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit', cursor: 'text',
+          }}
+        />
+      </div>
+      {error && <div style={{ color: '#EF4444', fontSize: 12, marginBottom: 12, textAlign: 'center' }}>{error}</div>}
+      <button onClick={generateQuestions} disabled={!topic.trim()} style={{
+        width: '100%', padding: '14px', borderRadius: 50, border: 'none',
+        cursor: topic.trim() ? 'pointer' : 'default',
+        background: topic.trim() ? accent : 'rgba(255,255,255,0.08)',
+        color: topic.trim() ? '#FFF' : 'rgba(255,255,255,0.3)',
+        fontSize: 14, fontWeight: 800,
+        boxShadow: topic.trim() ? `0 8px 24px ${accent}44` : 'none',
+        transition: 'all 0.3s ease',
+        userSelect: 'none',
+      }}>
+        Enter the Panel Call →
+      </button>
+    </div>
+  )
+
+  // Generating
+  if (phase === 'generating') return (
+    <div style={{ ...cardStyle, textAlign: 'center', padding: '40px 24px' }}>
+      <div style={{ fontSize: 32, marginBottom: 12, animation: 'spin 1s linear infinite', display: 'inline-block' }}>⚙️</div>
+      <div style={{ fontSize: 14, fontWeight: 700, color: '#FFF', marginBottom: 6 }}>The panel is preparing their questions...</div>
+      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>Topic: {topic}</div>
+      <style>{`@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }`}</style>
+    </div>
+  )
+
+  // Asking / Answering / Scoring
+  if (['asking', 'answering', 'scoring'].includes(phase)) {
+    const asker = PANELISTS[askerIdx % PANELISTS.length]
+    return (
+      <div style={cardStyle}>
+        {/* Progress */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+          <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)' }}>
+            QUESTION {qIndex + 1} OF {questions.length}
+          </div>
+          <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.08)', borderRadius: 2 }}>
+            <div style={{ height: '100%', borderRadius: 2, background: accent, width: `${((qIndex) / questions.length) * 100}%`, transition: 'width 0.5s ease' }} />
+          </div>
+        </div>
+
+        {/* Asker */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: `${accent}22`, border: `1px solid ${accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>
+            {asker.emoji}
+          </div>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 800, color: '#FFF' }}>{asker.name}</div>
+            <div style={{ fontSize: 10, color: `${accent}CC` }}>{asker.title}</div>
+          </div>
+          {phase === 'asking' && (
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: accent, animation: 'live-pulse 1s infinite' }} />
+              <span style={{ fontSize: 10, color: accent, fontWeight: 700 }}>ASKING</span>
+            </div>
+          )}
+        </div>
+
+        {/* Question */}
+        <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 12, padding: '16px', marginBottom: 16, borderLeft: `3px solid ${accent}` }}>
+          <p style={{ margin: 0, fontSize: 15, fontWeight: 700, color: '#FFF', lineHeight: 1.5 }}>
+            "{questions[qIndex]}"
+          </p>
+        </div>
+
+        {/* Transcript */}
+        {(phase === 'answering' || phase === 'scoring') && (
+          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 10, padding: '12px 14px', marginBottom: 14, minHeight: 60, border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)', marginBottom: 6 }}>YOUR ANSWER</div>
+            <p style={{ margin: 0, fontSize: 13, color: transcript ? '#FFF' : 'rgba(255,255,255,0.25)', fontStyle: transcript ? 'normal' : 'italic', lineHeight: 1.6 }}>
+              {transcript || 'Listening...'}
+            </p>
+          </div>
+        )}
+
+        {/* Controls */}
+        <div style={{ display: 'flex', gap: 10 }}>
+          {phase === 'asking' && (
+            <button onClick={startListening} style={{
+              flex: 1, padding: '16px', borderRadius: 50, border: 'none', cursor: 'pointer',
+              background: accent, color: '#FFF', fontSize: 15, fontWeight: 800,
+              boxShadow: `0 8px 28px ${accent}55`, userSelect: 'none',
+              letterSpacing: '0.01em',
+            }}>
+              🎙 Answer Now
+            </button>
+          )}
+          {phase === 'answering' && (
+            <button onClick={scoreAnswer} style={{
+              flex: 1, padding: '16px', borderRadius: 50, border: 'none', cursor: 'pointer',
+              background: accent, color: '#FFF', fontSize: 15, fontWeight: 800,
+              boxShadow: `0 8px 28px ${accent}55`, userSelect: 'none',
+              letterSpacing: '0.01em',
+            }}>
+              {qIndex + 1 >= questions.length ? '🏁 Finish & See Results' : '✓ Done — Next Question →'}
+            </button>
+          )}
+          {phase === 'scoring' && (
+            <div style={{ flex: 1, textAlign: 'center', padding: '14px', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>
+              ⚙️ Scoring your answer...
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  // Results
+  if (phase === 'results' && finalScore) {
+    const hired = overallScore >= HIRED_THRESHOLD
+    return (
+      <div style={cardStyle}>
+        {/* Verdict */}
+        <div style={{ textAlign: 'center', marginBottom: 24 }}>
+          <div style={{ fontSize: 48, marginBottom: 8 }}>{hired ? '🤝' : '🔥'}</div>
+          <div style={{ fontSize: 28, fontWeight: 900, color: hired ? '#10B981' : '#EF4444', marginBottom: 4, letterSpacing: '-0.03em' }}>
+            {hired ? "You're Hired!" : "You're Fired!"}
+          </div>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>
+            {hired ? 'Lord Warren nods slowly. "Impressive."' : 'R. Blake closes his notebook. "Next candidate."'}
+          </div>
+        </div>
+
+        {/* Overall score */}
+        <div style={{ textAlign: 'center', marginBottom: 24 }}>
+          <div style={{ fontSize: 64, fontWeight: 900, color: hired ? '#10B981' : '#EF4444', lineHeight: 1 }}>{overallScore}</div>
+          <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)' }}>OVERALL SCORE</div>
+        </div>
+
+        {/* Score breakdown */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
+          {(['clarity', 'confidence', 'relevance', 'depth'] as (keyof Scores)[]).map(k => (
+            <div key={k} style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 10, padding: '12px 14px', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.35)', marginBottom: 4, textTransform: 'uppercase' }}>{k}</div>
+              <div style={{ fontSize: 28, fontWeight: 900, color: finalScore[k] >= 70 ? '#10B981' : finalScore[k] >= 50 ? '#F59E0B' : '#EF4444' }}>{finalScore[k]}</div>
+              <div style={{ height: 4, background: 'rgba(255,255,255,0.08)', borderRadius: 2, marginTop: 6 }}>
+                <div style={{ height: '100%', borderRadius: 2, width: `${finalScore[k]}%`, transition: 'width 1s ease', background: finalScore[k] >= 70 ? '#10B981' : finalScore[k] >= 50 ? '#F59E0B' : '#EF4444' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Q&A log */}
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)', marginBottom: 10 }}>SESSION TRANSCRIPT</div>
+          {qaLog.map((qa, i) => (
+            <div key={i} style={{ marginBottom: 10, padding: '10px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, borderLeft: `2px solid ${accent}44` }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: accent, marginBottom: 4 }}>Q{i + 1}: {qa.question}</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>{qa.answer}</div>
+            </div>
+          ))}
+        </div>
+
+        <button onClick={reset} style={{
+          width: '100%', padding: '14px', borderRadius: 50, border: 'none', cursor: 'pointer',
+          background: accent, color: '#FFF', fontSize: 14, fontWeight: 800,
+          boxShadow: `0 8px 24px ${accent}44`,
+        }}>
+          Try Again →
+        </button>
+      </div>
+    )
+  }
+
+  return null
+}

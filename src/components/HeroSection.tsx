@@ -26,7 +26,7 @@ export default function HeroSection() {
 
             {/* Headline */}
             <h1 className="text-[clamp(2.8rem,8vw,5rem)] font-black leading-[1.02] tracking-[-0.04em] text-white mb-4">
-              Learn by Talking
+              Talk to Learn
             </h1>
 
             {/* Sub-headline */}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import InterviewPanel from './InterviewPanel'
+import PanelQA from './PanelQA'
 
 // ─── Keyframes for UI chrome only ────────────────────────────────────────────
 const KF = `
@@ -377,7 +378,7 @@ export default function LiveStageSection(){
             <span style={{fontSize:13,fontWeight:800,color:'#FDE68A',letterSpacing:'.08em'}}>📹 PANEL CALL — TRY IT NOW</span>
           </div>
           <h2 style={{fontSize:'clamp(2.4rem,5vw,3.6rem)',fontWeight:900,color:'#FFF',letterSpacing:'-.04em',marginBottom:16,lineHeight:1.05}}>
-            Speak under pressure.<br/>Build real confidence.
+            Answer on your subject.<br/>Under real pressure.
           </h2>
           <p style={{fontSize:'clamp(1rem,2vw,1.2rem)',color:'rgba(255,255,255,.55)',maxWidth:520,margin:'0 auto',lineHeight:1.75}}>
             Join a Panel Call, choose your panel mood, and speak.{' '}
@@ -411,7 +412,10 @@ export default function LiveStageSection(){
             {/* Interview panel OR canvas crowd */}
             <div style={{position:'relative',zIndex:3,padding:'0 8px'}}>
               {selected.mode==='interview'
-                ? <InterviewPanel mood={mood} speaking={speaking} interruptions={interruptions} count={panelCount}/>
+                ? <>
+                    <InterviewPanel mood={mood} speaking={speaking} interruptions={interruptions} count={panelCount}/>
+                    <PanelQA mood={mood}/>
+                  </>
                 : <AudienceCanvas size={selected.value} mood={mood} applauding={applauding}/>
               }
             </div>

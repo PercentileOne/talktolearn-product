@@ -48,7 +48,7 @@ export default function NavBar() {
               </svg>
             </div>
             <span style={{ fontSize: '15px', fontWeight: 800, color: '#0A0F1C', letterSpacing: '-.01em' }}>
-              Learn by Talking
+              Talk to Learn
             </span>
           </div>
 
@@ -81,7 +81,7 @@ export default function NavBar() {
           }}
           onClick={() => setContactOpen(true)}
           >
-            Start for Free
+            Launching Soon
           </button>
 
           {/* Mobile — About + CTA */}

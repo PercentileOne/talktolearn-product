@@ -14,7 +14,7 @@ function HomeScreen() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <div style={{ width: '22px', height: '22px', borderRadius: '8px', background: '#1E4DD8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px' }}>🎙</div>
-          <span style={{ fontSize: '10px', fontWeight: 800, color: '#FFFFFF' }}>Learn by Talking</span>
+          <span style={{ fontSize: '10px', fontWeight: 800, color: '#FFFFFF' }}>Talk to Learn</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
           <div style={{ background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.30)', borderRadius: '10px', padding: '2px 7px', fontSize: '8px', fontWeight: 800, color: '#FBB024' }}>🔥 7</div>

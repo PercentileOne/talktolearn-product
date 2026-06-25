@@ -17,7 +17,7 @@ export default function ChallengeSection() {
               The 10-Minute Talk Challenge
             </h2>
             <p className="text-[clamp(1rem,2vw,1.2rem)] text-text-muted max-w-lg">
-              The heart of Learn by Talking — read the Flashcard, explain the topic out loud for 2 to 6 minutes, and see the difference in 10 minutes.
+              The heart of Talk to Learn — read the Flashcard, explain the topic out loud for 2 to 6 minutes, and see the difference in 10 minutes.
             </p>
             <div className="flex flex-col gap-6 my-10 text-left">
               {steps.map(s => (
