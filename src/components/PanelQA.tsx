@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { track } from '../analytics'
-import { Target, Loader2, Mic, ChevronRight, CheckCircle2, AlertTriangle, Globe, RotateCcw, User, MessageSquare, Settings, Trophy, ThumbsUp, ThumbsDown } from 'lucide-react'
+import { Target, Loader2, Mic, ChevronRight, CheckCircle2, AlertTriangle, Globe, RotateCcw, User, MessageSquare, Trophy, ThumbsUp, ThumbsDown } from 'lucide-react'
 
 type Mood = 'friendly' | 'professional' | 'tough'
 type Phase = 'setup' | 'generating' | 'asking' | 'answering' | 'scoring' | 'results'
