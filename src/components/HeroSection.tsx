@@ -126,7 +126,7 @@ export default function HeroSection() {
           {/* Floating phone + watch row */}
           <div style={{
             flexShrink: 0,
-            display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: 24,
+            display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 24,
             animation: 'hero-phone .9s .2s cubic-bezier(.4,0,.2,1) both',
             marginRight: '-40px',
           }}>

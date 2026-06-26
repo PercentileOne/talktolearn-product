@@ -20,7 +20,7 @@ function TalkScreen() {
   const CIRC = 2 * Math.PI * 38
   const delays = [0, 0.15, 0.07, 0.22, 0.1, 0.18, 0.05, 0.2]
   return (
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:7, padding:'6px 10px' }}>
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:7, padding:'10px 10px 6px' }}>
       {/* Ring */}
       <div style={{ position:'relative', width:58, height:58 }}>
         <svg viewBox="0 0 88 88" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
@@ -67,7 +67,7 @@ function ResultsScreen() {
   ]
 
   return (
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:6, padding:'6px 12px' }}>
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:6, padding:'10px 12px 6px' }}>
       {/* Score ring */}
       <div style={{ position:'relative', width:58, height:58 }}>
         <svg viewBox="0 0 88 88" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
@@ -147,7 +147,7 @@ export default function WatchMockup() {
       <style>{ANIM}</style>
       <div style={{
         display:'flex', flexDirection:'column', alignItems:'center', gap:0,
-        animation:'watch-float 4s 1.5s ease-in-out infinite',
+        animation:'none',
         filter:[
           'drop-shadow(0 28px 40px rgba(0,0,0,0.75))',
           'drop-shadow(0 8px 14px rgba(0,0,0,0.55))',
