@@ -110,7 +110,7 @@ export default function NavBar() {
             >
               About
             </button>
-            <button style={{
+            <button onClick={() => { track('cta_start_free_nav'); openContact() }} style={{
               padding: '8px 16px', borderRadius: '50px',
               background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)',
               color: '#FFFFFF', fontSize: '12px', fontWeight: 800,
