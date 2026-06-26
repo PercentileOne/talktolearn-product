@@ -4,7 +4,7 @@ const SCREEN_MS = 3800
 const FADE_MS   = 600
 
 const ANIM = `
-@keyframes watch-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+@keyframes watch-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
 @keyframes watch-bar-0 { 0%,100% { transform:scaleY(.35); } 50% { transform:scaleY(1);   } }
 @keyframes watch-bar-1 { 0%,100% { transform:scaleY(.5);  } 50% { transform:scaleY(.9);  } }
 @keyframes watch-bar-2 { 0%,100% { transform:scaleY(.6);  } 50% { transform:scaleY(1);   } }
@@ -17,103 +17,104 @@ const ANIM = `
 
 // ── Screen 1: Speaking ────────────────────────────────────────────────────────
 function TalkScreen() {
-  const CIRC = 2 * Math.PI * 13
+  const CIRC = 2 * Math.PI * 38
   const delays = [0, 0.15, 0.07, 0.22, 0.1, 0.18, 0.05, 0.2]
   return (
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:4, padding:'2px 4px' }}>
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:10, padding:'8px 10px' }}>
       {/* Ring */}
-      <div style={{ position:'relative', width:28, height:28 }}>
-        <svg viewBox="0 0 30 30" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
-          <circle cx="15" cy="15" r="13" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="3" />
-          <circle cx="15" cy="15" r="13" fill="none" stroke="#1E4DD8" strokeWidth="3"
+      <div style={{ position:'relative', width:80, height:80 }}>
+        <svg viewBox="0 0 88 88" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
+          <circle cx="44" cy="44" r="38" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="7" />
+          <circle cx="44" cy="44" r="38" fill="none" stroke="#2D8CFF" strokeWidth="7"
             strokeDasharray={CIRC} strokeDashoffset={CIRC * 0.35}
-            strokeLinecap="round" style={{ filter:'drop-shadow(0 0 3px #1E4DD8)' }}
+            strokeLinecap="round" style={{ filter:'drop-shadow(0 0 6px #2D8CFF)' }}
           />
         </svg>
         <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
-          <span style={{ fontSize:8, fontWeight:900, color:'#FFF', lineHeight:1 }}>1:20</span>
-          <span style={{ fontSize:4.5, color:'rgba(255,255,255,0.40)' }}>left</span>
+          <span style={{ fontSize:22, fontWeight:900, color:'#FFF', lineHeight:1 }}>1:20</span>
+          <span style={{ fontSize:11, color:'rgba(255,255,255,0.45)', marginTop:2 }}>remaining</span>
         </div>
       </div>
 
       {/* Waveform */}
-      <svg width="44" height="12" viewBox="0 0 44 12">
+      <svg width="110" height="28" viewBox="0 0 110 28" style={{ width:110, height:28 }}>
         {delays.map((d, i) => (
-          <rect key={i} x={i * 5.5} y={0} width={2.5} height={12} rx={1.2} fill="#4F8EF7"
+          <rect key={i} x={i * 13.75} y={0} width={7} height={28} rx={3.5} fill="#4F8EF7"
             style={{ animation:`watch-bar-${i} .65s ${d}s ease-in-out infinite`, transformOrigin:'center bottom', transformBox:'fill-box' }}
           />
         ))}
       </svg>
 
       {/* Speaking pill */}
-      <div style={{ background:'#1E4DD8', borderRadius:10, padding:'3px 7px', fontSize:6.5, fontWeight:800, color:'#FFF', boxShadow:'0 2px 5px rgba(30,77,216,0.55)', whiteSpace:'nowrap' }}>
+      <div style={{ background:'#1E4DD8', borderRadius:20, padding:'6px 16px', fontSize:14, fontWeight:800, color:'#FFF', boxShadow:'0 4px 12px rgba(30,77,216,0.55)', whiteSpace:'nowrap' }}>
         🎙 Speaking…
       </div>
     </div>
   )
 }
 
-// ── Screen: Results ───────────────────────────────────────────────────────────
+// ── Screen 2: Results ─────────────────────────────────────────────────────────
 function ResultsScreen() {
-  const CIRC = 2 * Math.PI * 13
+  const CIRC = 2 * Math.PI * 38
   const score = 82
   const fraction = score / 100
 
   const bars = [
-    { color:'#38BDF8', val:87 },
-    { color:'#818CF8', val:74 },
-    { color:'#34D399', val:91 },
-    { color:'#FB923C', val:82 },
+    { label:'Clarity',    color:'#38BDF8', val:87 },
+    { label:'Confidence', color:'#818CF8', val:74 },
+    { label:'Relevance',  color:'#34D399', val:91 },
+    { label:'Depth',      color:'#FB923C', val:82 },
   ]
 
   return (
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:4, padding:'2px 6px' }}>
-      {/* Score ring — same size as TalkScreen ring */}
-      <div style={{ position:'relative', width:28, height:28 }}>
-        <svg viewBox="0 0 30 30" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
-          <circle cx="15" cy="15" r="13" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
-          <circle cx="15" cy="15" r="13" fill="none" stroke="#D97706" strokeWidth="3"
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:8, padding:'8px 12px' }}>
+      {/* Score ring */}
+      <div style={{ position:'relative', width:80, height:80 }}>
+        <svg viewBox="0 0 88 88" style={{ width:'100%', height:'100%', transform:'rotate(-90deg)' }}>
+          <circle cx="44" cy="44" r="38" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="7" />
+          <circle cx="44" cy="44" r="38" fill="none" stroke="#D97706" strokeWidth="7"
             strokeDasharray={CIRC} strokeDashoffset={(1 - fraction) * CIRC}
-            strokeLinecap="round" style={{ filter:'drop-shadow(0 0 3px #D97706)' }}
+            strokeLinecap="round" style={{ filter:'drop-shadow(0 0 6px #D97706)' }}
           />
         </svg>
         <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
-          <span style={{ fontSize:8, fontWeight:900, color:'#FFF', lineHeight:1 }}>{score}</span>
-          <span style={{ fontSize:4.5, color:'rgba(255,255,255,0.4)', lineHeight:1 }}>/100</span>
+          <span style={{ fontSize:24, fontWeight:900, color:'#FFF', lineHeight:1 }}>{score}</span>
+          <span style={{ fontSize:11, color:'rgba(255,255,255,0.4)', marginTop:1 }}>/100</span>
         </div>
       </div>
 
       {/* Grade badge */}
-      <div style={{ background:'rgba(217,119,6,0.18)', border:'1px solid rgba(217,119,6,0.40)', borderRadius:10, padding:'2px 7px', fontSize:6.5, fontWeight:800, color:'#F59E0B', whiteSpace:'nowrap' }}>
+      <div style={{ background:'rgba(217,119,6,0.18)', border:'1px solid rgba(217,119,6,0.40)', borderRadius:20, padding:'4px 14px', fontSize:13, fontWeight:800, color:'#F59E0B', whiteSpace:'nowrap' }}>
         ⚡ Excellent
       </div>
 
-      {/* Mini bars */}
-      <div style={{ width:'100%', display:'flex', flexDirection:'column', gap:3 }}>
+      {/* Bars */}
+      <div style={{ width:'100%', display:'flex', flexDirection:'column', gap:5 }}>
         {bars.map((b, i) => (
-          <div key={i} style={{ height:3, borderRadius:2, background:'rgba(255,255,255,0.08)', overflow:'hidden' }}>
-            <div style={{ width:`${b.val}%`, height:'100%', borderRadius:2, background:b.color }} />
+          <div key={i}>
+            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
+              <span style={{ fontSize:9, color:'rgba(255,255,255,0.45)' }}>{b.label}</span>
+              <span style={{ fontSize:9, color:b.color, fontWeight:700 }}>{b.val}</span>
+            </div>
+            <div style={{ height:5, borderRadius:3, background:'rgba(255,255,255,0.08)', overflow:'hidden' }}>
+              <div style={{ width:`${b.val}%`, height:'100%', borderRadius:3, background:b.color }} />
+            </div>
           </div>
         ))}
       </div>
-
-      <div style={{ fontSize:6, color:'rgba(255,255,255,0.30)' }}>📤 Share results</div>
     </div>
   )
 }
 
-// ── Cycle controller — alternates speaking → results → speaking → … ───────────
+// ── Cycle controller ───────────────────────────────────────────────────────────
 function AnimatedWatch() {
   const [showResults, setShowResults] = useState(false)
-  const [opacity, setOpacity] = useState(1)
+  const [opacity, setOpacity]         = useState(1)
 
   useEffect(() => {
     const t = setInterval(() => {
       setOpacity(0)
-      setTimeout(() => {
-        setShowResults(prev => !prev)
-        setOpacity(1)
-      }, FADE_MS)
+      setTimeout(() => { setShowResults(prev => !prev); setOpacity(1) }, FADE_MS)
     }, SCREEN_MS)
     return () => clearInterval(t)
   }, [])
@@ -125,34 +126,111 @@ function AnimatedWatch() {
   )
 }
 
-// ── Watch shell ───────────────────────────────────────────────────────────────
+// ── Watch shell (Apple Watch Ultra proportions) ───────────────────────────────
 export default function WatchMockup() {
+  // Case is 160 × 174px — close to Ultra's near-square footprint
+  const CASE_W  = 160
+  const CASE_H  = 174
+  const BAND_W  = 124   // bands slightly narrower than case
+  const BAND_T  = 52    // top band height
+  const BAND_B  = 56    // bottom band height
+  const RADIUS  = 36    // case corner radius
+
   return (
     <>
       <style>{ANIM}</style>
-      <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:0,
+      <div style={{
+        display:'flex', flexDirection:'column', alignItems:'center', gap:0,
         animation:'watch-float 4s 1.5s ease-in-out infinite',
-        filter:'drop-shadow(0 8px 22px rgba(0,0,0,0.32)) drop-shadow(0 2px 6px rgba(79,142,247,0.18))',
+        filter:'drop-shadow(0 12px 32px rgba(0,0,0,0.45)) drop-shadow(0 3px 8px rgba(45,140,255,0.18))',
       }}>
 
-        {/* Band top */}
-        <div style={{ width:44, height:26, background:'linear-gradient(180deg,#1a1a2e,#111827)', borderRadius:'6px 6px 0 0', borderLeft:'1.5px solid rgba(255,255,255,0.08)', borderRight:'1.5px solid rgba(255,255,255,0.08)', borderTop:'1.5px solid rgba(255,255,255,0.12)' }} />
+        {/* Band — top */}
+        <div style={{
+          width: BAND_W,
+          height: BAND_T,
+          background: 'linear-gradient(180deg, #1f2532 0%, #161c28 100%)',
+          borderRadius: '10px 10px 0 0',
+          border: '1.5px solid rgba(255,255,255,0.10)',
+          borderBottom: 'none',
+          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
+          // Subtle band texture lines
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)',
+        }} />
 
         {/* Case */}
-        <div style={{ width:80, height:96, background:'linear-gradient(145deg,#1c1c2e 0%,#12121f 100%)', borderRadius:20, border:'2px solid rgba(255,255,255,0.12)', boxShadow:'inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(0,0,0,0.5)', position:'relative', display:'flex', alignItems:'center', justifyContent:'center' }}>
-          {/* Crown */}
-          <div style={{ position:'absolute', right:-5, top:28, width:5, height:20, borderRadius:3, background:'linear-gradient(180deg,#2a2a3e,#1a1a2e)', border:'1px solid rgba(255,255,255,0.10)' }} />
+        <div style={{
+          width: CASE_W,
+          height: CASE_H,
+          background: 'linear-gradient(145deg, #252535 0%, #14141f 60%, #1a1a2a 100%)',
+          borderRadius: RADIUS,
+          border: '2px solid rgba(255,255,255,0.14)',
+          boxShadow: [
+            'inset 0 1px 0 rgba(255,255,255,0.10)',
+            'inset 0 -1px 0 rgba(0,0,0,0.5)',
+            '0 0 0 1px rgba(0,0,0,0.6)',
+          ].join(', '),
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+
+          {/* Digital crown — top right */}
+          <div style={{
+            position:'absolute', right:-9, top:32,
+            width:9, height:30,
+            borderRadius:5,
+            background:'linear-gradient(90deg,#2a2a40,#3a3a54)',
+            border:'1px solid rgba(255,255,255,0.14)',
+            boxShadow:'inset 0 1px 0 rgba(255,255,255,0.12)',
+          }} />
+
+          {/* Side button — below crown */}
+          <div style={{
+            position:'absolute', right:-8, top:72,
+            width:8, height:22,
+            borderRadius:4,
+            background:'linear-gradient(90deg,#252538,#353550)',
+            border:'1px solid rgba(255,255,255,0.10)',
+          }} />
+
+          {/* Action button — left (orange, Ultra-specific) */}
+          <div style={{
+            position:'absolute', left:-8, top:40,
+            width:8, height:26,
+            borderRadius:4,
+            background:'linear-gradient(90deg,#c2410c,#ea580c)',
+            border:'1px solid rgba(255,100,0,0.5)',
+            boxShadow:'0 0 6px rgba(234,88,12,0.4)',
+          }} />
+
           {/* Screen */}
-          <div style={{ width:64, height:80, background:'linear-gradient(160deg,#080e1a 0%,#0d1525 100%)', borderRadius:14, overflow:'hidden' }}>
+          <div style={{
+            width: CASE_W - 24,
+            height: CASE_H - 22,
+            background: '#000',
+            borderRadius: RADIUS - 8,
+            overflow: 'hidden',
+            boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)',
+          }}>
             <AnimatedWatch />
           </div>
         </div>
 
-        {/* Band bottom */}
-        <div style={{ width:44, height:28, background:'linear-gradient(180deg,#111827,#1a1a2e)', borderRadius:'0 0 8px 8px', borderLeft:'1.5px solid rgba(255,255,255,0.08)', borderRight:'1.5px solid rgba(255,255,255,0.08)', borderBottom:'1.5px solid rgba(255,255,255,0.06)' }} />
+        {/* Band — bottom */}
+        <div style={{
+          width: BAND_W,
+          height: BAND_B,
+          background: 'linear-gradient(180deg, #161c28 0%, #1f2532 100%)',
+          borderRadius: '0 0 10px 10px',
+          border: '1.5px solid rgba(255,255,255,0.08)',
+          borderTop: 'none',
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)',
+        }} />
 
         {/* Label */}
-        <p style={{ textAlign:'center', marginTop:10, fontSize:11, fontWeight:700, color:'rgba(255,255,255,0.65)', letterSpacing:'0.12em', textTransform:'uppercase' }}>
+        <p style={{ textAlign:'center', marginTop:12, fontSize:11, fontWeight:700, color:'rgba(255,255,255,0.55)', letterSpacing:'0.14em', textTransform:'uppercase' }}>
           Apple Watch
         </p>
       </div>
