@@ -149,12 +149,11 @@ export default function WatchMockup() {
         <div style={{
           width: BAND_W,
           height: BAND_T,
-          background: 'linear-gradient(180deg, #111 0%, #0a0a0a 100%)',
+          backgroundColor: '#0d0d0d',
+          background: 'linear-gradient(180deg, #181818 0%, #0d0d0d 100%)',
           borderRadius: '10px 10px 0 0',
           border: '1.5px solid rgba(255,255,255,0.07)',
           borderBottom: 'none',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 4px)',
         }} />
 
         {/* Case */}
@@ -221,16 +220,16 @@ export default function WatchMockup() {
         <div style={{
           width: BAND_W,
           height: BAND_B,
-          background: 'linear-gradient(180deg, #0a0a0a 0%, #111 100%)',
+          backgroundColor: '#0d0d0d',
+          background: 'linear-gradient(180deg, #0d0d0d 0%, #181818 100%)',
           borderRadius: '0 0 10px 10px',
           border: '1.5px solid rgba(255,255,255,0.06)',
           borderTop: 'none',
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 4px)',
         }} />
 
         {/* Label */}
-        <p style={{ textAlign:'center', marginTop:12, fontSize:11, fontWeight:700, color:'rgba(255,255,255,0.55)', letterSpacing:'0.14em', textTransform:'uppercase' }}>
-          Apple Watch
+        <p style={{ textAlign:'center', marginTop:12, fontSize:11, fontWeight:700, color:'rgba(0,0,0,0.45)', letterSpacing:'0.12em', textTransform:'uppercase' }}>
+          Works on iOS &amp; Android
         </p>
       </div>
     </>
