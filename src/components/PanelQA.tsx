@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { track } from '../analytics'
 import { Target, Loader2, Mic, ChevronRight, CheckCircle2, AlertTriangle, Globe, RotateCcw, User, MessageSquare, Trophy, ThumbsUp, ThumbsDown } from 'lucide-react'
 
@@ -65,6 +66,7 @@ async function speak(text: string, mood: Mood, voiceId: string) {
 }
 
 export default function PanelQA({ mood }: { mood: Mood }) {
+  const { t } = useTranslation()
   const [phase,    setPhase]    = useState<Phase>('setup')
   const [topic,    setTopic]    = useState('')
   const [questions, setQuestions] = useState<string[]>([])
@@ -250,22 +252,22 @@ No other text.`,
             <Target size={22} color={accent} strokeWidth={2} />
           </div>
         </div>
-        <div style={{ fontSize: 16, fontWeight: 800, color: '#FFF', marginBottom: 4 }}>Panel Call Q&A</div>
-        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>The panel will ask you 5 real questions. Answer out loud.</div>
+        <div style={{ fontSize: 16, fontWeight: 800, color: '#FFF', marginBottom: 4 }}>{t('qa.title')}</div>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>{t('qa.subtitle')}</div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 8, padding: '4px 10px', borderRadius: 20, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.10)' }}>
           <Globe size={11} color='rgba(255,255,255,0.30)' />
-          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', fontWeight: 600 }}>Best experienced in Chrome or Edge</span>
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', fontWeight: 600 }}>{t('qa.chromeBadge')}</span>
         </div>
       </div>
       <div style={{ marginBottom: 16 }}>
         <label style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 8 }}>
-          WHAT TOPIC SHOULD THEY GRILL YOU ON?
+          {t('qa.topicLabel')}
         </label>
         <input
           value={topic}
           onChange={e => setTopic(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && generateQuestions()}
-          placeholder='e.g. "My product idea" / "Climate change" / "My job application"'
+          placeholder={t('qa.topicPlaceholder')}
           style={{
             width: '100%', padding: '12px 16px', borderRadius: 10, border: `1px solid ${accent}44`,
             background: 'rgba(255,255,255,0.05)', color: '#FFF', fontSize: 14,
@@ -284,7 +286,7 @@ No other text.`,
         transition: 'all 0.3s ease',
         userSelect: 'none',
       }}>
-        Enter the Panel Call →
+        {t('qa.startButton')}
       </button>
     </div>
   )
@@ -295,8 +297,8 @@ No other text.`,
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
         <Loader2 size={32} color={accent} strokeWidth={2} style={{ animation: 'spin 1s linear infinite' }} />
       </div>
-      <div style={{ fontSize: 14, fontWeight: 700, color: '#FFF', marginBottom: 6 }}>The panel is preparing their questions...</div>
-      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>Topic: {topic}</div>
+      <div style={{ fontSize: 14, fontWeight: 700, color: '#FFF', marginBottom: 6 }}>{t('qa.generating')}</div>
+      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>{t('qa.generatingTopic')} {topic}</div>
       <style>{`@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }`}</style>
     </div>
   )
@@ -328,7 +330,7 @@ No other text.`,
           {phase === 'asking' && (
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4 }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: accent, animation: 'live-pulse 1s infinite' }} />
-              <span style={{ fontSize: 10, color: accent, fontWeight: 700 }}>ASKING</span>
+              <span style={{ fontSize: 10, color: accent, fontWeight: 700 }}>{t('qa.askingBadge')}</span>
             </div>
           )}
         </div>
@@ -355,10 +357,10 @@ No other text.`,
           <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 10, padding: '12px 14px', marginBottom: 14, minHeight: 60, border: '1px solid rgba(255,255,255,0.06)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444', animation: 'live-pulse 1s infinite', flexShrink: 0 }} />
-              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)' }}>YOUR ANSWER</div>
+              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)' }}>{t('qa.yourAnswer')}</div>
             </div>
             <p style={{ margin: 0, fontSize: 13, color: transcript ? '#FFF' : 'rgba(255,255,255,0.25)', fontStyle: transcript ? 'normal' : 'italic', lineHeight: 1.6 }}>
-              {transcript || 'Listening — speak now...'}
+              {transcript || t('qa.listeningPrompt')}
             </p>
           </div>
         )}
@@ -372,7 +374,7 @@ No other text.`,
               boxShadow: `0 8px 28px ${accent}55`, userSelect: 'none',
               letterSpacing: '0.01em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
-              <Mic size={18} strokeWidth={2} /> Answer Now
+              <Mic size={18} strokeWidth={2} /> {t('qa.answerButton')}
             </button>
           )}
           {phase === 'answering' && (
@@ -384,14 +386,14 @@ No other text.`,
             }}>
               <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 {qIndex + 1 >= questions.length
-                  ? <><Trophy size={17} strokeWidth={2} /> Finish &amp; See Results</>
-                  : <><CheckCircle2 size={17} strokeWidth={2} /> Done — Next Question <ChevronRight size={16} strokeWidth={2.5} /></>}
+                  ? <><Trophy size={17} strokeWidth={2} /> {t('qa.finishButton')}</>
+                  : <><CheckCircle2 size={17} strokeWidth={2} /> {t('qa.nextButton')} <ChevronRight size={16} strokeWidth={2.5} /></>}
               </span>
             </button>
           )}
           {phase === 'scoring' && (
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>
-              <Loader2 size={16} color={accent} style={{ animation: 'spin 1s linear infinite' }} /> Scoring your answer...
+              <Loader2 size={16} color={accent} style={{ animation: 'spin 1s linear infinite' }} /> {t('qa.scoringLabel')}
             </div>
           )}
         </div>
@@ -412,17 +414,17 @@ No other text.`,
             </div>
           </div>
           <div style={{ fontSize: 28, fontWeight: 900, color: hired ? '#10B981' : '#EF4444', marginBottom: 4, letterSpacing: '-0.03em' }}>
-            {hired ? "You're Hired!" : "You're Fired!"}
+            {hired ? t('qa.hiredVerdict') : t('qa.firedVerdict')}
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>
-            {hired ? 'Lord Warren nods slowly. "Impressive."' : 'R. Blake closes his notebook. "Next candidate."'}
+            {hired ? t('qa.hiredQuote') : t('qa.firedQuote')}
           </div>
         </div>
 
         {/* Overall score */}
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <div style={{ fontSize: 64, fontWeight: 900, color: hired ? '#10B981' : '#EF4444', lineHeight: 1 }}>{overallScore}</div>
-          <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)' }}>OVERALL SCORE</div>
+          <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)' }}>{t('qa.overallScore')}</div>
         </div>
 
         {/* Score breakdown */}
@@ -442,7 +444,7 @@ No other text.`,
         <div style={{ marginBottom: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
             <MessageSquare size={12} color='rgba(255,255,255,0.25)' strokeWidth={2} />
-            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)' }}>SESSION TRANSCRIPT</div>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)' }}>{t('qa.transcriptLabel')}</div>
           </div>
           {qaLog.map((qa, i) => (
             <div key={i} style={{ marginBottom: 10, padding: '10px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, borderLeft: `2px solid ${accent}44` }}>
@@ -458,7 +460,7 @@ No other text.`,
           boxShadow: `0 8px 24px ${accent}44`,
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
         }}>
-          <RotateCcw size={16} strokeWidth={2.5} /> Try Again
+          <RotateCcw size={16} strokeWidth={2.5} /> {t('qa.tryAgain')}
         </button>
       </div>
     )
