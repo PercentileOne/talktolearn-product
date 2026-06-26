@@ -57,7 +57,7 @@ export default function NavBar() {
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
               </svg>
             </div>
-            <span style={{ fontSize: '15px', fontWeight: 800, color: '#0A0F1C', letterSpacing: '-.01em' }}>
+            <span style={{ fontSize: '15px', fontWeight: 800, color: '#0A0F1C', letterSpacing: '-.01em', textShadow: '0 1px 3px rgba(0,0,0,0.18), 0 2px 8px rgba(30,77,216,0.10)' }}>
               Talk to Learn
             </span>
           </div>
