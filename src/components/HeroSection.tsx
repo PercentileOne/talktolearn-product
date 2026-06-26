@@ -123,10 +123,10 @@ export default function HeroSection() {
             <p className="text-sm text-white/40" style={{ marginTop: 10 }}>{t('hero.trust')}</p>
           </div>
 
-          {/* Floating phone + watch column */}
+          {/* Floating phone + watch row */}
           <div style={{
             flexShrink: 0,
-            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
+            display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: 24,
             animation: 'hero-phone .9s .2s cubic-bezier(.4,0,.2,1) both',
           }}>
             <div className="w-[260px] md:w-auto" style={{
