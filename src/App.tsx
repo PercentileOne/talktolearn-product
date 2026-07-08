@@ -17,6 +17,7 @@ import LiveStageSection from './components/LiveStageSection'
 import SocialSharingSection from './components/SocialSharingSection'
 import PricingSection from './components/PricingSection'
 import TestimonialsSection from './components/TestimonialsSection'
+import RoadmapSection from './components/RoadmapSection'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
       <ParentSection />
       <GlobalLanguageSection />
       <SocialSharingSection />
+      <RoadmapSection />
       <PricingSection />
       <TestimonialsSection />
       <Footer />

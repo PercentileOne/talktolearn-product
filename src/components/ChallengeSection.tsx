@@ -12,12 +12,12 @@ export default function ChallengeSection() {
       <div className="max-w-[1160px] mx-auto px-5">
         <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
           <div className="flex-1 text-center md:text-left">
-            <span className="section-eyebrow">Talk to Learn</span>
+            <span className="section-eyebrow">TalkToLearn</span>
             <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold text-text-dark leading-tight tracking-[-0.02em] mb-3">
               The 10-Minute Talk Challenge
             </h2>
             <p className="text-[clamp(1rem,2vw,1.2rem)] text-text-muted max-w-lg">
-              The heart of Talk to Learn — read the Flashcard, explain the topic out loud for 2 to 6 minutes, and see the difference in 10 minutes.
+              The heart of TalkToLearn — read the Flashcard, explain the topic out loud for 2 to 6 minutes, and see the difference in 10 minutes.
             </p>
             <div className="flex flex-col gap-6 my-10 text-left">
               {steps.map(s => (

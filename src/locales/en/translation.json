@@ -1,6 +1,6 @@
 ﻿{
   "meta": {
-    "title": "Talk to Learn — Talk About It, To Understand It.",
+    "title": "TalkToLearn — Talk About It, To Understand It.",
     "description": "TalkToLearn — Talk About It, To Understand It. A new way of learning by talking out loud. Pick any subject, speak under pressure, and AI scores your Clarity, Confidence, Relevance and Depth."
   },
   "lang": {
@@ -31,7 +31,7 @@
   "hero": {
     "badge1": "The Speak-to-Learn Method",
     "badge2": "#1 Learn-by-Talking App",
-    "title": "Talk to Learn",
+    "title": "TalkToLearn",
     "tagline": "Talk About It, To Understand It.",
     "subheadline1": "You understand a subject far more deeply when you talk about it.",
     "subheadline2": "Pick any subject. Talk about it. AI scores your",
@@ -47,6 +47,7 @@
     "step3Title": "Give a Talk. Get scored.",
     "step3Desc": "Speak under pressure. A live AI panel scores your Clarity, Confidence, Relevance and Depth.",
     "microcopy": "Launching soon — join the early access list.",
+    "guarantee": "If it doesn't deepen your comprehension, we don't want your money.",
     "trust": "No credit card required · Any subject · Any level",
     "startFree": "Start for Free",
     "watchDemo": "Watch the Demo"
@@ -58,7 +59,7 @@
     "point1": "Talking out loud improves recall.",
     "point2": "Explaining strengthens understanding.",
     "point3": "Speaking under pressure builds confidence.",
-    "highlight": "Talk to Learn is built on this principle — AI that listens, scores, and helps you improve every time you speak.",
+    "highlight": "TalkToLearn is built on this principle — AI that listens, scores, and helps you improve every time you speak.",
     "researchLink": "Backed by research — see the science",
     "step1Num": "01",
     "step1Title": "Deeper Understanding",
@@ -137,6 +138,14 @@
     "card6Desc": "AWS · CompTIA · CFA · PMP — study the domains, test yourself out loud, and share your score. No more passive reading.",
     "card7Title": "Coaches and trainers",
     "card7Desc": "Give clients structured, measurable feedback on their speaking and thinking — backed by AI-powered scoring.",
+    "card8Title": "Job Centres & Employment Services",
+    "card8Desc": "Help job seekers practise interview answers, build confidence, and communicate their skills clearly — measurable outcomes for every client.",
+    "card9Title": "Universities & Colleges",
+    "card9Desc": "Give students a structured way to revise, present ideas, and demonstrate understanding verbally — not just on paper.",
+    "card10Title": "Recruitment Firms",
+    "card10Desc": "Prepare candidates with mock interviews, speaking drills, and AI feedback before they step into the room.",
+    "b2bTitle": "Built for organisations too",
+    "b2bSubtitle": "TalkToLearn works as a team tool — track progress, set subjects, and measure comprehension across your cohort.",
     "quote": "\"If you can say it, you know it.\""
   },
   "testimonials": {
@@ -203,6 +212,30 @@
     "cancel": "Cancel",
     "close": "Close",
     "tryAgain": "Try Again"
+  },
+  "roadmap": {
+    "badge": "What's Coming Next",
+    "title": "This is just the beginning.",
+    "subtitle": "TalkToLearn is growing. These features are in active development — each one making comprehension faster, deeper, and more measurable.",
+    "f1Badge": "Phase 1 — Live Now",
+    "f1Title": "FlashTalk",
+    "f1Desc": "Pick a micro-subject. A 60-second timer starts. Talk about it. AI scores your Clarity, Confidence, Relevance, and Depth — then tells you exactly where you went wrong.",
+    "f1Tag1": "60-second sessions",
+    "f1Tag2": "AI scoring",
+    "f1Tag3": "Any subject",
+    "f2Badge": "Phase 2 — In Development",
+    "f2Title": "Mock Interview Suite",
+    "f2Desc": "A full AI panel interview — HR questions, technical deep-dives, and behavioural scenarios. Pick the role, set the difficulty, and face the pressure before the real thing.",
+    "f2Tag1": "Role-specific questions",
+    "f2Tag2": "HR + Technical panels",
+    "f2Tag3": "Difficulty levels",
+    "f3Badge": "Phase 3 — Coming Soon",
+    "f3Title": "Leaderboard & Competitions",
+    "f3Desc": "Weekly and monthly competitions where learners compete by subject. Top performers get prizes, recognition, and proof of comprehension to share with employers.",
+    "f3Tag1": "Weekly competitions",
+    "f3Tag2": "Real prizes",
+    "f3Tag3": "Shareable scores",
+    "cta": "Get Early Access"
   },
   "footer": {
     "tagline": "A new way to learn — by speaking out loud.",

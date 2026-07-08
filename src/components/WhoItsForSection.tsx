@@ -55,6 +55,12 @@ export default function WhoItsForSection() {
     { titleKey: 'who.card7Title', descKey: 'who.card7Desc', icon: ICONS[6] },
   ]
 
+  const b2bCards = [
+    { titleKey: 'who.card8Title', descKey: 'who.card8Desc', icon: ICONS[1] },
+    { titleKey: 'who.card9Title', descKey: 'who.card9Desc', icon: ICONS[0] },
+    { titleKey: 'who.card10Title', descKey: 'who.card10Desc', icon: ICONS[5] },
+  ]
+
   return (
     <section id="who-its-for" style={{ background: '#FFFFFF', padding: '108px 20px 120px' }}>
       <div className="max-w-[1120px] mx-auto">
@@ -119,8 +125,52 @@ export default function WhoItsForSection() {
           ))}
         </div>
 
+        {/* B2B section */}
+        <div style={{ borderTop: '1px solid #F0F2F7', paddingTop: '56px', marginBottom: '48px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 36 }}>
+            <h3 style={{ fontSize: 'clamp(1.3rem,3vw,1.9rem)', fontWeight: 900, color: '#0A0F1C', margin: '0 0 10px', letterSpacing: '-0.02em' }}>
+              {t('who.b2bTitle')}
+            </h3>
+            <p style={{ fontSize: 15, color: '#6B7280', maxWidth: 480, margin: '0 auto', lineHeight: 1.6 }}>
+              {t('who.b2bSubtitle')}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {b2bCards.map(card => (
+              <div
+                key={card.titleKey}
+                style={{
+                  background: 'linear-gradient(135deg,rgba(30,77,216,0.04),rgba(30,77,216,0.02))',
+                  border: '1px solid rgba(30,77,216,0.12)',
+                  borderRadius: '16px', padding: '28px 28px 26px',
+                  transition: 'transform .22s ease, box-shadow .22s ease',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
+                  ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(30,77,216,0.10)'
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+                  ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
+                }}
+              >
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '12px',
+                  background: 'rgba(30,77,216,.08)', border: '1px solid rgba(30,77,216,.16)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#1E4DD8', marginBottom: '18px',
+                }}>
+                  {card.icon}
+                </div>
+                <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0A0F1C', margin: '0 0 10px' }}>{t(card.titleKey)}</h3>
+                <p style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.65, margin: 0 }}>{t(card.descKey)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Tagline */}
-        <div style={{ textAlign: 'center', borderTop: '1px solid #F0F2F7', paddingTop: '44px' }}>
+        <div style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '17px', fontStyle: 'italic', color: '#9CA3AF', fontWeight: 400 }}>
             {t('who.quote')}
           </p>

@@ -34,7 +34,7 @@ export default function GlobalLanguageSection() {
           fontWeight: 900, letterSpacing: '-.03em', lineHeight: 1.07,
           color: '#FFFFFF', margin: '0 0 14px',
         }}>
-          Talk to Learn in Any Language
+          TalkToLearn in Any Language
         </h2>
 
         <p style={{ fontSize: 'clamp(1rem,2vw,1.15rem)', color: 'rgba(255,255,255,.55)', lineHeight: 1.65, maxWidth: '520px', margin: '0 auto 48px' }}>

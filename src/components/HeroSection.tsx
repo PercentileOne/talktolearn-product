@@ -117,9 +117,9 @@ export default function HeroSection() {
               <button className="btn-secondary" onClick={() => { track('cta_watch_demo'); document.getElementById('live-stage')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.30)', color: '#fff', backdropFilter: 'blur(8px)', display: 'inline-flex', alignItems: 'center', gap: 7 }}><Play size={13} strokeWidth={2.5} fill='white' /> {t('hero.watchDemo')}</button>
             </div>
 
-            {/* Micro-copy */}
-            <p className="text-sm text-white/50" style={{ marginTop: 2, fontStyle: 'italic', letterSpacing: '0.01em' }}>
-              {t('hero.microcopy')}
+            {/* Comprehension guarantee */}
+            <p style={{ marginTop: 16, fontSize: 13, fontStyle: 'italic', fontWeight: 600, color: 'rgba(255,255,255,0.62)', letterSpacing: '0.01em' }}>
+              "{t('hero.guarantee')}"
             </p>
             {/* Trust line */}
             <p className="text-sm text-white/40" style={{ marginTop: 10 }}>{t('hero.trust')}</p>

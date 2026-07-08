@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div style={{ maxWidth: 280 }}>
-            <div style={{ fontSize: 18, fontWeight: 900, color: '#FFF', letterSpacing: '-.01em', marginBottom: 8 }}>Talk to Learn</div>
+            <div style={{ fontSize: 18, fontWeight: 900, color: '#FFF', letterSpacing: '-.01em', marginBottom: 8 }}>TalkToLearn</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, marginBottom: 16 }}>
               {t('footer.tagline')}<br />
               {t('footer.taglineSub')}

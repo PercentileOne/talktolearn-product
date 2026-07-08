@@ -60,7 +60,7 @@ export default function NavBar() {
               </svg>
             </div>
             <span style={{ fontSize: '15px', fontWeight: 800, color: '#0A0F1C', letterSpacing: '-.01em', textShadow: '0 2px 6px rgba(30,77,216,0.35), 0 1px 2px rgba(0,0,0,0.15)' }}>
-              Talk to Learn
+              TalkToLearn
             </span>
           </div>
 
