@@ -54,21 +54,7 @@ export default function NavBar() {
               background: 'linear-gradient(135deg,#1E4DD8,#2A5BFF)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
-              <svg width="15" height="15" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Mic body — rounded capsule */}
-                <rect x="10" y="1" width="12" height="18" rx="6" fill="white" fillOpacity="0.95"/>
-                {/* Grill lines across body */}
-                <line x1="10.5" y1="8"  x2="21.5" y2="8"  stroke="#2A5BFF" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="10.5" y1="11" x2="21.5" y2="11" stroke="#2A5BFF" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="10.5" y1="14" x2="21.5" y2="14" stroke="#2A5BFF" strokeWidth="1.2" strokeLinecap="round"/>
-                {/* Stand arms */}
-                <path d="M8 14 Q5 14 5 20 Q5 24 10 24" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                <path d="M24 14 Q27 14 27 20 Q27 24 22 24" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                {/* Vertical stem */}
-                <line x1="16" y1="24" x2="16" y2="29" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                {/* Base */}
-                <line x1="11" y1="29" x2="21" y2="29" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-              </svg>
+              <span style={{ fontSize: '16px', lineHeight: 1 }}>🎙️</span>
             </div>
             <span style={{ fontSize: '15px', fontWeight: 800, color: '#0A0F1C', letterSpacing: '-.01em', textShadow: '0 2px 6px rgba(30,77,216,0.35), 0 1px 2px rgba(0,0,0,0.15)' }}>
               TalkToLearn
