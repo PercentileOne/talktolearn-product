@@ -1,0 +1,24 @@
+{
+  "routes": [
+    {
+      "route": "/explain-brief.html",
+      "redirect": "/coming-soon.html?ref=brief",
+      "statusCode": 302
+    },
+    {
+      "route": "/coming-soon.html",
+      "serve": "/coming-soon.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/*",
+      "redirect": "/coming-soon.html",
+      "statusCode": 302
+    }
+  ],
+  "globalHeaders": {
+    "Cache-Control": "public, max-age=0, must-revalidate",
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff"
+  }
+}
